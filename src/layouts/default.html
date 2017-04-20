@@ -1,0 +1,141 @@
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hardwood Depot</title>
+    <link rel="stylesheet" href="{{settings.awsAssets}}/css/app.css">
+</head>
+<body>
+
+<div data-sticky-container>
+    <div class="off-canvas-wrapper">
+        <div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas
+             data-position="left" aria-hidden="false">
+            <button class="close-button" aria-label="Close menu" type="button" data-close="">
+                <span aria-hidden="true">×</span>
+            </button>
+
+            <ul class="vertical menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="{{root}}contact.html">Contact</a></li>
+                <li><a href="{{root}}about.html">About</a></li>
+                <li><a href="">Subscribe</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="title-bar" data-sticky data-options="marginTop:0;" style="width:100%">
+        <div class="title-bar-left">
+            <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+            <span class="title-bar-title">hardwood depot</span>
+        </div>
+    </div>
+</div>
+
+{{!-- Pages you create in the src/pages/ folder are inserted here when the flattened page is created. --}}
+{{> body}}
+
+<div class="reveal" id="campModal" data-reveal>
+    <h2>Today's Special.</h2>
+
+    <p class="lead">Sign up now for our emails..</p>
+
+    <p>Sign up now and we'll respond with sales and information.</p>
+    <!-- Begin MailChimp Signup Form -->
+    <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        #mc_embed_signup {
+            background: #fff;
+            clear: left;
+            font: 14px Helvetica, Arial, sans-serif;
+            width: 100%;
+        }
+
+            /* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+               We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+    </style>
+    <div id="mc_embed_signup">
+        <form action="//ryansadwick.us10.list-manage.com/subscribe/post?u=e3eefc160fbed517db71eb0f9&amp;id=ee6b65e499"
+              method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+              target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll">
+                <label for="mce-EMAIL">Sign up Special Offers</label>
+                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address"
+                       required>
+                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text"
+                                                                                          name="b_e3eefc160fbed517db71eb0f9_ee6b65e499"
+                                                                                          tabindex="-1" value=""></div>
+                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe"
+                                          class="button"></div>
+            </div>
+        </form>
+    </div>
+
+    <!--End mc_embed_signup-->
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="reveal" id="emailModal" data-reveal>
+    <iframe id="email-iframe"
+            src="https://docs.google.com/forms/d/e/1FAIpQLScJENsp_E0XfDeKic46Ez68O7A8evDDYEU3JzgtaSCwU_uHPg/viewform?embedded=true"
+            width="100%" height="550" frameborder="0" marginheight="0" marginwidth="0">Loading...
+    </iframe>
+
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+
+<div id="footer" class="footer">
+    <div class="row property">
+        <div class="large-4 medium-4 columns">
+            <div class="property-info">
+                <h2><a class="home" href="#" title="tdk lutz">HW Depot</a></h2>
+
+                <p><a href="http://zurb.com/about" target="_blank">Hardwood Depot</a> description here.</p>
+            </div>
+        </div>
+        <div class="large-8 medium-8 columns">
+            <div class="row collapse">
+                <div class="large-4 medium-4 columns">
+                    <div class="learn-links">
+                        <h4>Want more?</h4>
+                        <ul>
+                            <li><a href="{{root}}about.html">About</a></li>
+                            <li><a href="{{root}}contact.html">Contact Us</a></li>
+                            <li><a href="#" data-open="campModal">Subscribe</a></li>
+                            <li><a href="">Blog</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="large-4 medium-4 columns">
+                    <div class="support-links">
+                        <h4>Talk to us</h4>
+
+                        <p><a href="tel: (555)948-1137">Call us at <strong>(555)948-1137</strong></a></p>
+
+                        <p>Not a big talker? <a href="#" data-open="emailModal">Email us</a></p>
+                    </div>
+                </div>
+                <div class="large-4 medium-4 columns">
+                    <div class="connect-links">
+                        <h4>Stay in touch</h4>
+
+                        <p>Latest news &amp; buzz.</a></p>
+                        <a href="" target="_blank" class="small button alert">Facebook</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="{{settings.awsAssets}}/js/app.js"></script>
+</body>
+</html>

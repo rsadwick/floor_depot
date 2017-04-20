@@ -1,0 +1,143 @@
+@charset 'utf-8';
+
+@import 'settings';
+@import 'foundation';
+@import 'motion-ui';
+@import 'slick';
+@import 'slick-theme';
+
+@include foundation-global-styles;
+@include foundation-grid;
+// @include foundation-flex-grid;
+@include foundation-typography;
+@include foundation-button;
+@include foundation-forms;
+// @include foundation-range-input;
+@include foundation-accordion;
+@include foundation-accordion-menu;
+@include foundation-badge;
+@include foundation-breadcrumbs;
+@include foundation-button-group;
+@include foundation-callout;
+@include foundation-card;
+@include foundation-close-button;
+@include foundation-menu;
+@include foundation-menu-icon;
+@include foundation-drilldown-menu;
+@include foundation-dropdown;
+@include foundation-dropdown-menu;
+@include foundation-responsive-embed;
+@include foundation-label;
+@include foundation-media-object;
+@include foundation-off-canvas;
+@include foundation-orbit;
+@include foundation-pagination;
+@include foundation-progress-bar;
+// @include foundation-progress-element;
+// @include foundation-meter-element;
+@include foundation-slider;
+@include foundation-sticky;
+@include foundation-reveal;
+@include foundation-switch;
+@include foundation-table;
+@include foundation-tabs;
+@include foundation-thumbnail;
+@include foundation-title-bar;
+@include foundation-tooltip;
+@include foundation-top-bar;
+@include foundation-visibility-classes;
+@include foundation-float-classes;
+// @include foundation-flex-classes;
+
+@include motion-ui-transitions;
+@include motion-ui-animations;
+
+.icon-container {
+  padding-bottom: 3%;
+}
+
+.img-bg {
+  position: relative;
+}
+
+.img-bg:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url(https://s3.amazonaws.com/wood.depot/assets/img/banner1.jpg);
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  background-repeat: no-repeat;
+}
+
+.focus {
+  z-index: 2;
+  position: relative;
+}
+
+.off-canvas {
+  z-index: 6;
+}
+
+.lessons {
+  display: none;
+}
+
+.lessons.content-toggle-lessons {
+  display: block;
+}
+
+.menu {
+  margin: 0;
+  list-style-type: none;
+}
+
+.menu.expanded {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.gallery {
+  max-width: 85%;
+}
+
+.property {
+  text-align: center;
+}
+
+.learn-links {
+  ul {
+    list-style: none;
+  }
+}
+
+#contact-container {
+  .scrolloff {
+    pointer-events: none;
+  }
+}
+
+#emailModal {
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+#footer {
+  font-size: 0.9rem;
+  background-color: #1779ba;
+  color: #fff;
+  padding: 1em;
+  border-top: 4px solid rgba(10, 10, 10, 0.25);
+
+  a {
+    color: #fff;
+  }
+
+  h4 {
+    font-size: 1.3rem;
+  }
+}
