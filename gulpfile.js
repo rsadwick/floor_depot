@@ -6,11 +6,13 @@ var cleanCSS = require('gulp-clean-css');
 var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var pkg = require('./package.json');
+var concat = require('gulp-concat');
+var minify = require('gulp-minify-css');
 
 // Set the banner content
 var banner = ['/*!\n',
-    ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
-    ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
+    ' * 3ee Framework - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
+    ' * Copyright 2017-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
     ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n',
     ' */\n',
     ''
@@ -20,7 +22,6 @@ var banner = ['/*!\n',
 gulp.task('less', function() {
     return gulp.src('less/creative.less')
         .pipe(less())
-        .pipe(header(banner, { pkg: pkg }))
         .pipe(gulp.dest('css'))
         .pipe(browserSync.reload({
             stream: true
@@ -50,19 +51,52 @@ gulp.task('minify-js', function() {
         }))
 });
 
-// Copy vendor libraries from /node_modules into /vendor
+
+gulp.task('optimize-js', function(){
+   return gulp.src(['js/vendor/jquery/jquery.js',
+             'js/vendor/bootstrap/bootstrap.js',
+             'js/vendor/jquery/jquery.easing.min.js',
+             'js/vendor/scrollreveal/scrollreveal.js',
+             'js/vendor/magnific-popup/jquery.magnific-popup.js',
+             'js/creative.js'
+            ],
+        {base: 'js/'})
+
+   .pipe(concat('script.js'))
+   .pipe(uglify())
+   .pipe(gulp.dest('build/'));
+});
+
+gulp.task('optimize-css', function(){
+   return gulp.src([
+      'css/vendor/bootstrap/css/bootstrap.css',
+      'css/vendor/font-awesome/css/font-awesome.css',
+      'css/vendor/magnific-popup/magnific-popup.css',
+      'css/creative.css'
+     ],
+       {base: 'css/'})
+
+   .pipe(concat('styles.css'))
+   .pipe(minify())
+   .pipe(gulp.dest('build/'));
+});
+
+// Copy font libraries from /node_modules into /fonts
 gulp.task('copy', function() {
+
+
     gulp.src(['node_modules/bootstrap/dist/**/*', '!**/npm.js', '!**/bootstrap-theme.*', '!**/*.map'])
-        .pipe(gulp.dest('vendor/bootstrap'))
+        .pipe(gulp.dest('js/vendor/bootstrap'))
 
     gulp.src(['node_modules/jquery/dist/jquery.js', 'node_modules/jquery/dist/jquery.min.js'])
-        .pipe(gulp.dest('vendor/jquery'))
+        .pipe(gulp.dest('js/vendor/jquery'))
 
     gulp.src(['node_modules/magnific-popup/dist/*'])
-        .pipe(gulp.dest('vendor/magnific-popup'))
+        .pipe(gulp.dest('js/vendor/magnific-popup'))
 
     gulp.src(['node_modules/scrollreveal/dist/*.js'])
-        .pipe(gulp.dest('vendor/scrollreveal'))
+        .pipe(gulp.dest('js/vendor/scrollreveal'))
+
 
     gulp.src([
             'node_modules/font-awesome/**',
@@ -72,11 +106,11 @@ gulp.task('copy', function() {
             '!node_modules/font-awesome/*.md',
             '!node_modules/font-awesome/*.json'
         ])
-        .pipe(gulp.dest('vendor/font-awesome'))
+        .pipe(gulp.dest('fonts/font-awesome'))
 })
 
 // Run everything
-gulp.task('default', ['less', 'minify-css', 'minify-js', 'copy']);
+gulp.task('default', ['less', 'copy', 'optimize-css', 'optimize-js']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
@@ -88,10 +122,10 @@ gulp.task('browserSync', function() {
 })
 
 // Dev task with browserSync
-gulp.task('dev', ['browserSync', 'less', 'minify-css', 'minify-js'], function() {
+gulp.task('dev', ['browserSync', 'less', 'optimize-css', 'optimize-js'], function() {
     gulp.watch('less/*.less', ['less']);
-    gulp.watch('css/*.css', ['minify-css']);
-    gulp.watch('js/*.js', ['minify-js']);
+    gulp.watch('css/*.css', ['optimize-css']);
+    gulp.watch('js/*.js', ['optimize-js']);
     // Reloads the browser whenever HTML or JS files change
     gulp.watch('*.html', browserSync.reload);
     gulp.watch('js/**/*.js', browserSync.reload);
