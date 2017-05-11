@@ -152,7 +152,7 @@ header {
   background-size: cover;
   -o-background-size: cover;
   background-position: center;
-  background-image: url('../img/header.jpg');
+  background-image: url('https://s3.amazonaws.com/hwfd.cdn/img/header.jpg');
   text-align: center;
   color: white;
 }
