@@ -163,7 +163,7 @@ header .header-content {
   width: 100%;
 }
 header .header-content .logo {
-  padding: 13px;
+  padding: 8px 0;
 }
 header .header-content .header-content-inner h1 {
   font-weight: 700;
@@ -413,4 +413,7 @@ img::-moz-selection {
 }
 body {
   webkit-tap-highlight-color: #222222;
+}
+.vendor-content {
+  width: 100%;
 }
