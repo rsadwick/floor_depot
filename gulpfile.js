@@ -93,7 +93,12 @@ gulp.task('optimize-img', function(){
             'img/portfolio/thumbnails/*'
         ],
         {base: 'img/'})
-		.pipe(imagemin())
+		.pipe(imagemin([
+            imagemin.gifsicle({interlaced: true}),
+            imagemin.jpegtran({progressive: true}),
+            imagemin.optipng({optimizationLevel: 5}),
+            imagemin.svgo({plugins: [{removeViewBox: true}]})
+        ]))
 		.pipe(gulp.dest('build/images'))
 });
 
