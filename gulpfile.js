@@ -7,8 +7,9 @@ var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var pkg = require('./package.json');
 var concat = require('gulp-concat');
-var minify = require('gulp-minify-css');
+//var minify = require('gulp-minify-css');
 var gzip = require('gulp-gzip');
+var imagemin = require('gulp-imagemin');
 
 // Set the banner content
 var banner = ['/*!\n',
@@ -79,15 +80,25 @@ gulp.task('optimize-css', function(){
        {base: 'css/'})
 
    .pipe(concat('styles.css'))
-   .pipe(minify())
+   .pipe(cleanCSS())
    .pipe(gzip({ append: false }))
    .pipe(gulp.dest('build/'));
 });
 
+
+gulp.task('optimize-img', function(){
+	return gulp.src([
+            'img/*',
+            'img/portfolio/fullsize/*',
+            'img/portfolio/thumbnails/*'
+        ],
+        {base: 'img/'})
+		.pipe(imagemin())
+		.pipe(gulp.dest('build/images'))
+});
+
 // Copy font libraries from /node_modules into /fonts
 gulp.task('copy', function() {
-
-
     gulp.src(['node_modules/bootstrap/dist/**/*', '!**/npm.js', '!**/bootstrap-theme.*', '!**/*.map'])
         .pipe(gulp.dest('js/vendor/bootstrap'))
 
@@ -113,14 +124,14 @@ gulp.task('copy', function() {
 })
 
 // Run everything
-gulp.task('default', ['less', 'copy', 'optimize-css', 'optimize-js']);
+gulp.task('default', ['less', 'copy', 'optimize-css', 'optimize-js', 'optimize-img']);
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
     browserSync.init({
         server: {
             baseDir: ''
-        },
+        }
     })
 })
 
