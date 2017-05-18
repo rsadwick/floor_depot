@@ -8,6 +8,7 @@ var uglify = require('gulp-uglify');
 var pkg = require('./package.json');
 var concat = require('gulp-concat');
 var minify = require('gulp-minify-css');
+var gzip = require('gulp-gzip');
 
 // Set the banner content
 var banner = ['/*!\n',
@@ -64,6 +65,7 @@ gulp.task('optimize-js', function(){
 
    .pipe(concat('script.js'))
    .pipe(uglify())
+   .pipe(gzip({ append: false }))
    .pipe(gulp.dest('build/'));
 });
 
@@ -78,6 +80,7 @@ gulp.task('optimize-css', function(){
 
    .pipe(concat('styles.css'))
    .pipe(minify())
+   .pipe(gzip({ append: false }))
    .pipe(gulp.dest('build/'));
 });
 
