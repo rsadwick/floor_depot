@@ -54,9 +54,9 @@
     {% block extra_head %}{% endblock %}
 </head>
 
-<body id="page-top">
+<body id="page-top" class="shop-template">
 
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top affix">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -64,7 +64,8 @@
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
             {% block navbar_title %}
-                <a class="navbar-brand page-scroll" href="#page-top"> {% if settings.SITE_TITLE %}{{ settings.SITE_TITLE }}</a>{% endif %}
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    {% if settings.SITE_TITLE %}{{ settings.SITE_TITLE }}</a>{% endif %}
             {% endblock %}
         </div>
 
@@ -89,117 +90,35 @@
 </nav>
 
 
-
-
-<!--<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">{% trans "Toggle Navigation" %}</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-        </div>
-        <div class="navbar-collapse collapse">
-            {% block navbar_search_form %}{% search_form "all" %}{% endblock %}
-            {% block navbar_dropdown_menu %}{% page_menu "pages/menus/dropdown.html" %}{% endblock %}
-        </div>
-    </div>
-</div>-->
-
-<header>
-    <div class="header-content">
-        <img src="https://s3.amazonaws.com/hwfd.cdn/img/logo.png" class="logo" alt="Hardwood Floor Depot logo">
-        <div class="header-content-inner">
-            <h1 id="homeHeading">Experienced wholesaler of top quality wood floors</h1>
-            <hr>
-            <p>Find out more about our quality domestic hardwoods including: White Oak, Red Oak, Hickory, Walnut,
-                Maple</p>
-            <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
-        </div>
-    </div>
-</header>
-
-<div class="container">
-
-    {% nevercache %}
-        {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                    <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-    {% endnevercache %}
-
-    <h1>{% block title %}{% endblock %}</h1>
-
-    <ul class="breadcrumb">
-        {% spaceless %}
-            {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
-        {% endspaceless %}
-    </ul>
-
-</div>
-
-<div class="container">
-    <div class="row">
-
-        <div class="col-md-2 left">
-            {% block left_panel %}
-                <div class="panel panel-default tree">{% page_menu "pages/menus/tree.html" %}</div>
-            {% endblock %}
-        </div>
-
-        <div class="col-md-7 middle">
-            {% block main %}{% endblock %}
-        </div>
-
-        <div class="col-md-3 right">
-            {% nevercache %}
-                {% include "includes/language_selector.html" %}
-                {% include "includes/user_panel.html" %}
-            {% endnevercache %}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    {% block right_panel %}
-                        {% ifinstalled mezzanine.twitter %}
-                            {% include "twitter/tweets.html" %}
-                        {% endifinstalled %}
-                    {% endblock %}
+{% nevercache %}
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    {{ message }}
                 </div>
-            </div>
+            {% endfor %}
         </div>
+    {% endif %}
+{% endnevercache %}
 
-    </div>
+<div class="breadcrumb-container">
+
+        <ul class="breadcrumb">
+            {% spaceless %}
+                {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
+            {% endspaceless %}
+        </ul>
+
 </div>
 
-<footer>
-    <div class="container">
-        {% page_menu "pages/menus/footer.html" %}
+{% block main %}
 
-        <div class="row">
-            <p class="site-info text-center">
-                {% trans "Powered by" %}
-                <a href="http://mezzanine.jupo.org">Mezzanine</a>{% ifinstalled cartridge.shop %},
-                <a href="http://cartridge.jupo.org">Cartridge</a>{% endifinstalled %}
-                {% trans "and" %}
-                <a href="http://www.djangoproject.com">Django</a>
-                <span class="separator">|</span>
-                {% trans "Theme by" %} <a target="_blank" href="http://getbootstrap.com">Bootstrap</a>
-                {% ifinstalled mezzanine.mobile %}
-                    <span class="separator">|</span>
-                    <a href="{% url "set_device" "mobile" %}?next={{ request.path }}">{% trans "View Mobile Site" %}</a>
-                {% endifinstalled %}
-            </p>
-        </div>
-    </div>
-</footer>
+{% endblock %}
+
+
+
 
 {% block footer_js %}
     {% include "includes/footer_scripts.html" %}

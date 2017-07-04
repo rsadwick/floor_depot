@@ -1,10 +1,371 @@
-{% extends "pages/richtextpage.html" %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block main %}
-<!--
-This template is provided as a custom template for the homepage, for
-when it is configured as an editable page in the navigation tree. Feel
-free to modify it.
--->
-{{ block.super }}
-{% endblock %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="robots" content="index,follow" />
+
+    <title>hardwood-flooring | Buy Hardwood Floors at Hardwood Floor Depot</title>
+
+   <link href="https://s3.amazonaws.com/hwfd.cdn/build/styles.css" rel="stylesheet">
+      <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+    <script src="vendor/html5shiv/html5shiv.js"></script>
+    <script src="vendor/respond/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top">
+
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">Hardwood Floor Depot</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="#about">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#services">Service</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#portfolio">Products</a>
+                </li>
+
+                <li>
+                    <a class="page-scroll" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header>
+    <div class="header-content">
+        <img src="https://s3.amazonaws.com/hwfd.cdn/img/logo.png" class="logo" alt="Hardwood Floor Depot logo">
+        <div class="header-content-inner">
+            <h1 id="homeHeading">Experienced wholesaler of top quality wood floors</h1>
+            <hr>
+            <p>Find out more about our quality domestic hardwoods including: White Oak, Red Oak, Hickory, Walnut,
+                Maple</p>
+            <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+        </div>
+    </div>
+</header>
+
+<section class="bg-primary" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">We've got what you need!</h2>
+                <hr class="light">
+                <p class="text-faded">The brands you know. The styles you want. The quality you can trust. Hardwood
+                    Floor Depot makes getting beautiful new floors easy. If you need new Hardwood - we are the easiest
+                    way to get the best value and a professional experience.  Start your new project today.</p>
+                <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">start now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">At Your Service</h2>
+                <hr class="primary">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-truck text-primary sr-icons"></i>
+
+                    <h3>Your Source</h3>
+
+                    <p class="text-muted">We ship directly from the wood mills.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
+
+                    <h3>Ready to Ship</h3>
+
+                    <p class="text-muted">Discounts up to 90% from major trucking companies!</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-trophy text-primary sr-icons"></i>
+
+                    <h3>Up to Date</h3>
+
+                    <p class="text-muted">Highest quality, largest selection</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box">
+                    <i class="fa fa-4x fa-shield text-primary sr-icons"></i>
+
+                    <h3>Service You Can Trust</h3>
+
+                    <p class="text-muted">Ready to serve your hardwood flooring needs</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="no-padding" id="portfolio">
+    <div class="container-fluid">
+        <div class="row no-gutter popup-gallery">
+            <div class="col-lg-4 col-sm-6">
+                <a href="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/fullsize/1.jpg" class="portfolio-box">
+                    <img src="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
+
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-name">
+                                Red Oak
+                            </div>
+                            <div class="project-category text-faded">
+                                See More
+                            </div>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/fullsize/2.jpg" class="portfolio-box">
+                    <img src="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
+
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-name">
+                                White Oak
+                            </div>
+                            <div class="project-category text-faded">
+                                See More
+                            </div>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/fullsize/3.jpg" class="portfolio-box">
+                    <img src="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
+
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-name">
+                                Hickory
+                            </div>
+                            <div class="project-category text-faded">
+                                See More
+                            </div>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/fullsize/4.jpg" class="portfolio-box">
+                    <img src="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/thumbnails/4.jpg" class="img-responsive" alt="">
+
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-name">
+                                Maple
+                            </div>
+                            <div class="project-category text-faded">
+                                See More
+                            </div>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/fullsize/5.jpg" class="portfolio-box">
+                    <img src="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/thumbnails/5.jpg" class="img-responsive" alt="">
+
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-name">
+                                Walnut
+                            </div>
+                            <div class="project-category text-faded">
+                                See More
+                            </div>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-4 col-sm-6">
+                <a href="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/fullsize/6.jpg" class="portfolio-box">
+                    <img src="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/thumbnails/6.jpg" class="img-responsive" alt="">
+
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-name">
+                                Utility
+                            </div>
+                            <div class="project-category text-faded">
+                                See More
+                            </div>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="push-col-lg-3 col-sm-6"></div>
+        </div>
+    </div>
+</section>
+
+<aside class="bg-dark">
+    <div class="container text-center">
+        <div class="call-to-action">
+            <h2>Ready to start your new project?</h2>
+            <a data-toggle="modal" data-target="#apptModal" class="btn btn-default btn-xl sr-button">Start
+                Now!</a>
+        </div>
+    </div>
+</aside>
+
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading">Let's Get In Touch!</h2>
+                <hr class="primary">
+                <p>Ready to start your next project with us? That's great! Contact us to get started.</p>
+            </div>
+            <div class="col-lg-4 col-lg-offset-2 text-center">
+                <i class="fa fa-phone fa-3x sr-contact"></i>
+
+                <p><a href="tel:1-608-512-0176">608.512.0176</a></p>
+            </div>
+            <div class="col-lg-4 text-center">
+                <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+
+                <p><a href="mailto:sales@hardwoodfloordepot.com">sales@hardwoodfloordepot.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <li>
+                        <a href="https://twitter.com/hardwood_depot" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com/Hardwood-Floor-Depot-581974805339306" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.pinterest.com/hardwoodfloordepot">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/in/anthony-civitello-007a20141/">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.houzz.com/pro/jitter8080/hardwood-floor-depot" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-houzz fa-stack-1x fa-inverse"></i>
+                                </span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="modal fade" id="apptModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body vendor-content">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSez-X-wZlEfGkCp0mVbhlwPf3KKCTQO2YD2zF05fr-nk5j1ag/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://s3.amazonaws.com/hwfd.cdn/build/script.js"></script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-99025359-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+
+</html>

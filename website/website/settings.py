@@ -16,6 +16,7 @@ from django.utils.translation import ugettext_lazy as _
 
 # Sequence of available credit card types for payment.
 # SHOP_CARD_TYPES = ("Mastercard", "Visa", "Diners", "Amex")
+SHOP_USE_RATINGS = False
 
 # Setting to turn on featured images for shop categories. Defaults to False.
 # SHOP_CATEGORY_USE_FEATURED_IMAGE = True

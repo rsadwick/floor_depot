@@ -8,6 +8,8 @@
 {% editable page.category.content %}
 {{ page.category.content|safe }}
 {% endeditable %}
+    <div class="container">
+    <div class="row">
 
 {% if child_categories %}
 <div class="row shop-category-list">
@@ -24,7 +26,8 @@
             <h4>{{ category.title }}</h4>
         </div>
     </a>
-    </div>  
+    </div>
+
     {% endfor %}
 {% else %}
     {% for category in child_categories %}
@@ -87,5 +90,6 @@
 {% pagination_for products %}
 
 {% endif %}
-
+</div>
+</div>
 {% endblock %}
