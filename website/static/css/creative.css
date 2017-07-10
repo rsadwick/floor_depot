@@ -52,6 +52,9 @@ section {
   padding: 100px 0;
 }
 
+.shop-template section{
+    margin-top: 45px;
+}
 
 aside {
   padding: 50px 0;
@@ -425,6 +428,23 @@ body {
 .breadcrumb-container{
     margin-top: 67px;
 }
+
+.breadcrumb{
+    background: #c3c3c3;
+    color: #151414;
+}
+
+.breadcrumb > li + li:before {
+    padding: 0 5px;
+    color: #151414;
+    content: "/\00a0";
+}
+
+.breadcrumb > .active {
+    font-weight: 600;
+    color: #151414;
+}
+
 .shop-template{
      font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
@@ -441,11 +461,20 @@ body {
     font-size: 2rem;
 }
 
+.shop-template .form-actions{
+    padding: 15px 0;
+}
+
+.shop-template .input_id_additional_instructions label{
+    vertical-align: top;
+}
+
 .shop-template .help-block{
     display: none;
 }
 
-.shop-template input[type=text], .shop-template input[type=number], .shop-template select{
+.shop-template input[type=text], .shop-template input[type=number], .shop-template select,
+.shop-template input[type=email], .shop-template input[type=password]{
     padding: .5rem .75rem;
     font-size: 1.5rem;
     color: #464a4c;
@@ -459,4 +488,22 @@ body {
 
 .bg-primary{
     padding: 19px 0 1px 0;
+}
+
+.shop-template .checkout-panel li {
+    color: #151414;
+}
+
+.shop-template .product-thumb h6{
+    font-size: 2rem;
+}
+
+.shop-template .thumbnail{
+    border-color: #999;
+}
+
+a.thumbnail:hover,
+a.thumbnail:focus,
+a.thumbnail.active {
+  border-color: #F05F40;
 }

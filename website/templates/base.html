@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-{% load pages_tags mezzanine_tags i18n staticfiles %}
+{% load pages_tags mezzanine_tags shop_tags i18n staticfiles %}
 
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -64,7 +64,7 @@
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
             {% block navbar_title %}
-                <a class="navbar-brand page-scroll" href="#page-top">
+                <a class="navbar-brand page-scroll" href="/">
                     {% if settings.SITE_TITLE %}{{ settings.SITE_TITLE }}</a>{% endif %}
             {% endblock %}
         </div>
@@ -84,6 +84,10 @@
                 <li>
                     <a class="page-scroll" href="#contact">Contact</a>
                 </li>
+                <li>
+                        <a href="{% url "shop_cart" %}">{% trans "Your Cart" %}:{% blocktrans count request.cart.total_quantity as cart_quantity %}{% plural %} {{ cart_quantity }} {% endblocktrans %} </a>
+
+                 </li>
             </ul>
         </div>
     </div>

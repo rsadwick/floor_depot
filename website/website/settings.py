@@ -66,6 +66,9 @@ SHOP_OPTION_TYPE_CHOICES = (
     (2, "Grade"),
 )
 
+SHOP_HANDLER_PAYMENT = 'cartridge.shop.payment.stripe_api.process'
+STRIPE_API_KEY = 'sk_test_M5EgXDlO9rABJYoeUEjt4aOk'
+
 # Sequence of indexes from the SHOP_OPTION_TYPE_CHOICES setting that
 # control how the options should be ordered in the admin,
 # eg for "Colour" then "Size" given the above:
@@ -157,7 +160,7 @@ USE_MODELTRANSLATION = False
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
