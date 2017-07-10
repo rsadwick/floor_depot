@@ -40,6 +40,7 @@
     {{ block.super }}
     <script>var variations = {{ variations_json|safe }};</script>
     <script src="{% static "cartridge/js/product_variations.js" %}"></script>
+    <script src="{% static "js/app.js" %}"></script>
 {% endblock %}
 
 {% block breadcrumb_menu %}
@@ -102,10 +103,10 @@
                                         {% if not variation.default %}style="display:none;"{% endif %}>
                                         {% if variation.has_price %}
                                             {% if variation.on_sale %}
-                                                <span class="old-price">{{ variation.unit_price|currency }}</span>
+                                                <span class="old-price">{{ variation.unit_price|currency }} / sq ft</span>
                                                 {% trans "On sale:" %}
                                             {% endif %}
-                                            <span class="price">{{ variation.price|currency }}</span>
+                                            <span class="price" data-price="{{ variation.price }}">{{ variation.price|currency }} / sq ft</span>
                                         {% else %}
                                             {% if has_available_variations %}
                                                 <span class="error-msg">
@@ -155,10 +156,10 @@
                                                 <div class="price-info">
                                                     {% if product.has_price %}
                                                         {% if product.on_sale %}
-                                                            <span class="old-price">{{ product.unit_price|currency }}</span>
+                                                            <span class="old-price">{{ product.unit_price|currency }} / sq ft</span>
                                                             {% trans "On sale:" %}
                                                         {% endif %}
-                                                        <span class="price">{{ product.price|currency }}</span>
+                                                        <span class="price" data-price="{{ variation.price }}" >{{ product.price|currency }} / sq ft</span>
                                                     {% else %}
                                                         <span class="coming-soon">{% trans "Coming soon" %}</span>
                                                     {% endif %}

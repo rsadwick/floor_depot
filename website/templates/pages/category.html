@@ -61,7 +61,7 @@
 
 <div class="row product-list">
 {% for product in products.object_list %}
-    <div class="col-xs-6 col-sm-4 col-lg-3 product-thumb">
+    <div class="col-xs-6 col-sm-3 col-lg-3 product-thumb">
     <a href="{{ product.get_absolute_url }}" class="thumbnail">
         {% if product.image %}
         <img src="{{ MEDIA_URL }}{% thumbnail product.image 230 230 %}">
@@ -73,10 +73,10 @@
         <div class="price-info">
         {% if product.has_price %}
             {% if product.on_sale %}
-            <span class="old-price">{{ product.unit_price|currency }}</span>
+            <span class="old-price">{{ product.unit_price|currency }} / sq ft</span>
             {% trans "On sale:" %}
             {% endif %}
-            <span class="price">{{ product.price|currency }}</span>
+            <span class="price">{{ product.price|currency }} / sq ft</span>
         {% else %}
             <span class="coming-soon">{% trans "Coming soon" %}</span>
         {% endif %}
