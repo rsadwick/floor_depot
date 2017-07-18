@@ -38,8 +38,7 @@ SHOP_USE_RATINGS = False
 # is called on submit of the billing/shipping checkout step. This
 # is where shipping calculation can be performed and set using the
 # function ``cartridge.shop.utils.set_shipping``.
-# SHOP_HANDLER_BILLING_SHIPPING = \
-#                       "cartridge.shop.checkout.default_billship_handler"
+SHOP_HANDLER_BILLING_SHIPPING = "rlshipping.shipping.billship_handler"
 
 # Dotted package path and name of the function that
 # is called once an order is successful and all of the order
@@ -125,6 +124,14 @@ STRIPE_API_KEY = 'sk_test_M5EgXDlO9rABJYoeUEjt4aOk'
 # field instance. When specifying the field class, the path
 # ``django.models.db.`` can be omitted for regular Django model fields.
 #
+EXTRA_MODEL_FIELDS = (
+    (
+        "cartridge.shop.models.Product.weight",
+        "CharField",
+        ("Weight",),
+        {"blank": False, "max_length": 5},
+    ),
+)
 # EXTRA_MODEL_FIELDS = (
 #     (
 #         # Dotted path to field.
@@ -298,6 +305,8 @@ if DJANGO_VERSION < (1, 9):
 ################
 
 INSTALLED_APPS = (
+    "website",
+    "rlshipping",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
