@@ -3,9 +3,9 @@
 {% load mezzanine_tags %}
 
 {% block main %}{{ block.super }}
-
-{% editable page.richtextpage.content %}
-{{ page.richtextpage.content|richtext_filters|safe }}
-{% endeditable %}
-
+<div class="shop-container container">
+    {% editable page.richtextpage.content %}
+    {{ page.richtextpage.content|richtext_filters|safe }}
+    {% endeditable %}
+</div>
 {% endblock %}

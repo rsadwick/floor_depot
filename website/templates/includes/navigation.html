@@ -1,0 +1,38 @@
+{% load accounts_tags pages_tags shop_tags mezzanine_tags i18n staticfiles %}
+
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+        {% if request.user.is_authenticated %}
+        <li>
+
+            <a href="/accounts/update/">{% trans "Account" %}</a>
+
+        </li>
+        {% else %}
+        <li>
+
+            <a href="/accounts/login/">{% trans "Login" %}</a>
+
+        </li>
+        {% endif %}
+
+
+        <li>
+            <a class="page-scroll" href="/shop/">Products</a>
+        </li>
+
+        <li>
+            <a class="page-scroll" href="/contact/">Contact</a>
+        </li>
+
+        <li>
+            <a class="page-scroll" href="/about/">About</a>
+        </li>
+
+        <li>
+            <a href="{% url "shop_cart" %}">{% blocktrans count request.cart.total_quantity as cart_quantity %}cart 1{% plural %} cart <span class="search-highlight">{{ cart_quantity }}</span>{% endblocktrans %} </a>
+
+        </li>
+        <li> {% block navbar_search_form %}{% search_form "all" %}{% endblock %}</li>
+    </ul>
+</div>

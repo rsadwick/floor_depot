@@ -502,6 +502,15 @@ body {
     border-color: #999;
 }
 
+.search-highlight{
+    color: #F05F40;
+    font-weight: 700;
+}
+
+.input_id_field_4 > label{
+    vertical-align: top;
+}
+
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {

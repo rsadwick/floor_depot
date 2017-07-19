@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="{{ LANGUAGE_CODE }}"{% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-{% load pages_tags mezzanine_tags shop_tags i18n staticfiles %}
+{% load accounts_tags pages_tags mezzanine_tags shop_tags i18n staticfiles %}
 
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
@@ -56,6 +56,7 @@
 
 <body id="page-top" class="shop-template">
 
+
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top affix">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -64,34 +65,15 @@
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
             {% block navbar_title %}
-                <a class="navbar-brand page-scroll" href="/">
-                    {% if settings.SITE_TITLE %}{{ settings.SITE_TITLE }}</a>{% endif %}
+            <a class="navbar-brand page-scroll" href="/">
+                {% if settings.SITE_TITLE %}{{ settings.SITE_TITLE }}</a>{% endif %}
             {% endblock %}
         </div>
+        {% include "includes/navigation.html" %}
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="page-scroll" href="#about">About</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#services">Service</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#portfolio">Products</a>
-                </li>
-
-                <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
-                </li>
-                <li>
-                        <a href="{% url "shop_cart" %}">{% trans "Your Cart" %}:{% blocktrans count request.cart.total_quantity as cart_quantity %}{% plural %} {{ cart_quantity }} {% endblocktrans %} </a>
-
-                 </li>
-            </ul>
-        </div>
     </div>
 </nav>
+
 
 
 {% nevercache %}

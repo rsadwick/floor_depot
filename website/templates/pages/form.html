@@ -8,6 +8,7 @@
 {% endblock %}
 
 {% block main %}
+        <div class="shop-container container">
 {{ block.super }}
 {% if request.GET.sent %}
     {% editable page.form.response %}
@@ -29,8 +30,9 @@
                 value="{% if page.form.button_text %}{{ page.form.button_text }}{% else %}{% trans "Submit" %}{% endif %}">
         </div>
     </form>
-{% endif %}
 
+{% endif %}
+</div>
 {% endblock %}
 
 

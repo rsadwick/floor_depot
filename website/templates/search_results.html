@@ -16,15 +16,16 @@
 {% endblock %}
 
 {% block main %}
+    <div class="shop-container container">
 
 <p>
 {% if results.paginator.count == 0 %}
 {% blocktrans %}
-No results were found in {{ search_type }} matching your query: {{ query }}
+No results found for: <span class="search-highlight">{{ query }}</span>
 {% endblocktrans %}
 {% else %}
 {% blocktrans with start=results.start_index end=results.end_index total=results.paginator.count %}
-Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} matching your query: {{ query }}
+Showing {{ total }} results for: <span class="search-highlight">{{ query }}</span>
 {% endblocktrans %}
 {% endif %}
 </p>
@@ -33,7 +34,6 @@ Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} mat
 {% for result in results.object_list %}
 {% with result.get_absolute_url as result_url %}
     <h5>
-        {{ forloop.counter0|add:results.start_index }})
         {% if result_url %}
             <a href="{{ result_url }}">{{ result }}</a>
         {% else %}
@@ -51,5 +51,5 @@ Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} mat
 </div>
 
 {% pagination_for results %}
-
+</div>
 {% endblock %}

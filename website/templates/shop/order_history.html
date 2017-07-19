@@ -12,13 +12,15 @@
 {% block main %}
     <div class="container">
         {% if orders %}
-
+        <h1>Order History</h1>
+        <p>Check the status of your orders.  <a href="/contact">Contact us</a> if you have any questions.</p>
             <table class="table table-striped order-history">
                 <thead>
                 <th class="left">ID</th>
                 <th class="left">{% trans "Date" %}</th>
                 <th class="right">{% trans "Qty" %}</th>
                 <th class="right">{% trans "Paid" %}</th>
+                <th class="right">{% trans "Status" %}</th>
                 <th>&nbsp;</th>
                 </thead>
                 <tbody>
@@ -28,6 +30,7 @@
                         <td class="left">{{ order.time|date:"SHORT_DATE_FORMAT" }}</td>
                         <td class="right">{{ order.quantity_total }}</td>
                         <td class="right">{{ order.total|currency }}</td>
+                        <td class="right">{{ order.get_status_display }}</td>
                         <td class="right">
                             <form class="order-history-form" method="post"
                                   action="{% url "shop_invoice_resend" order.id %}?next={{ request.path }}">
@@ -36,9 +39,9 @@
                                     <a class="btn btn-sm btn-primary"
                                        href="{% url "shop_invoice" order.id %}?format=pdf">{% trans "Download PDF" %}</a>
                                 {% endif %}
-                                <a class="btn btn-sm btn-default" target="_blank"
+                                <a class="btn btn-sm btn-primary" target="_blank"
                                    href="{% url "shop_invoice" order.id %}">{% trans "View invoice" %}</a>
-                                <input type="submit" class="btn btn-sm btn-default"
+                                <input type="submit" class="btn btn-sm btn-primary"
                                        value="{% trans "Re-send order email" %}">
                             </form>
                         </td>

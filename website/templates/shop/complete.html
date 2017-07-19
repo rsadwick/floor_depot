@@ -61,12 +61,11 @@
 
 {% block main %}
     <div class="container">
+        <h1>It's yours!</h1>
         <p>{% trans "Thank you for shopping with us, your order is complete." %}</p>
 
         <p>{% trans "We've sent you a receipt via email." %}</p>
-
-        <p>{% trans "You can also view your invoice using one of the links below." %}</p>
-        <br>
+        <br/>
 
         <form class="order-complete-form" method="post"
               action="{% url "shop_invoice_resend" order.id %}?next={{ request.path }}">
@@ -75,9 +74,9 @@
                 <a class="btn btn-primary"
                    href="{% url "shop_invoice" order.id %}?format=pdf">{% trans "Download PDF invoice" %}</a>
             {% endif %}
-            <a class="btn btn-default" target="_blank"
-               href="{% url "shop_invoice" order.id %}">{% trans "View invoice in your browser" %}</a>
-            <input type="submit" class="btn btn-default" value="{% trans "Re-send order email" %}">
+            <a class="btn btn-primary" href="{% url "shop_order_history"  %}">{% trans "Order History" %}</a>
+            <a class="btn btn-primary" href="{% url "shop_invoice" order.id %}">{% trans "View invoice in your browser" %}</a>
+            <input type="submit" class="btn btn-primary" value="{% trans "Re-send order email" %}">
         </form>
     </div>
 {% endblock %}
