@@ -73,7 +73,7 @@ def billship_handler(request, order_form):
         item.Height = 0
         item.Length = 0
 
-        items.Item = [item]
+        items.Item.append(item)
 
     shipping_request.Items = items
 
