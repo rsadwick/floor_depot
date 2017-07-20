@@ -27,8 +27,6 @@ server {
 
     add_header Strict-Transport-Security max-age=15768000;
 
-    return 301 https://hardwoodfloordepot.com$request_uri;
-
     # Deny illegal Host headers
     if ($host !~* ^(%(domains_regex)s)$) {
         return 444;
