@@ -210,6 +210,10 @@ AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
 # a mode you'd pass directly to os.chmod.
 FILE_UPLOAD_PERMISSIONS = 0o644
 
+STRIPE_API_KEY = 'sk_test_M5EgXDlO9rABJYoeUEjt4aOk'
+
+#rl shipping key
+RL_SHIPPING_KEY = "UtZkZTQjI4OyU1YTktMWI5Yi00NzE1LWExOGZGQwN0NDYDMGC"
 
 #############
 # DATABASES #
