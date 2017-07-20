@@ -53,4 +53,8 @@ server {
         log_not_found   off;
     }
 
+    location ~ /.well-known {
+        allow all;
+    }
+
 }
