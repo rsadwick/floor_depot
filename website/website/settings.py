@@ -195,6 +195,10 @@ LANGUAGES = (
 # production. Best set to ``True`` in local_settings.py
 DEBUG = True
 
+# Make these unique, and don't share it with anybody.
+SECRET_KEY = "pt6%(wp%ym#wgt3@^4&)x()5384=zljcrqod5b6ejxe@=v(ow$"
+NEVERCACHE_KEY = "j6@s(c2mz-k#6!c@fqc%5%h@^4$!iwp0r(*srl&79bv$flbr#k"
+
 # Whether a user's session cookie expires when the Web browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
