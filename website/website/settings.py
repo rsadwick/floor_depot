@@ -32,7 +32,7 @@ SHOP_USE_RATINGS = False
 # Controls the formatting of monetary values accord to the locale
 # module in the python standard library. If an empty string is
 # used, will fall back to the system's locale.
-SHOP_CURRENCY_LOCALE = "en_US.UTF-8"
+#SHOP_CURRENCY_LOCALE = "en_US.UTF-8"
 
 # Dotted package path and name of the function that
 # is called on submit of the billing/shipping checkout step. This
@@ -193,7 +193,7 @@ LANGUAGES = (
 # A boolean that turns on/off debug mode. When set to ``True``, stack traces
 # are displayed for error pages. Should always be set to ``False`` in
 # production. Best set to ``True`` in local_settings.py
-DEBUG = False
+DEBUG = True
 
 SSL_ENABLED = True
 SSL_FORCE_HOST = "hardwoodfloordepot.com"
