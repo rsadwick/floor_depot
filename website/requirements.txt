@@ -1,3 +1,4 @@
 Mezzanine==4.2.3
 suds-jurko==0.6
 stripe==1.62.0
+cartridge
