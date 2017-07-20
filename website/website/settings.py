@@ -66,7 +66,7 @@ SHOP_OPTION_TYPE_CHOICES = (
 )
 
 SHOP_HANDLER_PAYMENT = 'cartridge.shop.payment.stripe_api.process'
-STRIPE_API_KEY = 'sk_test_M5EgXDlO9rABJYoeUEjt4aOk'
+
 
 # Sequence of indexes from the SHOP_OPTION_TYPE_CHOICES setting that
 # control how the options should be ordered in the admin,
