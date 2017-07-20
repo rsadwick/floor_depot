@@ -193,7 +193,7 @@ LANGUAGES = (
 # A boolean that turns on/off debug mode. When set to ``True``, stack traces
 # are displayed for error pages. Should always be set to ``False`` in
 # production. Best set to ``True`` in local_settings.py
-DEBUG = False
+DEBUG = True
 
 # Whether a user's session cookie expires when the Web browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -235,6 +235,42 @@ DATABASES = {
         "PORT": "",
     }
 }
+
+EMAIL_HOST = 'smtpout.secureserver.net'
+EMAIL_HOST_USER = 'sales@hardwoodfloordepot.com'
+EMAIL_HOST_PASSWORD = 'CivCiv#8080'
+DEFAULT_FROM_EMAIL = 'sales@hardwoodfloordepot.com'
+SERVER_EMAIL = 'sales@hardwoodfloordepot.com'
+EMAIL_PORT = 80
+EMAIL_USE_TLS = False
+
+
+###################
+# DEPLOY SETTINGS #
+###################
+
+# Domains for public site
+ALLOWED_HOSTS = ["hardwoodfloordepot.com"]
+
+# These settings are used by the default fabfile.py provided.
+# Check fabfile.py for defaults.
+
+FABRIC = {
+    "SSH_USER": "rsadwick",  # VPS SSH username
+    "VIRTUALENV_HOME": "/home/rsadwick/woody", # Absolute remote path for virtualenv
+    "HOSTS": ["159.203.176.67"],  # The IP address of your VPS
+    "DOMAINS": ALLOWED_HOSTS,  # Edit domains in ALLOWED_HOSTS
+    "REQUIREMENTS_PATH": "requirements.txt",  # Project's pip requirements
+    "LOCALE": "en_US.UTF-8",  # Should end with ".UTF-8"
+    "DB_PASS": "accountshit220#!",  # Live database password
+    "ADMIN_PASS": "CivCiv#8080",  # Live admin user password
+    "GUNICORN_PORT": 8000, # Port gunicorn will listen on
+    "LIVE_HOSTNAME": "hardwoodfloordepot.com", # Host for public site.
+    "REPO_URL": "https://github.com/rsadwick/floor_depot.git", # Git or Mercurial remote repo URL for the project
+    "SECRET_KEY": SECRET_KEY,
+    "NEVERCACHE_KEY": NEVERCACHE_KEY,
+}
+
 
 
 #########
