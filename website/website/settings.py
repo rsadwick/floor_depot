@@ -249,8 +249,9 @@ EMAIL_HOST_USER = 'sales@hardwoodfloordepot.com'
 EMAIL_HOST_PASSWORD = 'CivCiv#8080'
 DEFAULT_FROM_EMAIL = 'sales@hardwoodfloordepot.com'
 SERVER_EMAIL = 'sales@hardwoodfloordepot.com'
-EMAIL_PORT = 80
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
 
 
 ###################
