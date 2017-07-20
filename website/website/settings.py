@@ -195,6 +195,9 @@ LANGUAGES = (
 # production. Best set to ``True`` in local_settings.py
 DEBUG = True
 
+SSL_ENABLED = True
+SSL_FORCE_HOST = "hardwoodfloordepot.com"
+
 # Make these unique, and don't share it with anybody.
 SECRET_KEY = "pt6%(wp%ym#wgt3@^4&)x()5384=zljcrqod5b6ejxe@=v(ow$"
 NEVERCACHE_KEY = "j6@s(c2mz-k#6!c@fqc%5%h@^4$!iwp0r(*srl&79bv$flbr#k"
