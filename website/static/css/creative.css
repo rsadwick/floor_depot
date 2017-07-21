@@ -59,12 +59,11 @@ section {
 .shop-template .editable-original section{
     margin-top: -20px;
     background-color: #795548;
-    min-height: 88px;
-    height: initial;
 }
 
 .shop-template .product-thumb h6{
-
+    min-height: 88px;
+    height: initial;
 }
 
 aside {
