@@ -193,7 +193,7 @@ LANGUAGES = (
 # A boolean that turns on/off debug mode. When set to ``True``, stack traces
 # are displayed for error pages. Should always be set to ``False`` in
 # production. Best set to ``True`` in local_settings.py
-DEBUG = True
+DEBUG = False
 
 SSL_ENABLED = True
 SSL_FORCE_HOST = "hardwoodfloordepot.com"
@@ -252,6 +252,7 @@ SERVER_EMAIL = 'sales@hardwoodfloordepot.com'
 EMAIL_PORT = 80
 EMAIL_USE_SSL = False
 EMAIL_TIMEOUT = 10
+EMAIL_FAIL_SILENTLY = True
 
 
 
