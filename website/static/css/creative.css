@@ -56,6 +56,10 @@ section {
     margin-top: 45px;
 }
 
+.shop-template .editable-original section{
+    margin-top: -20px;
+}
+
 aside {
   padding: 50px 0;
 }
@@ -430,7 +434,7 @@ body {
 }
 
 .breadcrumb{
-    background: #c3c3c3;
+    background: #efeeee;
     color: #151414;
 }
 
@@ -507,7 +511,7 @@ body {
     font-weight: 700;
 }
 
-.input_id_field_4 > label{
+.input_id_field_3 > label{
     vertical-align: top;
 }
 
