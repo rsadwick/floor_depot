@@ -251,7 +251,7 @@ DEFAULT_FROM_EMAIL = 'sales@hardwoodfloordepot.com'
 SERVER_EMAIL = 'sales@hardwoodfloordepot.com'
 EMAIL_PORT = 465
 EMAIL_USE_TLS = False
-EMAIL_USE_SSL = True
+EMAIL_USE_SSL = False
 
 
 
