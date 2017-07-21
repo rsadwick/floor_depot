@@ -8,6 +8,7 @@ from decimal import Decimal
 from cartridge.shop.checkout import CheckoutError
 from suds.sudsobject import asdict
 import json
+from django.shortcuts import redirect
 
 class LogPlugin(MessagePlugin):
     def sending(self, context):
@@ -30,8 +31,12 @@ def billship_handler(request, order_form):
     """
     url = "http://api.rlcarriers.com/1.0.2/RateQuoteService.asmx?WSDL"
     key = settings.RL_SHIPPING_KEY
+    phone_number = settings.COMPANY_PHONE
 
-    client = Client(url, plugins=[LogPlugin()])
+    try:
+        client = Client(url, plugins=[LogPlugin()])
+    except Exception as e:
+        raise CheckoutError('There was a problem with the shipping rate.  Please contact us to complete your order at ' + phone_number)
 
     shipping_request = client.factory.create('RateQuoteRequest')
     shipping_request.CustomerData = 'Ryan Tester'

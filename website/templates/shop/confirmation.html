@@ -3,19 +3,18 @@
 
 {% block fields %}
     {% if request.cart.has_items %}
-        <div class="container">
-            <div class="confirmation col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h3>{% trans "Billing Details" %}</h3>
-                        <ul class="list-unstyled">
 
-                            {% for field, value in form.billing_detail_fields.values %}
-                                <li><label>{{ field }}:</label> {{ value }}</li>
-                            {% endfor %}
+        <div class="confirmation col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>{% trans "Billing Details" %}</h3>
+                    <ul class="list-unstyled">
 
-                        </ul>
-                    </div>
+                        {% for field, value in form.billing_detail_fields.values %}
+                            <li><label>{{ field }}:</label> {{ value }}</li>
+                        {% endfor %}
+
+                    </ul>
                 </div>
             </div>
         </div>

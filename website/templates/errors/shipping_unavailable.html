@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block meta_title %}
+{% trans "Page not found" %}
+{% endblock %}
+
+{% block title %}
+{% trans "Page not found" %}
+{% endblock %}
+
+{% block main %}
+<div class="panel panel-danger">
+	<div class="panel-heading"><h3 class="panel-title">Error with our shipping quote.</h3></div>
+	<div class="panel-body">
+        We are currently experiences issues quoting your shipping rate.  Please call us to complete your order
+        at <a href="tel:1-{{settings.COMPANY_PHONE}}">{{settings.COMPANY_PHONE}}</a> or
+        <a href="/contact/">contact us</a>
+	</div>
+</div>
+
+{% endblock %}
