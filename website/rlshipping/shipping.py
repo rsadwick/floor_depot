@@ -19,16 +19,7 @@ class LogPlugin(MessagePlugin):
 
 
 def billship_handler(request, order_form):
-    """
-    Default billing/shipping handler - called when the first step in
-    the checkout process with billing/shipping address fields is
-    submitted. Implement your own and specify the path to import it
-    from via the setting ``SHOP_HANDLER_BILLING_SHIPPING``.
-    This function will typically contain any shipping calculation
-    where the shipping amount can then be set using the function
-    ``cartridge.shop.utils.set_shipping``. The Cart object is also
-    accessible via ``request.cart``
-    """
+
     url = "http://api.rlcarriers.com/1.0.2/RateQuoteService.asmx?WSDL"
     key = settings.RL_SHIPPING_KEY
     phone_number = settings.COMPANY_PHONE
