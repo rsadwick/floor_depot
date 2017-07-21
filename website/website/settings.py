@@ -244,13 +244,13 @@ DATABASES = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'relay-hosting.secureserver.net'
+EMAIL_HOST = 'relay-hosting.secure.net'
 EMAIL_HOST_USER = 'sales@hardwoodfloordepot.com'
 EMAIL_HOST_PASSWORD = 'CivCiv#8080'
 DEFAULT_FROM_EMAIL = 'sales@hardwoodfloordepot.com'
 SERVER_EMAIL = 'sales@hardwoodfloordepot.com'
 EMAIL_PORT = 25
-EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
 EMAIL_TIMEOUT = 10
 
 
