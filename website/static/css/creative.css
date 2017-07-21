@@ -520,8 +520,17 @@ body {
 label{
     display: block;
 }
+
+.checkout-panel label, .checkout-form.label, .order-totals label{
+    display: inline-block;
+}
 .input_id_field_3 > label{
     vertical-align: top;
+}
+
+.cart-form .quantity input{
+    width: 70px !important;
+    text-align: left !important;
 }
 
 a.thumbnail:hover,
