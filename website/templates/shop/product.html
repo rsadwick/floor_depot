@@ -67,7 +67,7 @@
                                             {% if not forloop.first %}style="display:none;"{% endif %}>
                                             <a class="product-image-large" href="{{ MEDIA_URL }}{{ image.file }}">
                                                 <img alt="{{ image.description }}"
-                                                     src="{{ MEDIA_URL }}{% thumbnail image.file 560 406 %}"
+                                                     src="{{ MEDIA_URL }}{% thumbnail image.file 300 300 %}"
                                                      class="img-thumbnail img-responsive col-xs-12">
                                             </a>
                                         </li>
