@@ -244,7 +244,7 @@ DATABASES = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'outlook.office365.com'
+EMAIL_HOST = 'relay-hosting.secureserver.net'
 EMAIL_HOST_USER = 'sales@hardwoodfloordepot.com'
 EMAIL_HOST_PASSWORD = 'CivCiv#8080'
 DEFAULT_FROM_EMAIL = 'sales@hardwoodfloordepot.com'
