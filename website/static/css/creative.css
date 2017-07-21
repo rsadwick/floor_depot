@@ -517,6 +517,9 @@ body {
     font-weight: 700;
 }
 
+label{
+    display: block;
+}
 .input_id_field_3 > label{
     vertical-align: top;
 }

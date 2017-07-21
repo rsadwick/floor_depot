@@ -30,7 +30,7 @@
         </li>
 
         <li>
-            <a href="{% url "shop_cart" %}">{% blocktrans count request.cart.total_quantity as cart_quantity %}cart 1{% plural %} cart <span class="search-highlight">{{ cart_quantity }}</span>{% endblocktrans %} </a>
+            <a href="{% url "shop_cart" %}">{% blocktrans count request.cart.total_quantity as cart_quantity %}cart <span class="search-highlight">1</span>{% plural %} cart <span class="search-highlight">{{ cart_quantity }}</span>{% endblocktrans %} </a>
 
         </li>
         <li> {% block navbar_search_form %}{% search_form "all" %}{% endblock %}</li>

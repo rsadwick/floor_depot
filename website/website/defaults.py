@@ -5,7 +5,7 @@ register_setting(
     name="TEMPLATE_ACCESSIBLE_SETTINGS",
     description="Sequence of setting names available within templates.",
     editable=False,
-    default=("COMPANY_PHONE", "SHOP_PRODUCT_SORTING"),
+    default=("COMPANY_PHONE", "SHOP_PRODUCT_SORT_OPTIONS"),
     append=True,
 )
 
@@ -19,7 +19,7 @@ register_setting(
 
 
 register_setting(
-    name="SHOP_PRODUCT_SORTING",
+    name="SHOP_PRODUCT_SORT_OPTIONS",
     description="Sequence of description/field+direction pairs defining "
                 "the options available for sorting a list of products.",
     editable=False,
