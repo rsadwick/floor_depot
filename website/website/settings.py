@@ -19,7 +19,7 @@ from django.utils.translation import ugettext_lazy as _
 SHOP_USE_RATINGS = False
 
 # Setting to turn on featured images for shop categories. Defaults to False.
-# SHOP_CATEGORY_USE_FEATURED_IMAGE = True
+SHOP_CATEGORY_USE_FEATURED_IMAGE = True
 
 # If True, the checkout process is split into separate
 # billing/shipping and payment steps.
