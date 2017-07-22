@@ -22,16 +22,20 @@ $(document).ready(function () {
     var coverage = container.find('#id_square_foot_per_bundle');
     var totalPrice = container.find('.total-price');
 
+    if(totalPrice){
+        totalPrice.text(HWFD.getTotalPrice(quantity.val(), price.data('price'), price.data('sqft')));
+    }
+
     quantity.on('input blur keypress', function(){
         coverage.val(HWFD.getSqftFromBundle(quantity.val(), price.data('sqft')));
         quantity.val(HWFD.getBundleFromSqft(quantity.val(), price.data('sqft'), coverage.val()));
-        totalPrice.text(HWFD.getTotalPrice(quantity.val(), price.data('price'), price.data('sqft')))
+        totalPrice.text(HWFD.getTotalPrice(quantity.val(), price.data('price'), price.data('sqft')));
     });
 
     coverage.on('blur', function(){
         quantity.val(HWFD.getBundleFromSqft(quantity.val(), price.data('sqft'), coverage.val()));
         coverage.val(HWFD.getSqftFromBundle(quantity.val(), price.data('sqft')));
-        totalPrice.text(HWFD.getTotalPrice(quantity.val(), price.data('price'), price.data('sqft')))
+        totalPrice.text(HWFD.getTotalPrice(quantity.val(), price.data('price'), price.data('sqft')));
     });
 });
 

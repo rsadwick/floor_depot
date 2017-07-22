@@ -533,6 +533,15 @@ label{
     text-align: left !important;
 }
 
+.item-total-currency p{
+    font-size: 2.3rem;
+}
+
+.total-price{
+    color: #F05F40;
+    font-weight: 600;
+}
+
 a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
