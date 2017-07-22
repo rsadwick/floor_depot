@@ -1,6 +1,7 @@
 from __future__ import division, unicode_literals
 from future.builtins import str, super
 from future.utils import with_metaclass
+import math
 
 from decimal import Decimal
 from functools import reduce
@@ -47,6 +48,7 @@ class Priced(models.Model):
     sku = fields.SKUField(blank=True, null=True)
     num_in_stock = models.IntegerField(_("Number in stock"), blank=True,
                                        null=True)
+    square_foot_per_bundle = models.DecimalField(max_digits=5, decimal_places=2, default=Decimal('0.0000'))
 
     class Meta:
         abstract = True
@@ -76,6 +78,15 @@ class Priced(models.Model):
         elif self.has_price():
             return self.unit_price
         return Decimal("0")
+
+    def has_sqft_per_bundle(self):
+        """
+        Returns True if there is a sqft
+        """
+        return self.square_foot_per_bundle is not None
+
+    def sqft_per_bundle(self):
+        return self.square_foot_per_bundle
 
     def copy_price_fields_to(self, obj_to):
         """
@@ -564,7 +575,7 @@ class Cart(models.Model):
             self._cached_items = self.items.all()
         return iter(self._cached_items)
 
-    def add_item(self, variation, quantity):
+    def add_item(self, variation, quantity, sqft):
         """
         Increase quantity of existing item if SKU matches, otherwise create
         new.
@@ -577,11 +588,13 @@ class Cart(models.Model):
             item.description = force_text(variation)
             item.unit_price = variation.price()
             item.url = variation.product.get_absolute_url()
+            item.square_foot_per_bundle = variation.sqft_per_bundle()
             image = variation.image
             if image is not None:
                 item.image = force_text(image.file)
             variation.product.actions.added_to_cart()
-        item.quantity += quantity
+        bundles = math.ceil(sqft / variation.square_foot_per_bundle)
+        item.quantity = int(bundles)
         item.save()
 
     def has_items(self):
@@ -650,9 +663,10 @@ class SelectedProduct(models.Model):
 
     sku = fields.SKUField()
     description = CharField(_("Description"), max_length=2000)
-    quantity = models.IntegerField(_("Quantity"), default=0)
+    quantity = models.IntegerField(_("Bundles"), default=0)
     unit_price = fields.MoneyField(_("Unit price"), default=Decimal("0"))
     total_price = fields.MoneyField(_("Total price"), default=Decimal("0"))
+    square_foot_per_bundle = models.DecimalField(max_digits=5, decimal_places=2, default=Decimal('0.0000'))
 
     class Meta:
         abstract = True
@@ -666,8 +680,11 @@ class SelectedProduct(models.Model):
         quantity is zero, which may occur via the cart page, just
         delete it.
         """
+        def get_sqfr(sqft_per_bundle, quantity):
+            return quantity * sqft_per_bundle
+
         if not self.id or self.quantity > 0:
-            self.total_price = self.unit_price * self.quantity
+            self.total_price = self.quantity * self.unit_price * self.square_foot_per_bundle
             super(SelectedProduct, self).save(*args, **kwargs)
         else:
             self.delete()

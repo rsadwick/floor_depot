@@ -41,6 +41,7 @@ class AddProductForm(forms.Form):
     """
 
     quantity = forms.IntegerField(label=_("Quantity"), min_value=1)
+    square_foot_per_bundle = forms.DecimalField(label=_("Sq ft"), max_digits=5, decimal_places=2, min_value=1.0)
     sku = forms.CharField(required=False, widget=forms.HiddenInput())
 
     def __init__(self, *args, **kwargs):
@@ -97,6 +98,8 @@ class AddProductForm(forms.Form):
         # a variation.
         data = self.cleaned_data.copy()
         quantity = data.pop("quantity")
+        square_foot_per_bundle = data.pop("square_foot_per_bundle")
+
         # Ensure the product has a price if adding to cart.
         if self._to_cart:
             data["unit_price__isnull"] = False
@@ -105,6 +108,7 @@ class AddProductForm(forms.Form):
             # Chosen options will be passed to the product's
             # variations.
             qs = self._product.variations
+            variation = qs.get(**data)
         else:
             # A product hasn't been given since we have a direct sku.
             qs = ProductVariation.objects
@@ -143,6 +147,7 @@ class CartItemForm(forms.ModelForm):
         """
         variation = ProductVariation.objects.get(sku=self.instance.sku)
         quantity = self.cleaned_data["quantity"]
+        #square_foot_per_bundle = self.cleaned_data["square_foot_per_bundle"]
         if not variation.has_stock(quantity - self.instance.quantity):
             error = ADD_PRODUCT_ERRORS["no_stock_quantity"].rstrip(".")
             raise forms.ValidationError("%s: %s" % (error, quantity))

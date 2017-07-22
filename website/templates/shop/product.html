@@ -106,7 +106,7 @@
                                                 <span class="old-price">{{ variation.unit_price|currency }} / sq ft</span>
                                                 {% trans "On sale:" %}
                                             {% endif %}
-                                            <span class="price" data-price="{{ variation.price }}">{{ variation.price|currency }} / sq ft</span>
+                                            <span class="price" data-price="{{ variation.price }}" data-sqft="{{ variation.square_foot_per_bundle }}">{{ variation.price|currency }} / sq ft</span>
                                         {% else %}
                                             {% if has_available_variations %}
                                                 <span class="error-msg">
@@ -114,6 +114,11 @@
             </span>
                                             {% endif %}
                                         {% endif %}
+
+                                        {% if variation.has_sqft_per_bundle %}
+                                            <p>Sq ft per Bundle: {{ variation.square_foot_per_bundle }}</p>
+                                        {% endif %}
+
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -122,6 +127,9 @@
 
                             <form method="post" id="add-cart" class="shop-form">
                                 {% fields_for add_product_form %}
+                                <div class="item-total-currency">
+                                    <p>Total: <span class="total-price"></span></p>
+                                </div>
                                 <div class="form-actions">
                                     <input type="submit" class="btn btn-primary btn-xl" name="add_cart"
                                            value="{% trans "Add To Cart" %}">

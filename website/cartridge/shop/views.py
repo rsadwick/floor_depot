@@ -1,7 +1,9 @@
 from __future__ import unicode_literals
 from future.builtins import int, str
 
+import json
 from json import dumps
+from decimal import Decimal
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages import info
@@ -52,20 +54,24 @@ def product(request, slug, template="shop/product.html",
     fields = [f.name for f in ProductVariation.option_fields()]
     variations = product.variations.all()
     variations_json = dumps([dict([(f, getattr(v, f))
-        for f in fields + ["sku", "image_id"]]) for v in variations])
+        for f in fields + ["sku", "image_id", "square_foot_per_bundle"]]) for v in variations], cls=DecimalEncoder)
     to_cart = (request.method == "POST" and
                request.POST.get("add_wishlist") is None)
     initial_data = {}
     if variations:
         initial_data = dict([(f, getattr(variations[0], f)) for f in fields])
     initial_data["quantity"] = 1
+    variations_object = json.loads(variations_json)
+    initial_data["square_foot_per_bundle"] = variations_object[0]['square_foot_per_bundle']
     add_product_form = form_class(request.POST or None, product=product,
                                   initial=initial_data, to_cart=to_cart)
     if request.method == "POST":
         if add_product_form.is_valid():
             if to_cart:
                 quantity = add_product_form.cleaned_data["quantity"]
-                request.cart.add_item(add_product_form.variation, quantity)
+                square_foot_per_bundle = add_product_form.cleaned_data["square_foot_per_bundle"]
+                #bundles = square_foot_per_bundle / variations_json.square_foot_per_bundle
+                request.cart.add_item(add_product_form.variation, quantity, square_foot_per_bundle)
                 recalculate_cart(request)
                 info(request, _("Item added to cart"))
                 return redirect("shop_cart")
@@ -120,7 +126,7 @@ def wishlist(request, template="shop/wishlist.html",
                                       to_cart=to_cart)
         if to_cart:
             if add_product_form.is_valid():
-                request.cart.add_item(add_product_form.variation, 1)
+                request.cart.add_item(add_product_form.variation, 1, add_product_form.square_foot_per_bundle)
                 recalculate_cart(request)
                 message = _("Item added to cart")
                 url = "shop_cart"
@@ -435,3 +441,10 @@ def invoice_resend_email(request, order_id):
         else:
             redirect_to = reverse("shop_order_history")
     return redirect(redirect_to)
+
+
+class DecimalEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, Decimal):
+            return float(o)
+        return super(DecimalEncoder, self).default(o)

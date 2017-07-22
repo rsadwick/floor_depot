@@ -92,7 +92,7 @@ class CategoryAdmin(PageAdmin):
 # If variations aren't used, the variation inline should always
 # provide a single inline for managing the single variation per
 # product.
-variation_fields = ["sku", "num_in_stock", "unit_price",
+variation_fields = ["sku", "num_in_stock", "square_foot_per_bundle", "unit_price",
                     "sale_price", "sale_from", "sale_to", "image"]
 if settings.SHOP_USE_VARIATIONS:
     variation_fields.insert(1, "default")
@@ -149,7 +149,7 @@ if settings.SHOP_USE_VARIATIONS:
     product_fieldsets.insert(1, (_("Create new variations"),
         {"classes": ("create-variations",), "fields": option_fields}))
 else:
-    extra_list_fields = ["sku", "unit_price", "sale_price", "num_in_stock"]
+    extra_list_fields = ["sku", "unit_price", "square_foot_per_bundle", "sale_price", "num_in_stock"]
     product_list_display[4:4] = extra_list_fields
     product_list_editable.extend(extra_list_fields)
 
