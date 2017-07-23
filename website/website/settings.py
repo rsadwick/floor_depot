@@ -376,7 +376,7 @@ INSTALLED_APPS = (
     "mezzanine.galleries",
     "mezzanine.twitter",
     "mezzanine.accounts",
-    "cartridge.shop",
+    #"cartridge.shop",
     # "mezzanine.mobile",
 )
 
