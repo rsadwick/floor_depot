@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block main %}
-    <div class="container">
+    <div class="full-page-input container">
         {% if request.user.is_authenticated %}
             <p>{% trans "You're already logged in. If you'd like to create a new account, you'll need to log out first." %}</p>
         {% else %}

@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block main %}
-    <div class="container shop-template">
+    <div class="full-page-input container shop-template">
         {% if request.user.is_authenticated %}
             <p>{% trans "You're already logged in. If you'd like to log in as a different user, you'll need to log out first." %}</p>
         {% else %}

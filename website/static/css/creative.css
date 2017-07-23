@@ -56,7 +56,7 @@ section {
     margin-top: 45px;
 }
 
-.shop-template .editable-original section{
+.shop-template .content section{
     margin-top: -20px;
     background-color: #795548;
 }
@@ -540,6 +540,10 @@ label{
 .total-price{
     color: #F05F40;
     font-weight: 600;
+}
+
+.full-page-input input{
+    width: 100%;
 }
 
 a.thumbnail:hover,

@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block main %}
-    <div class="container row">
+    <div class="full-page-input container row">
         <div class="profile-image col-md-3">
             <img class="img-thumbnail" src="{% gravatar_url profile_user.email 128 %}">
             {% if profile_user == request.user %}
