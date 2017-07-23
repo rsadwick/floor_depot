@@ -1,0 +1,314 @@
+[
+    {
+        "pk": 1,
+        "model": "shop.productoption",
+        "fields": {
+            "type": 1,
+            "name": "Small"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "shop.productoption",
+        "fields": {
+            "type": 1,
+            "name": "Medium"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "shop.productoption",
+        "fields": {
+            "type": 1,
+            "name": "Large"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "shop.productoption",
+        "fields": {
+            "type": 2,
+            "name": "Red"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "shop.productoption",
+        "fields": {
+            "type": 2,
+            "name": "Yellow"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "shop.productoption",
+        "fields": {
+            "type": 2,
+            "name": "Green"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "shop.productoption",
+        "fields": {
+            "type": 2,
+            "name": "Blue"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "shop.product",
+        "fields": {
+            "status": 2,
+            "available": true,
+            "description": "<p>Magic that can't be removed!</p>",
+            "title": "Django Pony",
+            "image": "product/red.png",
+            "sale_id": 1,
+            "unit_price": "10",
+            "sku": "1",
+            "content": "<p>Magic that can't be removed!</p>",
+            "sale_price": "5",
+            "slug": "django-pony",
+            "categories": [
+                7
+            ],
+            "site": 1
+        }
+    },
+    {
+        "pk": 1,
+        "model": "shop.productimage",
+        "fields": {
+            "product": 1,
+            "description": "",
+            "_order": 1,
+            "file": "product/red.png"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "shop.productimage",
+        "fields": {
+            "product": 1,
+            "description": "",
+            "_order": 2,
+            "file": "product/yellow.png"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "shop.productimage",
+        "fields": {
+            "product": 1,
+            "description": "",
+            "_order": 3,
+            "file": "product/green.png"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "shop.productimage",
+        "fields": {
+            "product": 1,
+            "description": "",
+            "_order": 4,
+            "file": "product/blue.png"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "shop.productvariation",
+        "fields": {
+            "sku": "1",
+            "product": 1,
+            "default": true,
+            "image": 1,
+            "sale_id": 1,
+            "unit_price": "10",
+            "sale_price": "5",
+            "option2": "Red",
+            "option1": "Small"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "shop.productvariation",
+        "fields": {
+            "sku": "2",
+            "product": 1,
+            "default": false,
+            "image": 1,
+            "sale_id": 1,
+            "unit_price": "10",
+            "sale_price": "5",
+            "option2": "Red",
+            "option1": "Medium"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "shop.productvariation",
+        "fields": {
+            "sku": "3",
+            "product": 1,
+            "default": false,
+            "image": 1,
+            "sale_id": 1,
+            "unit_price": "10",
+            "sale_price": "5",
+            "option2": "Red",
+            "option1": "Large"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "shop.productvariation",
+        "fields": {
+            "sku": "4",
+            "product": 1,
+            "default": false,
+            "image": 2,
+            "sale_id": 1,
+            "unit_price": "10",
+            "sale_price": "5",
+            "option2": "Yellow",
+            "option1": "Small"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "shop.productvariation",
+        "fields": {
+            "sku": "5",
+            "product": 1,
+            "default": false,
+            "image": 2,
+            "sale_id": 1,
+            "unit_price": "10",
+            "sale_price": "5",
+            "option2": "Yellow",
+            "option1": "Medium"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "shop.productvariation",
+        "fields": {
+            "sku": "6",
+            "product": 1,
+            "default": false,
+            "image": 2,
+            "sale_id": 1,
+            "unit_price": "10",
+            "sale_price": "5",
+            "option2": "Yellow",
+            "option1": "Large"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "shop.productvariation",
+        "fields": {
+            "sku": "7",
+            "product": 1,
+            "default": false,
+            "image": 3,
+            "sale_id": 1,
+            "unit_price": "10",
+            "sale_price": "5",
+            "option2": "Green",
+            "option1": "Small"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "shop.productvariation",
+        "fields": {
+            "sku": "8",
+            "product": 1,
+            "default": false,
+            "image": 3,
+            "sale_id": 1,
+            "unit_price": "10",
+            "sale_price": "5",
+            "option2": "Green",
+            "option1": "Medium"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "shop.productvariation",
+        "fields": {
+            "sku": "9",
+            "product": 1,
+            "default": false,
+            "image": 3,
+            "sale_id": 1,
+            "unit_price": "10",
+            "sale_price": "5",
+            "option2": "Green",
+            "option1": "Large"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "shop.productvariation",
+        "fields": {
+            "sku": "10",
+            "product": 1,
+            "default": false,
+            "image": 4,
+            "sale_id": 1,
+            "unit_price": "10",
+            "sale_price": "5",
+            "option2": "Blue",
+            "option1": "Small"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "shop.productvariation",
+        "fields": {
+            "sku": "11",
+            "product": 1,
+            "default": false,
+            "image": 4,
+            "sale_id": 1,
+            "unit_price": "10",
+            "sale_price": "5",
+            "option2": "Blue",
+            "option1": "Medium"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "shop.productvariation",
+        "fields": {
+            "sku": "12",
+            "product": 1,
+            "default": false,
+            "image": 4,
+            "sale_id": 1,
+            "unit_price": "10",
+            "sale_price": "5",
+            "option2": "Blue",
+            "option1": "Large"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "shop.sale",
+        "fields": {
+            "title": "50% off ponies.",
+            "products": [
+                1
+            ],
+            "categories": [],
+            "discount_percent": "50",
+            "active": true,
+            "discount_exact": null,
+            "discount_deduct": null
+        }
+    }
+]

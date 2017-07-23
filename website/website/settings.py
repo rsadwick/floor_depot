@@ -124,14 +124,14 @@ SHOP_HANDLER_PAYMENT = 'cartridge.shop.payment.stripe_api.process'
 # field instance. When specifying the field class, the path
 # ``django.models.db.`` can be omitted for regular Django model fields.
 #
-#EXTRA_MODEL_FIELDS = (
-#    (
-#        "cartridge.shop.models.Product.weight",
-#        "CharField",
-#        ("Weight",),
-#        {"blank": False, "max_length": 5},
-#    ),
-#)
+EXTRA_MODEL_FIELDS = (
+    (
+        "cartridge.shop.models.Product.weight",
+        "CharField",
+        ("Weight",),
+        {"blank": False, "max_length": 5},
+    ),
+)
 # EXTRA_MODEL_FIELDS = (
 #     (
 #         # Dotted path to field.
@@ -376,7 +376,7 @@ INSTALLED_APPS = (
     "mezzanine.galleries",
     "mezzanine.twitter",
     "mezzanine.accounts",
-    #"cartridge.shop",
+    "cartridge.shop",
     # "mezzanine.mobile",
 )
 
@@ -396,7 +396,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    #"cartridge.shop.middleware.ShopMiddleware",
+    "cartridge.shop.middleware.ShopMiddleware",
     "mezzanine.core.request.CurrentRequestMiddleware",
     "mezzanine.core.middleware.RedirectFallbackMiddleware",
     "mezzanine.core.middleware.TemplateForDeviceMiddleware",

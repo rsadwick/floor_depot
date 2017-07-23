@@ -7,7 +7,7 @@ from django.views.i18n import set_language
 
 from mezzanine.core.views import direct_to_template
 from mezzanine.conf import settings
-#from cartridge.shop.views import order_history
+from cartridge.shop.views import order_history
 import mezzanine
 
 
@@ -79,8 +79,8 @@ urlpatterns += [
     # ``mezzanine.urls``, go right ahead and take the parts you want
     # from it, and use them directly below instead of using
     # ``mezzanine.urls``.
-    #url("^shop/", include("cartridge.shop.urls")),
-    #url("^account/orders/$", order_history, name="shop_order_history"),
+    url("^shop/", include("cartridge.shop.urls")),
+    url("^account/orders/$", order_history, name="shop_order_history"),
     url("^", include("mezzanine.urls")),
 
     # MOUNTING MEZZANINE UNDER A PREFIX
