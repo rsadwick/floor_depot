@@ -12,7 +12,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.http import QueryDict
 from django.utils.http import urlencode
 from mezzanine.conf import settings
-
+from decimal import Decimal, ROUND_HALF_UP
 from cartridge.shop.checkout import CheckoutError
 
 
@@ -58,7 +58,9 @@ def process(request, order_form, order):
     """
     trans = {}
     amount = order.total
-    trans['amount'] = amount
+    cents = Decimal('0.01')
+    grand_total = Decimal(amount)
+    trans['amount'] = str(amount.quantize(cents, ROUND_HALF_UP))
     locale.setlocale(locale.LC_ALL, str(settings.SHOP_CURRENCY_LOCALE))
     currency = locale.localeconv()
     try:

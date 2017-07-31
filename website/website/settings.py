@@ -65,7 +65,7 @@ SHOP_OPTION_TYPE_CHOICES = (
     (2, "Grade"),
 )
 
-SHOP_HANDLER_PAYMENT = 'cartridge.shop.payment.stripe_api.process'
+SHOP_HANDLER_PAYMENT = 'cartridge.shop.payment.paypal.process'
 
 
 # Sequence of indexes from the SHOP_OPTION_TYPE_CHOICES setting that

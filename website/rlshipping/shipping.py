@@ -4,7 +4,7 @@ from cartridge.shop.utils import set_shipping, set_tax, sign
 from suds.client import Client
 from suds.plugin import MessagePlugin
 from cartridge.shop.models import Product
-from decimal import Decimal
+from decimal import Decimal, ROUND_HALF_UP
 from cartridge.shop.checkout import CheckoutError
 from suds.sudsobject import asdict
 import json
@@ -87,12 +87,16 @@ def billship_handler(request, order_form):
         raise CheckoutError(errors['Messages']['string'])
 
     #check here if WasSuccess = False
+
+    handling_percentage = 0.05
     price = result.Result.ServiceLevels.ServiceLevel[0].NetCharge.strip('$')
     cents = float(price) * 100
-    dollars = cents / 100
     #add 5% on top
-    handling_percentage = 0.05
-    dollars += dollars * handling_percentage
+    cents += cents * handling_percentage
+    dollars = cents / 100
+    decimal_in_cents = Decimal('0.01')
+    total_order = Decimal(dollars)
+    grand_total = total_order.quantize(decimal_in_cents, ROUND_HALF_UP)
 
     if not request.session.get("free_shipping"):
         set_shipping(request, 'Shipping', dollars)
