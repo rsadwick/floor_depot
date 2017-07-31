@@ -26,6 +26,8 @@ from cartridge.shop.models import Cart, CartItem, Order, DiscountCode
 from cartridge.shop.utils import (make_choices, set_locale, set_shipping,
                                   clear_session)
 
+from cartridge.shop.payment.paypal import COUNTRIES
+
 
 ADD_PRODUCT_ERRORS = {
     "invalid_options": _("The selected options are currently unavailable."),
@@ -435,6 +437,14 @@ class OrderForm(FormsetForm, DiscountForm):
         return super(OrderForm, self).clean()
 
 
+class MyOrderForm(OrderForm):
+    def __init__(self, *args, **kwargs):
+        super(OrderForm, self).__init__(*args, **kwargs)
+        billing_country = forms.Select(choices=COUNTRIES)
+        shipping_country = forms.Select(choices=COUNTRIES)
+        self.fields['billing_detail_country'].widget = billing_country
+        self.fields['shipping_detail_country'].widget = shipping_country
+
 #######################
 #    ADMIN WIDGETS    #
 #######################
@@ -551,3 +561,5 @@ class DiscountAdminForm(forms.ModelForm):
             error = _("Please enter a value for only one type of reduction.")
             self._errors[fields[0]] = self.error_class([error])
         return super(DiscountAdminForm, self).clean()
+
+

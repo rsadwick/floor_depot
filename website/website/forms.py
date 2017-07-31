@@ -1,10 +1,6 @@
 from ..cartridge.shop.payment.paypal import COUNTRIES
 
-from __future__ import absolute_import, unicode_literals
-from future.builtins import super
-
 from django import forms
-
 
 from ..cartridge.shop.forms import OrderForm
 
