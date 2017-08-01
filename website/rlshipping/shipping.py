@@ -77,7 +77,13 @@ def billship_handler(request, order_form):
     shipping_request.OverDimensionPcs = 0
 
     accessorials = client.factory.create('ArrayOfAccessorial')
-    accessorial = None #ResidentialDelivery
+
+    destination_option = order_form.cleaned_data['destination_options']
+    accessorial = 'ResidentialDelivery'
+    if destination_option == 2:
+        accessorial = None
+        order_form.replace_shipping_address()
+
     accessorials.Accessorial = [accessorial]
     shipping_request.Accessorials = accessorials
 
@@ -86,7 +92,14 @@ def billship_handler(request, order_form):
         errors = recursive_dict(result)
         raise CheckoutError(errors['Messages']['string'])
 
-    #check here if WasSuccess = False
+    if destination_option == 2:
+        address = client.factory.create('ServicePoint')
+        address.Address1 = result.Result.DestinationServiceCenter.Address1
+        address.City = result.Result.DestinationServiceCenter.City
+        address.State = result.Result.DestinationServiceCenter.State
+        address.ZipCode = result.Result.DestinationServiceCenter.ZipCode
+        address.Phone = result.Result.DestinationServiceCenter.Phone
+        #override_shipping(address, order_form)
 
     handling_percentage = 0.05
     price = result.Result.ServiceLevels.ServiceLevel[0].NetCharge.strip('$')
@@ -99,8 +112,12 @@ def billship_handler(request, order_form):
     grand_total = total_order.quantize(decimal_in_cents, ROUND_HALF_UP)
 
     if not request.session.get("free_shipping"):
-        set_shipping(request, 'Shipping', dollars)
+        set_shipping(request, 'Shipping', grand_total)
 
+
+def override_shipping(address, order_form):
+    if order_form.is_valid():
+            order_form.replace_shipping_address(address)
 
 def recursive_dict(d):
     out = {}

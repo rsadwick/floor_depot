@@ -33,10 +33,12 @@
         </div>
         <div class="container">
 
-            <h2>{% trans "Delivery Details" %}</h2>
+            <h2>{% trans "Delivery Details 2" %}</h2>
             {% fields_for form.same_billing_shipping_field %}
             <div id="shipping_fields">{% fields_for form.shipping_detail_fields %}</div>
             {% fields_for form.additional_instructions_field %}
+            <h2>Destination options</h2>
+            {% fields_for form.destination_options_field %}
             {% fields_for form.remember_field %}
 
         </div>

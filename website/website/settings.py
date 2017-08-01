@@ -65,6 +65,11 @@ SHOP_OPTION_TYPE_CHOICES = (
     (2, "Grade"),
 )
 
+SHIPPING_DESTINATION_CHOICES = (
+    (1, "Residential Address"),
+    (2, "Service Center Pickup"),
+)
+
 SHOP_HANDLER_PAYMENT = 'cartridge.shop.payment.paypal.process'
 
 

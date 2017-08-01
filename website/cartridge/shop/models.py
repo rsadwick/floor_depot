@@ -461,9 +461,11 @@ class Order(SiteRelated):
     transaction_id = CharField(_("Transaction ID"), max_length=255, null=True,
                                blank=True)
 
-    status = models.IntegerField(_("Status"),
-                            choices=settings.SHOP_ORDER_STATUS_CHOICES,
-                            default=settings.SHOP_ORDER_STATUS_CHOICES[0][0])
+    status = models.IntegerField(_("Status"), choices=settings.SHOP_ORDER_STATUS_CHOICES,
+                                              default=settings.SHOP_ORDER_STATUS_CHOICES[0][0])
+
+    destination_options = models.IntegerField(_("Destination Options"), choices=settings.SHIPPING_DESTINATION_CHOICES,
+                                              default=settings.SHIPPING_DESTINATION_CHOICES[0][0])
 
     objects = managers.OrderManager()
 

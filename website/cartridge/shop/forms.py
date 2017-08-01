@@ -329,7 +329,7 @@ class OrderForm(FormsetForm, DiscountForm):
         fields = ([f.name for f in Order._meta.fields if
                    f.name.startswith("billing_detail") or
                    f.name.startswith("shipping_detail")] +
-                   ["additional_instructions", "discount_code"])
+                   ["additional_instructions", "discount_code", "destination_options"])
 
     def __init__(
             self, request, step, data=None, initial=None, errors=None,
@@ -430,6 +430,9 @@ class OrderForm(FormsetForm, DiscountForm):
         if year == n.year and month < n.month:
             raise forms.ValidationError(_("A valid expiry date is required."))
         return str(year)
+
+    def replace_shipping_address(self):
+        self.fields["shipping_detail_state"] = "CO"
 
     def clean(self):
         """
