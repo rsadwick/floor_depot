@@ -279,8 +279,9 @@ def checkout_steps(request, form_class=OrderForm, extra_context=None):
             # posted on each step, even as hidden inputs when not
             # visible in the current step.
             try:
-                if initial['destination_options'] == 2:
+                if data['destination_options'] == '2':
                     initial = billship_handler(request, form)
+                    data = billship_handler(request, form)
                 else:
                     billship_handler(request, form)
 

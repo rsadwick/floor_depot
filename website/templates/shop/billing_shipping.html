@@ -38,6 +38,8 @@
             <div id="shipping_fields">{% fields_for form.shipping_detail_fields %}</div>
             {% fields_for form.additional_instructions_field %}
             <h2>Destination options</h2>
+            <p>Choose which destination you want us to deliver your order to.  If Service Center is selected,
+            your shipping address will be changed to the service center's address.</p>
             {% fields_for form.destination_options_field %}
             {% fields_for form.remember_field %}
 
