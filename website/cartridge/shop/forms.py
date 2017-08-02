@@ -438,7 +438,7 @@ class OrderForm(FormsetForm, DiscountForm):
         self.initial['shipping_detail_state'] = address.State
         self.initial['shipping_detail_postcode'] = address.ZipCode
         self.initial['shipping_detail_phone'] = address.Phone
-
+        self.initial['same_billing_shipping'] = False
         return self.initial
 
 
