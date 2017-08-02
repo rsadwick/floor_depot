@@ -279,7 +279,7 @@ def checkout_steps(request, form_class=OrderForm, extra_context=None):
             # posted on each step, even as hidden inputs when not
             # visible in the current step.
             try:
-                billship_handler(request, form)
+                initial = billship_handler(request, form)
                 tax_handler(request, form)
             except checkout.CheckoutError as e:
                 checkout_errors.append(e)

@@ -431,8 +431,16 @@ class OrderForm(FormsetForm, DiscountForm):
             raise forms.ValidationError(_("A valid expiry date is required."))
         return str(year)
 
-    def replace_shipping_address(self):
-        self.fields["shipping_detail_state"] = "CO"
+    def replace_shipping_address(self, address):
+
+        self.initial['shipping_detail_street'] = address.Address1
+        self.initial['shipping_detail_city'] = address.City
+        self.initial['shipping_detail_state'] = address.State
+        self.initial['shipping_detail_postcode'] = address.ZipCode
+        self.initial['shipping_detail_phone'] = address.Phone
+
+        return self.initial
+
 
     def clean(self):
         """
