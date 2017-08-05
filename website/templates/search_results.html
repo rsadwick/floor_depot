@@ -33,19 +33,17 @@ Showing {{ total }} results for: <span class="search-highlight">{{ query }}</spa
 <div id="search-results">
 {% for result in results.object_list %}
 {% with result.get_absolute_url as result_url %}
-    <h5>
+    <h3>
         {% if result_url %}
             <a href="{{ result_url }}">{{ result }}</a>
         {% else %}
             {{ result }}
         {% endif %}
-    </h5>
+    </h3>
     {% if result.description != result|stringformat:"s" %}
         <p>{{ result.description|truncatewords_html:20|safe }}</p>
     {% endif %}
-    {% if result_url %}
-        <a href="{{ result_url }}">{% trans "read more" %}</a>
-    {% endif %}
+
 {% endwith %}
 {% endfor %}
 </div>

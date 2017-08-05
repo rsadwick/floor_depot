@@ -9,10 +9,10 @@
         {{ page.category.content|safe }}
     {% endeditable %}
     <div class="container">
-        <div class="row">
+        <div>
 
             {% if child_categories %}
-                <div class="row">
+                <div>
                 <div class="shop-category-list">
                     {% if settings.SHOP_CATEGORY_USE_FEATURED_IMAGE %}
                         {% for category in child_categories %}

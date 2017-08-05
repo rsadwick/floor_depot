@@ -33,7 +33,7 @@
 {% block main %}
 
     {% block before-form %}{% endblock %}
-    <div class="container row">
+    <div class="container">
         <form method="post" class="col-md-8 checkout-form full-page-input">
             {% csrf_token %}
 
@@ -72,7 +72,7 @@
                                              src="{{ MEDIA_URL }}{% thumbnail item.image 30 30 %}">
                                     {% endif %}
                                     <div class="media-body">
-                                         <div><strong>{{ item.square_foot_per_bundle }}</strong> sqft per <strong>{{item.quantity}}</strong> bundle{{ item.quantity|pluralize }}</div>
+                                         <div><strong>{{ item.square_foot_per_bundle }}</strong> sqft per <strong>{{item.quantity}}</strong> bundle{{ item.quantity|pluralize }} at <strong>${{ item.unit_price }}</strong> / sqft</div>
                                         <div>
                                         {{ item.description }}
                                         <span class="price">{{ item.total_price|currency }}</span>
