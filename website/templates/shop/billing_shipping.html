@@ -26,19 +26,19 @@
 
         {% errors_for form %}
 
-        <div class="container">
+        <div>
             <h2>{% trans "Billing Details" %}</h2>
             {% fields_for form.billing_detail_fields %}
 
         </div>
-        <div class="container">
+        <div>
 
-            <h2>{% trans "Delivery Details 2" %}</h2>
+            <h2>{% trans "Delivery Details" %}</h2>
             {% fields_for form.same_billing_shipping_field %}
             <div id="shipping_fields">{% fields_for form.shipping_detail_fields %}</div>
             {% fields_for form.additional_instructions_field %}
-            <h2>Destination options</h2>
-            <p>Choose which destination you want us to deliver your order to.  If Service Center is selected,
+            <h2>Shipping Destination</h2>
+            <p>Choose which destination you want us to deliver your order to.  If local terminal pickup is selected,
             your shipping address will be changed to the service center's address.</p>
             {% fields_for form.destination_options_field %}
             {% fields_for form.remember_field %}

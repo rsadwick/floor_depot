@@ -521,6 +521,10 @@ label{
     display: block;
 }
 
+.shop-category-list{
+    margin-top: 45px;
+}
+
 .checkout-panel label, .checkout-form.label, .order-totals label{
     display: inline-block;
 }
@@ -542,7 +546,7 @@ label{
     font-weight: 600;
 }
 
-.full-page-input input{
+.full-page-input input:not([type='checkbox']):not([type='radio']), .full-page-input textarea {
     width: 100%;
 }
 
@@ -550,4 +554,24 @@ a.thumbnail:hover,
 a.thumbnail:focus,
 a.thumbnail.active {
   border-color: #F05F40;
+}
+
+.input_id_remember{
+    display: inline-block;
+}
+
+.input_id_remember label{
+    display: inline;
+    float: right;
+    margin-left: 11px;
+}
+
+.input_id_same_billing_shipping{
+    display: inline-block;
+}
+
+.input_id_same_billing_shipping label{
+    display: inline;
+    float: right;
+    margin-left: 11px;
 }
