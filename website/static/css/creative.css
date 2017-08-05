@@ -575,3 +575,8 @@ a.thumbnail.active {
     float: right;
     margin-left: 11px;
 }
+
+.homepage-footer .bg-dark {
+    background-color: #fff;
+    color: #000;
+}

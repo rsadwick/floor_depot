@@ -17,6 +17,13 @@
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
           rel='stylesheet' type='text/css'>
 
+    <style>
+        .homepage-footer .bg-dark {
+            background-color: #fff;
+            color: #000;
+}
+    </style>
+
 
 
     <!--[if lt IE 9]>
@@ -247,109 +254,12 @@
         </div>
     </div>
 </aside>
-
-<section id="contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">Let's Get In Touch!</h2>
-                <hr class="primary">
-                <p>Ready to start your next project with us? That's great! Contact us to get started.</p>
-            </div>
-            <div class="col-lg-4 col-lg-offset-2 text-center">
-                <i class="fa fa-phone fa-3x sr-contact"></i>
-
-                <p><a href="tel:1-608-512-0176">608.512.0176</a></p>
-            </div>
-            <div class="col-lg-4 text-center">
-                <i class="fa fa-envelope-o fa-3x sr-contact"></i>
-
-                <p><a href="mailto:sales@hardwoodfloordepot.com">sales@hardwoodfloordepot.com</a></p>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                    <li>
-                        <a href="https://twitter.com/hardwood_depot" target="_blank">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.facebook.com/Hardwood-Floor-Depot-581974805339306" target="_blank">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                                </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.pinterest.com/hardwoodfloordepot">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
-                                </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/in/anthony-civitello-007a20141/">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                                </span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-                                </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.houzz.com/pro/jitter8080/hardwood-floor-depot" target="_blank">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-houzz fa-stack-1x fa-inverse"></i>
-                                </span>
-                        </a>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<div class="modal fade" id="apptModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body vendor-content">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSez-X-wZlEfGkCp0mVbhlwPf3KKCTQO2YD2zF05fr-nk5j1ag/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-            </div>
-        </div>
-    </div>
+<div class="homepage-footer">
+    {% block footer_js %}
+        {% include "includes/footer_scripts.html" %}
+    {% endblock %}
 </div>
-
 <script src="https://s3.amazonaws.com/hwfd.cdn/build/script.js"></script>
-{% block footer_js %}
-    {% include "includes/footer_scripts.html" %}
-{% endblock %}
-
 </body>
 
 </html>
