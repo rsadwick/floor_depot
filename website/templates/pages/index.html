@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load accounts_tags pages_tags mezzanine_tags shop_tags i18n staticfiles %}
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +17,8 @@
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
           rel='stylesheet' type='text/css'>
 
+
+
     <!--[if lt IE 9]>
     <script src="vendor/html5shiv/html5shiv.js"></script>
     <script src="vendor/respond/respond.min.js"></script>
@@ -26,6 +28,7 @@
 
 <body id="page-top">
 
+
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -33,28 +36,16 @@
                     data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top">Hardwood Floor Depot</a>
+            {% block navbar_title %}
+            <a class="navbar-brand page-scroll" href="/">
+                {% if settings.SITE_TITLE %}{{ settings.SITE_TITLE }}</a>{% endif %}
+            {% endblock %}
         </div>
+        {% include "includes/navigation.html" %}
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a class="page-scroll" href="#about">About</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#services">Service</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#portfolio">Products</a>
-                </li>
-
-                <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
-                </li>
-            </ul>
-        </div>
     </div>
 </nav>
+
 
 <header>
     <div class="header-content">
@@ -137,9 +128,9 @@
 
 <section class="no-padding" id="portfolio">
     <div class="container-fluid">
-        <div class="row no-gutter popup-gallery">
+        <div class="row no-gutter">
             <div class="col-lg-4 col-sm-6">
-                <a href="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/fullsize/1.jpg" class="portfolio-box">
+                <a href="/shop/red-oak" class="portfolio-box">
                     <img src="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/thumbnails/1.jpg" class="img-responsive" alt="">
 
                     <div class="portfolio-box-caption">
@@ -156,7 +147,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a href="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/fullsize/2.jpg" class="portfolio-box">
+                <a href="/shop/white-oak/" class="portfolio-box">
                     <img src="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/thumbnails/2.jpg" class="img-responsive" alt="">
 
                     <div class="portfolio-box-caption">
@@ -173,7 +164,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a href="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/fullsize/3.jpg" class="portfolio-box">
+                <a href="/shop/hickory" class="portfolio-box">
                     <img src="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/thumbnails/3.jpg" class="img-responsive" alt="">
 
                     <div class="portfolio-box-caption">
@@ -190,7 +181,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a href="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/fullsize/4.jpg" class="portfolio-box">
+                <a href="/shop/maple" class="portfolio-box">
                     <img src="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/thumbnails/4.jpg" class="img-responsive" alt="">
 
                     <div class="portfolio-box-caption">
@@ -207,7 +198,7 @@
                 </a>
             </div>
             <div class="col-lg-4 col-sm-6">
-                <a href="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/fullsize/5.jpg" class="portfolio-box">
+                <a href="/shop/walnut" class="portfolio-box">
                     <img src="https://s3.amazonaws.com/hwfd.cdn/img/portfolio/thumbnails/5.jpg" class="img-responsive" alt="">
 
                     <div class="portfolio-box-caption">
@@ -251,7 +242,7 @@
     <div class="container text-center">
         <div class="call-to-action">
             <h2>Ready to start your new project?</h2>
-            <a data-toggle="modal" data-target="#apptModal" class="btn btn-default btn-xl sr-button">Start
+            <a href="/shop" class="btn btn-default btn-xl sr-button">Start
                 Now!</a>
         </div>
     </div>

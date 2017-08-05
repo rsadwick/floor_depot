@@ -67,10 +67,10 @@ SHOP_OPTION_TYPE_CHOICES = (
 
 SHIPPING_DESTINATION_CHOICES = (
     (1, "Residential Address"),
-    (2, "Service Center Pickup"),
+    (2, "Local Terminal Pickup"),
 )
 
-SHOP_HANDLER_PAYMENT = 'cartridge.shop.payment.paypal.process'
+SHOP_HANDLER_PAYMENT = 'cartridge.shop.payment.stripe_api.process'
 
 
 # Sequence of indexes from the SHOP_OPTION_TYPE_CHOICES setting that
@@ -222,7 +222,7 @@ AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
 # a mode you'd pass directly to os.chmod.
 FILE_UPLOAD_PERMISSIONS = 0o644
 
-STRIPE_API_KEY = 'sk_test_M5EgXDlO9rABJYoeUEjt4aOk'
+STRIPE_API_KEY = 'sk_live_O3KRITblLGEXE0HSb1x4xUeQ'
 
 #rl shipping key
 RL_SHIPPING_KEY = "UtZkZTQjI4OyU1YTktMWI5Yi00NzE1LWExOGZGQwN0NDYDMGC"

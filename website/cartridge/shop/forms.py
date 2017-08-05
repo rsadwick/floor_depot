@@ -26,7 +26,6 @@ from cartridge.shop.models import Cart, CartItem, Order, DiscountCode
 from cartridge.shop.utils import (make_choices, set_locale, set_shipping,
                                   clear_session)
 
-from cartridge.shop.payment.paypal import COUNTRIES
 
 
 ADD_PRODUCT_ERRORS = {
