@@ -65,7 +65,7 @@
 
                 <div class="row product-list">
                     {% for product in products.object_list %}
-                        <div class="col-xs-6 col-sm-3 col-lg-3 product-thumb">
+                        <div class="col-xs-12 col-sm-12 col-lg-3 product-thumb">
                             <a href="{{ product.get_absolute_url }}" class="thumbnail">
                                 {% if product.image %}
                                     <img src="{{ MEDIA_URL }}{% thumbnail product.image 260 195 %}">
