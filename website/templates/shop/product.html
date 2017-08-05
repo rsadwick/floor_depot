@@ -96,6 +96,8 @@
                             {{ product.content|richtext_filters|safe }}
                         {% endeditable %}
 
+                        <p><a data-pin-do="buttonBookmark" data-pin-tall="true" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a></p>
+
                         {% if product.available and has_available_variations %}
                             <ul id="variations" class="list-unstyled">
                                 {% for variation in variations %}
