@@ -396,10 +396,6 @@ class OrderForm(FormsetForm, DiscountForm):
         year = now().year
         choices = make_choices(list(range(year, year + 21)))
         self.fields["card_expiry_year"].choices = choices
-        billing_country = forms.Select(choices=COUNTRIES)
-        shipping_country = forms.Select(choices=COUNTRIES)
-        self.fields['billing_detail_country'].widget = billing_country
-        self.fields['shipping_detail_country'].widget = shipping_country
 
     @classmethod
     def preprocess(cls, data):
