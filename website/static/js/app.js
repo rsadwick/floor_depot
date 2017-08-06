@@ -68,7 +68,7 @@ function initCalculator(container){
 }
 
 function initVariant(container){
-    var variant = getQueryVariable('width');
+    var variant = decodeURIComponent(getQueryVariable('width'));
     if(!variant){
         return false;
     }
