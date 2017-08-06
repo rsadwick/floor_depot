@@ -21,6 +21,8 @@ SHOP_USE_RATINGS = False
 # Setting to turn on featured images for shop categories. Defaults to False.
 SHOP_CATEGORY_USE_FEATURED_IMAGE = True
 
+COMPRESS_ENABLED = True
+
 # If True, the checkout process is split into separate
 # billing/shipping and payment steps.
 # SHOP_CHECKOUT_STEPS_SPLIT = True
@@ -322,6 +324,17 @@ MEDIA_URL = STATIC_URL + "media/"
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, *MEDIA_URL.strip("/").split("/"))
 
+#css filters
+COMPRESS_CSS_FILTERS = ["compressor.filters.cssmin.CSSMinFilter"]
+COMPRESS_JS_FILTERS = ["compressor.filters.jsmin.JSMinFilter"]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
+COMPRESS_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
 # Package/module name to import the root urlpatterns from for the project.
 ROOT_URLCONF = "%s.urls" % PROJECT_APP
 

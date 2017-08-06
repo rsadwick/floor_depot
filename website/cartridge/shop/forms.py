@@ -42,7 +42,7 @@ class AddProductForm(forms.Form):
     """
 
     quantity = forms.IntegerField(label=_("Quantity"), min_value=1)
-    square_foot_per_bundle = forms.DecimalField(label=_("Sq ft"), max_digits=5, decimal_places=2, min_value=1.0)
+    square_foot_per_bundle = forms.DecimalField(label=_("Sq ft"), min_value=1.0)
     sku = forms.CharField(required=False, widget=forms.HiddenInput())
 
     def __init__(self, *args, **kwargs):

@@ -45,7 +45,6 @@ $(document).ready(function () {
         quantity.on('input blur keypress', function(){
             price = HWFD.getCurrentVariantPrice(variationPrices);
             coverage.val(HWFD.getSqftFromBundle(quantity.val(), price.data('sqft')));
-            quantity.val(HWFD.getBundleFromSqft(quantity.val(), price.data('sqft'), coverage.val()));
             totalPrice.text(HWFD.getTotalPrice(quantity.val(), price.data('price'), price.data('sqft')));
         });
 

@@ -37,10 +37,13 @@
 {% endblock %}
 
 {% block extra_head %}
+
     {{ block.super }}
+{% compress js %}
     <script>var variations = {{ variations_json|safe }};</script>
     <script src="{% static "cartridge/js/product_variations.js" %}"></script>
     <script src="{% static "js/app.js" %}"></script>
+     {% endcompress js %}
 {% endblock %}
 
 {% block breadcrumb_menu %}
