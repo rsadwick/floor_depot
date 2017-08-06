@@ -74,7 +74,7 @@ function initVariant(container){
     }
 
     var option = container.find('#id_option1');
-    option.val(variant.replace(/-/g, ' ')).change();
+    option.val(variant).change();
 
 
     function getQueryVariable(variable){
