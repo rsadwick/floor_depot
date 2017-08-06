@@ -27,6 +27,11 @@ HWFD.getCurrentVariantPrice = function(variants){
 
 $(document).ready(function () {
     var container = $('.shop-template');
+    initCalculator(container);
+    initVariant(container);
+});
+
+function initCalculator(container){
 
     var variationPrices = container.find('#variations li');
     if(variationPrices){
@@ -60,5 +65,26 @@ $(document).ready(function () {
             totalPrice.text(HWFD.getTotalPrice(quantity.val(), price.data('price'), price.data('sqft')));
         });
     }
-});
+}
 
+function initVariant(container){
+    var variant = getQueryVariable('width');
+    if(!variant){
+        return false;
+    }
+
+    var option = container.find('#id_option1');
+    option.val(variant.replace(/-/g, ' ')).change();
+
+
+    function getQueryVariable(variable){
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+    }
+
+}

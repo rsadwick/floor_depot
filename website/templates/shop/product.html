@@ -39,6 +39,7 @@
 {% block extra_head %}
 
     {{ block.super }}
+    <script>var variations = {{ variations_json|safe }};</script>
 {% compress js %}
     <script>var variations = {{ variations_json|safe }};</script>
     <script src="{% static "cartridge/js/product_variations.js" %}"></script>

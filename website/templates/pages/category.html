@@ -1,6 +1,6 @@
 {% extends "pages/page.html" %}
 
-{% load mezzanine_tags shop_tags i18n %}
+{% load mezzanine_tags shop_tags i18n staticfiles %}
 {% block body_id %}category{% endblock %}
 
 {% block main %}{{ block.super }}
@@ -45,23 +45,7 @@
 
             {% if products.paginator.count != 0 %}
 
-                <form class="product-sorting" role="form">
-                    <div class="form-group">
-                        <label class="control-label" for="sorting-select">{% trans "Sort by" %}</label>
-                        <select onchange="location.href = this[this.selectedIndex].value;" class="form-control"
-                                id="sorting-select">
-                            {% for name, option in settings.SHOP_PRODUCT_SORT_OPTIONS %}
-                                {% if "rating" not in option or settings.SHOP_USE_RATINGS %}
-                                    <option{% if option == products.sort_by %} selected{% endif %}
-                                                                               value="{{ category.get_absolute_url }}?sort=
-                                                                                       {{ option }}{{ querystring }}">
-                                        {{ name }}
-                                    </option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                    </div>
-                </form>
+
 
                 <div class="row product-list">
                     {% for product in products.object_list %}
@@ -98,4 +82,8 @@
             </div>
         </div>
     </div>
+    {% compress js %}
+    <script src="{% static "js/select-variant.js" %}"></script>
+     {% endcompress js %}
 {% endblock %}
+
