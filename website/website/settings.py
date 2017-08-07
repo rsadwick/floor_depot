@@ -325,7 +325,7 @@ MEDIA_URL = STATIC_URL + "media/"
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, *MEDIA_URL.strip("/").split("/"))
 
 #css filters
-COMPRESS_CSS_FILTERS = ["compressor.filters.cssmin.CSSMinFilter"]
+COMPRESS_CSS_FILTERS = ["compressor.filters.cssmin.CSSMinFilter", "compressor.filters.css_default.CssAbsoluteFilter"]
 COMPRESS_JS_FILTERS = ["compressor.filters.jsmin.JSMinFilter"]
 
 STATICFILES_FINDERS = (
