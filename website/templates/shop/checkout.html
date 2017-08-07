@@ -32,6 +32,52 @@
 
 {% block main %}
 
+    {% if request.cart.has_items %}
+        <div class="cart-utility visible-sm visible-xs">
+            <label for="toggle-cart" class="toggle-btn btn btn-sm btn-block"> Your Order </label>
+            <input type="checkbox" id="toggle-cart">
+
+
+            <div class="cart-items">
+                <div class="">
+                    <div class="col-md-4">
+                        <div class="panel panel-default checkout-panel">
+                            <div class="panel-body">
+                                <ul class="media-list">
+                                    {% for item in request.cart %}
+                                        <li class="media">
+                                            {% if item.image %}
+                                                <img class="pull-left" alt="{{ item.description }}"
+                                                     src="{{ MEDIA_URL }}{% thumbnail item.image 30 30 %}">
+                                            {% endif %}
+                                            <div class="media-body">
+                                                <div><strong>{{ item.square_foot_per_bundle }}</strong> sqft per
+                                                    <strong>{{ item.quantity }}</strong>
+                                                    bundle{{ item.quantity|pluralize }}
+                                                    at
+                                                    <strong>${{ item.unit_price }}</strong> / sqft
+                                                </div>
+                                                <div>
+                                                    {{ item.description }}
+                                                    <span class="price">{{ item.total_price|currency }}</span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                                {% order_totals %}
+                                <br style="clear:both;">
+                                <a class="btn btn-default" href="{% url "shop_cart" %}">{% trans "Edit Cart" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endif %}
+
+
     {% block before-form %}{% endblock %}
     <div class="container">
         <form method="post" class="col-md-8 checkout-form full-page-input">
@@ -61,29 +107,35 @@
         </form>
 
         {% if request.cart.has_items %}
-            <div class="col-md-4">
-                <div class="panel panel-default checkout-panel">
-                    <div class="panel-body">
-                        <ul class="media-list">
-                            {% for item in request.cart %}
-                                <li class="media">
-                                    {% if item.image %}
-                                        <img class="pull-left" alt="{{ item.description }}"
-                                             src="{{ MEDIA_URL }}{% thumbnail item.image 30 30 %}">
-                                    {% endif %}
-                                    <div class="media-body">
-                                         <div><strong>{{ item.square_foot_per_bundle }}</strong> sqft per <strong>{{item.quantity}}</strong> bundle{{ item.quantity|pluralize }} at <strong>${{ item.unit_price }}</strong> / sqft</div>
-                                        <div>
-                                        {{ item.description }}
-                                        <span class="price">{{ item.total_price|currency }}</span>
+            <div class="visible-lg visible-md">
+                <div class="col-md-4">
+                    <div class="panel panel-default checkout-panel">
+                        <div class="panel-body">
+                            <ul class="media-list">
+                                {% for item in request.cart %}
+                                    <li class="media">
+                                        {% if item.image %}
+                                            <img class="pull-left" alt="{{ item.description }}"
+                                                 src="{{ MEDIA_URL }}{% thumbnail item.image 30 30 %}">
+                                        {% endif %}
+                                        <div class="media-body">
+                                            <div><strong>{{ item.square_foot_per_bundle }}</strong> sqft per
+                                                <strong>{{ item.quantity }}</strong> bundle{{ item.quantity|pluralize }}
+                                                at
+                                                <strong>${{ item.unit_price }}</strong> / sqft
                                             </div>
-                                    </div>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                        {% order_totals %}
-                        <br style="clear:both;">
-                        <a class="btn btn-default" href="{% url "shop_cart" %}">{% trans "Edit Cart" %}</a>
+                                            <div>
+                                                {{ item.description }}
+                                                <span class="price">{{ item.total_price|currency }}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            {% order_totals %}
+                            <br style="clear:both;">
+                            <a class="btn btn-default" href="{% url "shop_cart" %}">{% trans "Edit Cart" %}</a>
+                        </div>
                     </div>
                 </div>
             </div>

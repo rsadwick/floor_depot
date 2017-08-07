@@ -580,3 +580,110 @@ a.thumbnail.active {
     background-color: #fff;
     color: #000;
 }
+
+/* Cart */
+
+
+.table {
+  margin: 1em 0;
+  min-width: 300px;
+}
+.table tr {
+
+}
+.table th {
+  display: none;
+}
+.table td {
+  display: block;
+}
+.table td:first-child {
+  padding-top: .5em;
+}
+.table td:last-child {
+  padding-bottom: .5em;
+}
+.table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 6.5em;
+  display: inline-block;
+}
+@media (min-width: 480px) {
+  .table td:before {
+    display: none;
+  }
+}
+.table th, .table td {
+  text-align: left;
+}
+@media (min-width: 480px) {
+  .table th, .table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .table th:first-child, .table td:first-child {
+    padding-left: 0;
+  }
+  .table th:last-child, .table td:last-child {
+    padding-right: 0;
+  }
+}
+
+.table {
+  background: #fff;
+  color: #000;
+  border-radius: .4em;
+  overflow: hidden;
+}
+.table tr {
+  border-color: #ddd;
+}
+.table th, .table td {
+  margin: .5em 1em;
+}
+@media (min-width: 480px) {
+  .table th, .table td {
+    padding: 1em !important;
+  }
+}
+.table th, .table td:before {
+  color: #000;
+}
+
+.cart-form .table tbody > tr > td{
+    text-align: left;
+}
+
+.cart-form .table th {
+    text-align: left;
+}
+
+.cart-form .form-actions{
+    clear: right;
+}
+
+/* Checkout mobile */
+
+.cart-utility input[type=checkbox] {
+   position: absolute;
+   top: -9999px;
+   left: -9999px;
+}
+.cart-utility .toggle-btn {
+  -webkit-appearance: push-button;
+  -moz-appearance: button;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Default State */
+.cart-items {
+    display: none;
+}
+
+/* Toggled State */
+.cart-utility input[type=checkbox]:checked ~ .cart-items{
+   display: block;
+}
+

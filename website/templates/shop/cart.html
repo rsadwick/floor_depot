@@ -21,44 +21,42 @@
                     {% endfor %}
                 {% endif %}
                 {{ cart_formset.management_form }}
+
                 <table class="table table-striped">
-                    <thead>
                     <tr>
-                        <th colspan="2" class="left">{% trans "Item" %}</th>
+                        <th>{% trans "Item" %}</th>
                         <th>{% trans "Unit Price" %}</th>
-                        <th class="center">{% trans "Qty" %}</th>
+                        <th>{% trans "Qty" %}</th>
                         <th>{% trans "Price" %}</th>
-                        <th class="center">{% trans "Remove?" %}</th>
+                        <th>{% trans "Remove?" %}</th>
                     </tr>
-                    </thead>
-                    <tbody>
+
                     {% for form in cart_formset.forms %}
                         {% with form.instance as item %}
                             <tr>
-                                <td width="30">
-                                    {{ form.id }}
-                                    {% if item.image %}
-                                        <a href="{{ item.get_absolute_url }}">
-                                            <img alt="{{ item.description }}" src="{{ MEDIA_URL }}{% thumbnail item.image 30 30 %}">
-                                        </a>
-                                    {% endif %}
+                                <td data-th="Item">
+                                    <div>{{ form.id }}
+                                        {% if item.image %}
+                                            <a href="{{ item.get_absolute_url }}">
+                                                <img alt="{{ item.description }}"
+                                                     src="{{ MEDIA_URL }}{% thumbnail item.image 30 30 %}">
+                                            </a>
+                                        {% endif %}
+                                        <a href="{{ item.get_absolute_url }}">{{ item.description }}</a>
+
+                                        <div>
                                 </td>
-                                <td class="left">
-                                    <a href="{{ item.get_absolute_url }}">{{ item.description }}</a>
-                                </td>
-                                <td>{{ item.unit_price|currency }}</td>
-                                <td class="quantity">{{ form.quantity }}</td>
-                                <td>{{ item.total_price|currency }}</td>
-                                <td class="center">{{ form.DELETE }}</td>
+
+                                <td data-th="Unit Price">{{ item.unit_price|currency }}</td>
+                                <td data-th="Qty">{{ form.quantity }}</td>
+                                <td data-th="Price">{{ item.total_price|currency }}</td>
+                                <td data-th="Remove?">{{ form.DELETE }}</td>
                             </tr>
                         {% endwith %}
                     {% endfor %}
-                    <tr>
-                        <td colspan="5">{% order_totals %}</td>
-                        <td>&nbsp;</td>
-                    </tr>
-                    </tbody>
                 </table>
+
+                {% order_totals %}
 
                 <div class="form-actions">
                     <a href="{% url "shop_checkout" %}" class="btn btn-primary btn-lg pull-right">
