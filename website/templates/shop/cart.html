@@ -60,8 +60,8 @@
 
                 <div class="form-actions">
                     <a href="{% url "shop_checkout" %}" class="btn btn-primary btn-lg pull-right">
-                        {% if request.session.order.step %}{% trans "Return to Checkout" %}{% else %}
-                            {% trans "Go to Checkout" %}{% endif %}
+                        {% if request.session.order.step %}{% trans "Checkout" %}{% else %}
+                            {% trans "Checkout" %}{% endif %}
                     </a>
                     <input type="submit" name="update_cart" class="btn btn-primary btn-lg pull-left"
                            value="{% trans "Update Cart" %}">
