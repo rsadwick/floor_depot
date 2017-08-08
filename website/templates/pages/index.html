@@ -12,17 +12,16 @@
     <title>Hardwood Floor Depot | Buy Hardwood Floors at Hardwood Floor Depot</title>
 
    <link href="https://s3.amazonaws.com/hwfd.cdn/build/styles.css" rel="stylesheet">
-      <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-          rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-          rel='stylesheet' type='text/css'>
+    {% compress css %}
+    <link rel="stylesheet" href="{% static "css/google-fonts.css" %}">
+    {% endcompress %}
 
-    <style>
-        .homepage-footer .bg-dark {
-            background-color: #fff;
-            color: #000;
+   <style>
+    .homepage-footer .bg-dark {
+        background-color: #fff;
+        color: #000;
 }
-    </style>
+   </style>
 
 
 
@@ -73,9 +72,10 @@
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="section-heading">We've got what you need!</h2>
                 <hr class="light">
-                <p class="text-faded">The brands you know. The styles you want. The quality you can trust. Hardwood
-                    Floor Depot makes getting beautiful new floors easy. If you need new Hardwood - we are the easiest
-                    way to get the best value and a professional experience.  Start your new project today.</p>
+                <p class="text-faded">Any wood species you need for your project. The width of board you want. We work with NWFA
+Certified mills confirming the quality of floors you can trust. Hardwood Floor Depot makes getting
+beautiful new floors easy. If you're looking for hardwood floors for a new build, remodeling project,
+rentals, real estate investing, or looking to update your current home – We are your one-stop shop providing the best value &amp; professional experience.</p>
                 <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">start now</a>
             </div>
         </div>
@@ -99,7 +99,7 @@
 
                     <h3>Your Source</h3>
 
-                    <p class="text-muted">We drop ship directly from the wood mills.</p>
+                    <p class="text-muted">We drop ship directly from the mills.</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 text-center">
@@ -108,7 +108,7 @@
 
                     <h3>Ready to Ship</h3>
 
-                    <p class="text-muted">Discounts up to 90% from major shipping companies!</p>
+                    <p class="text-muted">Discounts up to 92% from major shipping companies!</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 text-center">

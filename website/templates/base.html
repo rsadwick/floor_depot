@@ -17,15 +17,13 @@
         <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
     {% endifinstalled %}
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
-          rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
-          rel='stylesheet' type='text/css'>
+
     {% compress css %}
+
         <link rel="stylesheet" href="{% static "css/vendor/bootstrap/css/bootstrap.css" %}">
+        <link rel="stylesheet" href="{% static "css/google-fonts.css" %}">
         <link rel="stylesheet" href="{% static "css/vendor/font-awesome/css/font-awesome.css" %}">
         <link rel="stylesheet" href="{% static "css/vendor/magnific-popup/magnific-popup.css" %}">
-        <!--<link rel="stylesheet" href="{% static "css/mezzanine.css" %}">-->
         <link rel="stylesheet" href="{% static "css/creative.css" %}">
 
         {% if LANGUAGE_BIDI %}
