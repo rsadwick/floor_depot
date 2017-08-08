@@ -39,11 +39,11 @@
 {% block extra_head %}
 
     {{ block.super }}
-{% compress js %}
-    <script>var variations = {{ variations_json|safe }};</script>
-    <script src="{% static "cartridge/js/product_variations.js" %}"></script>
-    <script src="{% static "js/app.js" %}"></script>
-     {% endcompress js %}
+    {% compress js %}
+        <script>var variations = {{ variations_json|safe }};</script>
+        <script src="{% static "cartridge/js/product_variations.js" %}"></script>
+        <script src="{% static "js/app.js" %}"></script>
+    {% endcompress js %}
 {% endblock %}
 
 {% block breadcrumb_menu %}
@@ -57,135 +57,159 @@
 
 {% block main %}
 
-        <div class="container">
-            <div class="row">
+    <div class="container">
+        <div class="row">
 
-                <div class="shop-template">
-                    {% if images %}
-                        {% spaceless %}
-                            <div class="col-lg-6 col-md-6">
-                                <ul id="product-images-large" class="list-unstyled list-inline">
-                                    {% for image in images %}
-                                        <li id="image-{{ image.id }}-large"
-                                            {% if not forloop.first %}style="display:none;"{% endif %}>
-                                            <a class="product-image-large" href="{{ MEDIA_URL }}{{ image.file }}">
-                                                <img alt="{{ image.description }}"
-                                                     src="{{ MEDIA_URL }}{% thumbnail image.file 560 406 %}"
-                                                     class="img-thumbnail img-responsive col-xs-12">
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-
-                                {% if images|length != 1 %}
-                                    <ul id="product-images-thumb" class="list-unstyled list-inline">
-                                        {% for image in images %}
-                                            <li>
-                                                <a class="thumbnail" id="image-{{ image.id }}"
-                                                   href="{{ MEDIA_URL }}{{ image.file }}">
-                                                    <img alt="{{ image.description }}"
-                                                         src="{{ MEDIA_URL }}{% thumbnail image.file 75 75 %}">
-                                                </a>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                {% endif %}
-                            </div>
-                        {% endspaceless %}
-                    {% endif %}
-
-                    <div class="col-lg-6 col-md-6">
-                        {% editable product.content %}
-                            {{ product.content|richtext_filters|safe }}
-                        {% endeditable %}
-
-                        <p><a data-pin-do="buttonBookmark" data-pin-tall="true" data-pin-save="true" href="https://www.pinterest.com/pin/create/button/"></a></p>
-
-                        {% if product.available and has_available_variations %}
-                            <ul id="variations" class="list-unstyled">
-                                {% for variation in variations %}
-                                    <li id="variation-{{ variation.sku }}"
-                                        {% if not variation.default %}style="display:none;"{% endif %}>
-                                        {% if variation.has_price %}
-                                            {% if variation.on_sale %}
-                                                <span class="old-price">{{ variation.unit_price|currency }} / sq ft</span>
-                                                {% trans "On sale:" %}
-                                            {% endif %}
-                                            <span class="price" data-price="{{ variation.price }}" data-sqft="{{ variation.square_foot_per_bundle }}">{{ variation.price|currency }} / sq ft</span>
-                                        {% else %}
-                                            {% if has_available_variations %}
-                                                <span class="error-msg">
-            {% trans "The selected options are currently unavailable." %}
-            </span>
-                                            {% endif %}
-                                        {% endif %}
-
-                                        {% if variation.has_sqft_per_bundle %}
-                                            <p>Sq ft per Bundle: {{ variation.square_foot_per_bundle }}</p>
-                                        {% endif %}
-
+            <div class="shop-template">
+                {% if images %}
+                    {% spaceless %}
+                        <div class="col-lg-6 col-md-6">
+                            <ul id="product-images-large" class="list-unstyled list-inline">
+                                {% for image in images %}
+                                    <li id="image-{{ image.id }}-large"
+                                        {% if not forloop.first %}style="display:none;"{% endif %}>
+                                        <a class="product-image-large" href="{{ MEDIA_URL }}{{ image.file }}">
+                                            <img alt="{{ image.description }}"
+                                                 src="{{ MEDIA_URL }}{% thumbnail image.file 560 406 %}"
+                                                 class="img-thumbnail img-responsive col-xs-12">
+                                        </a>
                                     </li>
                                 {% endfor %}
                             </ul>
 
-                            {% errors_for add_product_form %}
+                            {% if images|length != 1 %}
+                                <ul id="product-images-thumb" class="list-unstyled list-inline">
+                                    {% for image in images %}
+                                        <li>
+                                            <a class="thumbnail" id="image-{{ image.id }}"
+                                               href="{{ MEDIA_URL }}{{ image.file }}">
+                                                <img alt="{{ image.description }}"
+                                                     src="{{ MEDIA_URL }}{% thumbnail image.file 75 75 %}">
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    {% endspaceless %}
+                {% endif %}
 
-                            <form method="post" id="add-cart" class="shop-form">
-                                {% fields_for add_product_form %}
-                                <div class="item-total-currency">
-                                    <p>Total: <span class="total-price"></span></p>
-                                </div>
-                                <div class="form-actions">
-                                    <input type="submit" class="btn btn-primary btn-xl" name="add_cart"
-                                           value="{% trans "Add To Cart" %}">
-                                    {% if settings.SHOP_USE_WISHLIST %}
-                                        <input type="submit" class="btn btn-default btn-lg" name="add_wishlist"
-                                               value="{% trans "Save for later" %}">
+                <div class="col-lg-6 col-md-6">
+                    {% editable product.content %}
+                        {{ product.content|richtext_filters|safe }}
+                    {% endeditable %}
+
+                    <p>
+                        <a data-pin-do="buttonBookmark" data-pin-tall="true" data-pin-save="true"
+                           href="https://www.pinterest.com/pin/create/button/"></a>
+                        <a class="houzz-share-button"
+                           data-url="https://hardwoodfloordepot.com{{ request.get_full_path }}"
+                           data-hzid="47195"
+                           data-title="{{ product.title }}"
+                           data-img="{{ MEDIA_URL }}{{ images.0.file }}"
+                           data-desc="{{ product.description }}"
+                           data-category="Hardwood Flooring"
+                           data-showcount="0"
+                           href="https://www.houzz.com">Houzz</a>
+                        <script>(function (d, s, id) {
+                            if (!d.getElementById(id)) {
+                                var js = d.createElement(s);
+                                js.id = id;
+                                js.async = true;
+                                js.src = "//platform.houzz.com/js/widgets.js?" + (new Date().getTime());
+                                var ss = d.getElementsByTagName(s)[0];
+                                ss.parentNode.insertBefore(js, ss);
+                            }
+                        })(document, "script", "houzzwidget-js");</script>
+                    </p>
+
+                    {% if product.available and has_available_variations %}
+                        <ul id="variations" class="list-unstyled">
+                            {% for variation in variations %}
+                                <li id="variation-{{ variation.sku }}"
+                                    {% if not variation.default %}style="display:none;"{% endif %}>
+                                    {% if variation.has_price %}
+                                        {% if variation.on_sale %}
+                                            <span class="old-price">{{ variation.unit_price|currency }} / sq ft</span>
+                                            {% trans "On sale:" %}
+                                        {% endif %}
+                                        <span class="price" data-price="{{ variation.price }}"
+                                              data-sqft="{{ variation.square_foot_per_bundle }}">{{ variation.price|currency }} / sq ft</span>
+                                    {% else %}
+                                        {% if has_available_variations %}
+                                            <span class="error-msg">
+            {% trans "The selected options are currently unavailable." %}
+            </span>
+                                        {% endif %}
                                     {% endif %}
-                                </div>
-                            </form>
-                        {% else %}
-                            <p class="error-msg">{% trans "This product is currently unavailable." %}</p>
-                        {% endif %}
 
-                        {% if settings.SHOP_USE_RATINGS %}
-                            <div class="panel panel-default rating">
-                                <div class="panel-body">{% rating_for product %}</div>
+                                    {% if variation.has_sqft_per_bundle %}
+                                        <p>Sq ft per Bundle: {{ variation.square_foot_per_bundle }}</p>
+                                    {% endif %}
+
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+                        {% errors_for add_product_form %}
+
+                        <form method="post" id="add-cart" class="shop-form">
+                            {% fields_for add_product_form %}
+                            <div class="item-total-currency">
+                                <p>Total: <span class="total-price"></span></p>
                             </div>
-                        {% endif %}
+                            <div class="form-actions">
+                                <input type="submit" class="btn btn-primary btn-xl" name="add_cart"
+                                       value="{% trans "Add To Cart" %}">
+                                {% if settings.SHOP_USE_WISHLIST %}
+                                    <input type="submit" class="btn btn-default btn-lg" name="add_wishlist"
+                                           value="{% trans "Save for later" %}">
+                                {% endif %}
+                            </div>
+                        </form>
+                    {% else %}
+                        <p class="error-msg">{% trans "This product is currently unavailable." %}</p>
+                    {% endif %}
 
-                        {% if settings.SHOP_USE_RELATED_PRODUCTS and related_products %}
-                            <h2>{% trans "Related Products" %}</h2>
-                            <div class="row related-products">
-                                {% for product in related_products %}
-                                    <div class="col-xs-6 col-sm-4 col-md-3 product-thumb">
-                                        <a class="thumbnail" href="{{ product.get_absolute_url }}">
-                                            {% if product.image %}
-                                                <img src="{{ MEDIA_URL }}{% thumbnail product.image 90 90 %}">
-                                            {% endif %}
-                                            <div class="caption">
-                                                <h6>{{ product }}</h6>
+                    {% if settings.SHOP_USE_RATINGS %}
+                        <div class="panel panel-default rating">
+                            <div class="panel-body">{% rating_for product %}</div>
+                        </div>
+                    {% endif %}
 
-                                                <div class="price-info">
-                                                    {% if product.has_price %}
-                                                        {% if product.on_sale %}
-                                                            <span class="old-price">{{ product.unit_price|currency }} / sq ft</span>
-                                                            {% trans "On sale:" %}
-                                                        {% endif %}
-                                                        <span class="price" data-price="{{ variation.price }}" >{{ product.price|currency }} / sq ft</span>
-                                                    {% else %}
-                                                        <span class="coming-soon">{% trans "Coming soon" %}</span>
+                    {% if settings.SHOP_USE_RELATED_PRODUCTS and related_products %}
+                        <h2>{% trans "Related Products" %}</h2>
+                        <div class="row related-products">
+                            {% for product in related_products %}
+                                <div class="col-xs-6 col-sm-4 col-md-3 product-thumb">
+                                    <a class="thumbnail" href="{{ product.get_absolute_url }}">
+                                        {% if product.image %}
+                                            <img src="{{ MEDIA_URL }}{% thumbnail product.image 90 90 %}">
+                                        {% endif %}
+                                        <div class="caption">
+                                            <h6>{{ product }}</h6>
+
+                                            <div class="price-info">
+                                                {% if product.has_price %}
+                                                    {% if product.on_sale %}
+                                                        <span class="old-price">{{ product.unit_price|currency }} / sq ft</span>
+                                                        {% trans "On sale:" %}
                                                     {% endif %}
-                                                </div>
+                                                    <span class="price"
+                                                          data-price="{{ variation.price }}">{{ product.price|currency }} / sq ft</span>
+                                                {% else %}
+                                                    <span class="coming-soon">{% trans "Coming soon" %}</span>
+                                                {% endif %}
                                             </div>
-                                        </a>
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
+    </div>
     <script async defer src="//assets.pinterest.com/js/pinit.js"></script>
 {% endblock %}
