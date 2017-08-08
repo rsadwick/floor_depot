@@ -47,13 +47,13 @@ function initCalculator(container){
             totalPrice.text(HWFD.getTotalPrice(quantity.val(), price.data('price'), price.data('sqft')));
         }
 
-        quantity.on('input blur keypress', function(){
+        quantity.on('input blur', function(){
             price = HWFD.getCurrentVariantPrice(variationPrices);
             coverage.val(HWFD.getSqftFromBundle(quantity.val(), price.data('sqft')));
             totalPrice.text(HWFD.getTotalPrice(quantity.val(), price.data('price'), price.data('sqft')));
         });
 
-        coverage.on('blur keypress', function(){
+        coverage.on('blur input', function(){
             price = HWFD.getCurrentVariantPrice(variationPrices);
             quantity.val(HWFD.getBundleFromSqft(quantity.val(), price.data('sqft'), coverage.val()));
             totalPrice.text(HWFD.getTotalPrice(quantity.val(), price.data('price'), price.data('sqft')));
