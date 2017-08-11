@@ -124,10 +124,6 @@ def billship_handler(request, order_form):
     decimal_in_cents = Decimal('0.01')
     total_order = Decimal(dollars)
     grand_total = total_order.quantize(decimal_in_cents, ROUND_HALF_UP)
-    shipping_msg = str(shipping_request) + '\n' + str(result)
-    Logger(1, shipping_msg, order_form.cleaned_data['billing_detail_first_name'],
-           order_form.cleaned_data['billing_detail_email'],
-           order_form.cleaned_data['billing_detail_phone'])
 
     if not request.session.get("free_shipping"):
         set_shipping(request, 'Shipping', grand_total)
