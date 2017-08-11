@@ -7,8 +7,8 @@ from cartridge.shop.models import Product
 from decimal import Decimal, ROUND_HALF_UP
 from cartridge.shop.checkout import CheckoutError
 from suds.sudsobject import asdict
-import json
-from django.shortcuts import redirect
+
+from logger.logger import Logger
 
 
 class LogPlugin(MessagePlugin):
@@ -70,6 +70,9 @@ def billship_handler(request, order_form):
         item.Height = 0
         item.Length = 0
 
+        logger = Logger(1, weight, order_form.cleaned_data['billing_detail_first_name'], order_form.cleaned_data['billing_detail_email'],
+                        order_form.cleaned_data['billing_detail_phone'])
+
         items.Item.append(item)
 
     shipping_request.Items = items
@@ -90,6 +93,8 @@ def billship_handler(request, order_form):
     result = client.service.GetRateQuote(key, shipping_request)
     if not result.WasSuccess:
         errors = recursive_dict(result)
+        logger = Logger(4, shipping_request, order_form.cleaned_data['billing_detail_first_name'], order_form.cleaned_data['billing_detail_email'],
+                        order_form.cleaned_data['billing_detail_phone'])
         raise CheckoutError(errors['Messages']['string'])
 
     if destination_option == 2:
