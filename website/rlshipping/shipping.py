@@ -64,7 +64,7 @@ def billship_handler(request, order_form):
         products = Product.objects.filter(sku=item.sku)
         for product in products:
             weight += float(product.weight)
-            Logger(2, 'title: ' + product.title + '-' + ' height: ' + product.weight + ' sku: ' + item.sku,
+            Logger(2, 'title: ' + product.title + '-' + ' weight: ' + product.weight + ' sku: ' + item.sku,
                    order_form.cleaned_data['billing_detail_first_name'],
                    order_form.cleaned_data['billing_detail_email'],
                    order_form.cleaned_data['billing_detail_phone'])
