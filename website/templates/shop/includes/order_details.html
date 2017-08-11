@@ -1,5 +1,5 @@
-{% load shop_tags i18n %}
-
+{% load shop_tags i18n mezzanine_tags %}
+{% nevercache %}
 <h1>{{ settings.SITE_TITLE }}</h1>
 
 <table width="100%" border="0">
@@ -53,3 +53,5 @@
         <td colspan="4" align="right">{% order_totals %}</td>
     </tr>
 </table>
+
+{% endnevercache %}
