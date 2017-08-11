@@ -20,7 +20,6 @@ class LogPlugin(MessagePlugin):
 
 
 def billship_handler(request, order_form):
-
     url = "http://api.rlcarriers.com/1.0.2/RateQuoteService.asmx?WSDL"
     key = settings.RL_SHIPPING_KEY
     phone_number = settings.COMPANY_PHONE
@@ -28,7 +27,8 @@ def billship_handler(request, order_form):
     try:
         client = Client(url, plugins=[LogPlugin()])
     except Exception as e:
-        raise CheckoutError('There was a problem with the shipping rate.  Please contact us to complete your order at ' + phone_number)
+        raise CheckoutError(
+            'There was a problem with the shipping rate.  Please contact us to complete your order at ' + phone_number)
 
     shipping_request = client.factory.create('RateQuoteRequest')
     shipping_request.CustomerData = 'Ryan Tester'
@@ -62,6 +62,9 @@ def billship_handler(request, order_form):
         products = Product.objects.filter(sku=item.sku)
         for product in products:
             weight += float(product.weight)
+            Logger(2, 'title: ' + product.title + '-' + ' height: ' + product.weight + ' sku: ' + item.sku, order_form.cleaned_data['billing_detail_first_name'],
+                   order_form.cleaned_data['billing_detail_email'],
+                   order_form.cleaned_data['billing_detail_phone'])
         weight = weight * item.quantity
         item = client.factory.create('Item')
         item.Class = account_class
@@ -70,10 +73,9 @@ def billship_handler(request, order_form):
         item.Height = 0
         item.Length = 0
 
-        Logger(1, weight, order_form.cleaned_data['billing_detail_first_name'], order_form.cleaned_data['billing_detail_email'],
-                        order_form.cleaned_data['billing_detail_phone'])
-        Logger(2, products, order_form.cleaned_data['billing_detail_first_name'], order_form.cleaned_data['billing_detail_email'],
-                        order_form.cleaned_data['billing_detail_phone'])
+        Logger(1, weight, order_form.cleaned_data['billing_detail_first_name'],
+               order_form.cleaned_data['billing_detail_email'],
+               order_form.cleaned_data['billing_detail_phone'])
 
         items.Item.append(item)
 
@@ -95,8 +97,9 @@ def billship_handler(request, order_form):
     result = client.service.GetRateQuote(key, shipping_request)
     if not result.WasSuccess:
         errors = recursive_dict(result)
-        Logger(4, shipping_request, order_form.cleaned_data['billing_detail_first_name'], order_form.cleaned_data['billing_detail_email'],
-                        order_form.cleaned_data['billing_detail_phone'])
+        Logger(4, shipping_request, order_form.cleaned_data['billing_detail_first_name'],
+               order_form.cleaned_data['billing_detail_email'],
+               order_form.cleaned_data['billing_detail_phone'])
         raise CheckoutError(errors['Messages']['string'])
 
     if destination_option == 2:
