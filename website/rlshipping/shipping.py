@@ -60,10 +60,6 @@ def billship_handler(request, order_form):
 
     for item in request.cart:
 
-        Logger(2, 'sku - ' + item.sku, order_form.cleaned_data['billing_detail_first_name'],
-               order_form.cleaned_data['billing_detail_email'],
-               order_form.cleaned_data['billing_detail_phone'])
-
         product_variants = ProductVariation.objects.filter(sku=item.sku)
         if product_variants.exists():
 
@@ -96,12 +92,17 @@ def billship_handler(request, order_form):
 
     result = client.service.GetRateQuote(key, shipping_request)
     if not result.WasSuccess:
-        Logger(4, shipping_request, order_form.cleaned_data['billing_detail_first_name'],
+        errors = recursive_dict(result)
+        Logger(4, str(shipping_request) + '\n' + str(result), order_form.cleaned_data['billing_detail_first_name'],
                order_form.cleaned_data['billing_detail_email'],
                order_form.cleaned_data['billing_detail_phone'])
-        raise CheckoutError(
-            'There was a problem with the calculating your shipping rate.  Please contact us to complete your order at '
-            + phone_number)
+
+        shipping_error = errors['Messages']['string']
+        append_error = 'If you keep receiving shipping errors, please contact us to complete your order at ' + settings.COMPANY_PHONE
+
+        shipping_handler_error = str(shipping_error) + '\n' + str(append_error)
+
+        raise CheckoutError(shipping_handler_error)
 
     if destination_option == 2:
         address = client.factory.create('ServicePoint')
@@ -123,8 +124,8 @@ def billship_handler(request, order_form):
     decimal_in_cents = Decimal('0.01')
     total_order = Decimal(dollars)
     grand_total = total_order.quantize(decimal_in_cents, ROUND_HALF_UP)
-
-    Logger(1, shipping_request, order_form.cleaned_data['billing_detail_first_name'],
+    shipping_msg = str(shipping_request) + '\n' + str(result)
+    Logger(1, shipping_msg, order_form.cleaned_data['billing_detail_first_name'],
            order_form.cleaned_data['billing_detail_email'],
            order_form.cleaned_data['billing_detail_phone'])
 
