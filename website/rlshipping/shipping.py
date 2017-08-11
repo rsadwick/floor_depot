@@ -65,19 +65,16 @@ def billship_handler(request, order_form):
                order_form.cleaned_data['billing_detail_phone'])
 
         products = Product.objects.filter(sku=item.sku)
+        if products.exists():
 
-        Logger(2, ' count ' + str(products.count()), order_form.cleaned_data['billing_detail_first_name'],
-               order_form.cleaned_data['billing_detail_email'],
-               order_form.cleaned_data['billing_detail_phone'])
+            for product in products:
+                weight = float(product.weight) * item.quantity
 
-        for product in products:
-            weight = float(product.weight) * item.quantity
-
-            Logger(2,
-                   'title: ' + product.title + '-' + ' weight per: ' + str(product.weight) + ' weight total: ' + str(weight),
-                   order_form.cleaned_data['billing_detail_first_name'],
-                   order_form.cleaned_data['billing_detail_email'],
-                   order_form.cleaned_data['billing_detail_phone'])
+                Logger(2,
+                       'title: ' + product.title + '-' + ' weight per: ' + str(product.weight) + ' weight total: ' + str(weight),
+                       order_form.cleaned_data['billing_detail_first_name'],
+                       order_form.cleaned_data['billing_detail_email'],
+                       order_form.cleaned_data['billing_detail_phone'])
 
         item = client.factory.create('Item')
         item.Class = account_class
