@@ -310,9 +310,6 @@ def checkout_steps(request, form_class=OrderForm, extra_context=None):
                     transaction_id = payment_handler(request, form, order)
                 except checkout.CheckoutError as e:
                     # Error in payment handler.
-                    Logger(3, 'Error in payment handler', form.cleaned_data['billing_detail_first_name'],
-                           form.cleaned_data['billing_detail_email'],
-                           form.cleaned_data['billing_detail_phone'])
                     order.delete()
                     checkout_errors.append(e)
                     if settings.SHOP_CHECKOUT_STEPS_CONFIRMATION:

@@ -6,6 +6,7 @@ from django.utils.translation import ugettext as _
 from mezzanine.conf import settings
 
 from cartridge.shop.checkout import CheckoutError
+from logger.logger import Logger
 
 # Requires Stripe Library Module -- install from pypi.
 try:
@@ -43,7 +44,20 @@ def process(request, order_form, order):
     try:
         response = stripe.Charge.create(**data)
     except stripe.CardError:
+        Logger(3, 'Transaction declined', request.POST['billing_detail_first_name'],
+               request.POST['billing_detail_email'],
+               request.POST['billing_detail_phone'])
+
         raise CheckoutError(_("Transaction declined"))
     except Exception as e:
+        Logger(2, str(e), request.POST['billing_detail_first_name'],
+               request.POST['billing_detail_email'],
+               request.POST['billing_detail_phone'])
+
         raise CheckoutError(_("A general error occured: ") + str(e))
+
+    log_msg = 'charge success' + '\n' + str(order) + ' - ' + str(int((order.total * 100)))
+    Logger(3, log_msg, request.POST['billing_detail_first_name'], request.POST['billing_detail_email'],
+           request.POST['billing_detail_phone'])
+
     return response.id
