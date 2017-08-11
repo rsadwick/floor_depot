@@ -6,6 +6,8 @@
     <script src="{% static "cartridge/js/shipping_fields.js" %}"></script>
 {% endblock %}
 
+
+
 {% block fields %}
     {% if request.cart.has_items %}
         {% if not request.user.is_authenticated %}
@@ -31,7 +33,7 @@
             {% fields_for form.billing_detail_fields %}
 
         </div>
-        {% nevercache %}
+ {% nevercache %}
         <div>
 
             <h2>{% trans "Delivery Details" %}</h2>
@@ -46,7 +48,9 @@
 
         </div>
 
-        {% endnevercache %}
+         {% endnevercache %}
+
+
 
         {% if not settings.SHOP_CHECKOUT_STEPS_SPLIT and settings.SHOP_PAYMENT_STEP_ENABLED %}
             {% include "shop/includes/payment_fields.html" %}
@@ -55,4 +59,6 @@
         {% fields_for form.other_fields %}
 
     {% endif %}
+
 {% endblock %}
+
