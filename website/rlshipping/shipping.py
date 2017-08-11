@@ -3,7 +3,7 @@ from cartridge.shop.models import Order
 from cartridge.shop.utils import set_shipping, set_tax, sign
 from suds.client import Client
 from suds.plugin import MessagePlugin
-from cartridge.shop.models import Product, ProductVariation
+from cartridge.shop.models import ProductVariation
 from decimal import Decimal, ROUND_HALF_UP
 from cartridge.shop.checkout import CheckoutError
 from suds.sudsobject import asdict
@@ -70,22 +70,12 @@ def billship_handler(request, order_form):
             for variant in product_variants:
                 weight = float(variant.product.weight) * item.quantity
 
-                Logger(2,
-                       'title: ' + variant.product.title + '-' + ' weight per: ' + str(variant.product.weight) + ' weight total: ' + str(weight),
-                       order_form.cleaned_data['billing_detail_first_name'],
-                       order_form.cleaned_data['billing_detail_email'],
-                       order_form.cleaned_data['billing_detail_phone'])
-
         item = client.factory.create('Item')
         item.Class = account_class
         item.Weight = weight
         item.Width = 0
         item.Height = 0
         item.Length = 0
-
-        Logger(1, weight, order_form.cleaned_data['billing_detail_first_name'],
-               order_form.cleaned_data['billing_detail_email'],
-               order_form.cleaned_data['billing_detail_phone'])
 
         items.Item.append(item)
 
@@ -106,11 +96,12 @@ def billship_handler(request, order_form):
 
     result = client.service.GetRateQuote(key, shipping_request)
     if not result.WasSuccess:
-        errors = recursive_dict(result)
         Logger(4, shipping_request, order_form.cleaned_data['billing_detail_first_name'],
                order_form.cleaned_data['billing_detail_email'],
                order_form.cleaned_data['billing_detail_phone'])
-        raise CheckoutError(errors['Messages']['string'])
+        raise CheckoutError(
+            'There was a problem with the calculating your shipping rate.  Please contact us to complete your order at '
+            + phone_number)
 
     if destination_option == 2:
         address = client.factory.create('ServicePoint')
@@ -133,9 +124,9 @@ def billship_handler(request, order_form):
     total_order = Decimal(dollars)
     grand_total = total_order.quantize(decimal_in_cents, ROUND_HALF_UP)
 
-    Logger(4, shipping_request, 'test',
-           'test',
-           'test')
+    Logger(1, shipping_request, order_form.cleaned_data['billing_detail_first_name'],
+           order_form.cleaned_data['billing_detail_email'],
+           order_form.cleaned_data['billing_detail_phone'])
 
     if not request.session.get("free_shipping"):
         set_shipping(request, 'Shipping', grand_total)

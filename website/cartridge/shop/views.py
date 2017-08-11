@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from future.builtins import int, str
+from logger.logger import Logger
 
 import json
 from json import dumps
@@ -42,6 +43,7 @@ tax_handler = handler(settings.SHOP_HANDLER_TAX)
 payment_handler = handler(settings.SHOP_HANDLER_PAYMENT)
 order_handler = handler(settings.SHOP_HANDLER_ORDER)
 
+
 def product(request, slug, template="shop/product.html",
             form_class=AddProductForm, extra_context=None):
     """
@@ -53,7 +55,8 @@ def product(request, slug, template="shop/product.html",
     fields = [f.name for f in ProductVariation.option_fields()]
     variations = product.variations.all()
     variations_json = dumps([dict([(f, getattr(v, f))
-        for f in fields + ["sku", "image_id", "square_foot_per_bundle"]]) for v in variations], cls=DecimalEncoder)
+                                   for f in fields + ["sku", "image_id", "square_foot_per_bundle"]]) for v in
+                             variations], cls=DecimalEncoder)
     to_cart = (request.method == "POST" and
                request.POST.get("add_wishlist") is None)
     initial_data = {}
@@ -173,6 +176,10 @@ def cart(request, template="shop/cart.html",
             valid = request.cart.has_items()
             if not valid:
                 # Session timed out.
+                if request.user:
+                    Logger(3, 'Cart expired', request.user.username,
+                           request.user.email,
+                           'N/A')
                 info(request, _("Your cart has expired"))
             else:
                 cart_formset = cart_formset_class(request.POST,
@@ -195,7 +202,7 @@ def cart(request, template="shop/cart.html",
             valid = discount_form.is_valid()
             if valid:
                 discount_form.set_discount()
-            # Potentially need to set shipping if a discount code
+                # Potentially need to set shipping if a discount code
             # was previously entered with free shipping, and then
             # another was entered (replacing the old) without
             # free shipping, *and* the user has already progressed
@@ -234,6 +241,7 @@ def checkout_steps(request, form_class=OrderForm, extra_context=None):
         pass
     else:
         from warnings import warn
+
         warn("The SHOP_CHECKOUT_FORM_CLASS setting is deprecated - please "
              "define your own urlpattern for the checkout_steps view, "
              "passing in your own form_class argument.")
@@ -302,6 +310,9 @@ def checkout_steps(request, form_class=OrderForm, extra_context=None):
                     transaction_id = payment_handler(request, form, order)
                 except checkout.CheckoutError as e:
                     # Error in payment handler.
+                    Logger(3, 'Error in payment handler', form.cleaned_data['billing_detail_first_name'],
+                           form.cleaned_data['billing_detail_email'],
+                           form.cleaned_data['billing_detail_phone'])
                     order.delete()
                     checkout_errors.append(e)
                     if settings.SHOP_CHECKOUT_STEPS_CONFIRMATION:
@@ -348,7 +359,7 @@ def checkout_steps(request, form_class=OrderForm, extra_context=None):
     context = {"CHECKOUT_STEP_FIRST": step == checkout.CHECKOUT_STEP_FIRST,
                "CHECKOUT_STEP_LAST": step == checkout.CHECKOUT_STEP_LAST,
                "CHECKOUT_STEP_PAYMENT": (settings.SHOP_PAYMENT_STEP_ENABLED and
-                   step == checkout.CHECKOUT_STEP_PAYMENT),
+                                         step == checkout.CHECKOUT_STEP_PAYMENT),
                "step_title": step_vars["title"], "step_url": step_vars["url"],
                "steps": checkout.CHECKOUT_STEPS, "step": step, "form": form}
     context.update(extra_context or {})
@@ -437,7 +448,7 @@ def invoice_resend_email(request, order_id):
         checkout.send_order_email(request, order)
         msg = _("The order email for order ID %s has been re-sent") % order_id
         info(request, msg)
-    # Determine the URL to return the user to.
+        # Determine the URL to return the user to.
     redirect_to = next_url(request)
     if redirect_to is None:
         if request.user.is_staff:
