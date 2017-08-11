@@ -42,7 +42,7 @@ tax_handler = handler(settings.SHOP_HANDLER_TAX)
 payment_handler = handler(settings.SHOP_HANDLER_PAYMENT)
 order_handler = handler(settings.SHOP_HANDLER_ORDER)
 
-
+@never_cache
 def product(request, slug, template="shop/product.html",
             form_class=AddProductForm, extra_context=None):
     """
