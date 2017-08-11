@@ -39,11 +39,11 @@
             <h2>{% trans "Delivery Details" %}</h2>
 
             {% fields_for form.same_billing_shipping_field %}
-            {% nevercache %}
+
             <div id="shipping_fields">
 
             {% fields_for form.shipping_detail_fields %}</div>
-            {% endnevercache %}
+
             {% fields_for form.additional_instructions_field %}
             <h2>Shipping Destination</h2>
             <p>Choose which destination you want us to deliver your order to.  If local terminal pickup is selected,
