@@ -24,11 +24,10 @@
     </td>
     <td valign="top">
         <table border="0">
-        {% nevercache %}
+
             {% for field, value in order_shipping_detail_fields %}
             <tr><td>{{ field }}:&nbsp;&nbsp;&nbsp;</td><td>{{ value }}</td></tr>
             {% endfor %}
-        {% endnevercache %}
         </table>
     </td>
 </tr>
