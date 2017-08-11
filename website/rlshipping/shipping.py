@@ -63,12 +63,15 @@ def billship_handler(request, order_form):
     for item in request.cart:
         products = Product.objects.filter(sku=item.sku)
         for product in products:
-            weight += float(product.weight)
-            Logger(2, 'title: ' + product.title + '-' + ' weight: ' + product.weight + ' sku: ' + item.sku,
+            weight = float(product.weight)
+            weight = weight * item.quantity
+            Logger(2,
+                   'title: ' + product.title + '-' + ' weight: ' + product.weight + ' sku: ' + item.sku + ' qty: '
+                   + str(item.quantity),
                    order_form.cleaned_data['billing_detail_first_name'],
                    order_form.cleaned_data['billing_detail_email'],
                    order_form.cleaned_data['billing_detail_phone'])
-        weight = weight * item.quantity
+
         item = client.factory.create('Item')
         item.Class = account_class
         item.Weight = weight
