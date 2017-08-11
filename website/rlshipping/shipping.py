@@ -59,13 +59,22 @@ def billship_handler(request, order_form):
     items = client.factory.create('ArrayOfItem')
 
     for item in request.cart:
+
+        Logger(2, 'sku - ' + item.sku, order_form.cleaned_data['billing_detail_first_name'],
+               order_form.cleaned_data['billing_detail_email'],
+               order_form.cleaned_data['billing_detail_phone'])
+
         products = Product.objects.filter(sku=item.sku)
+
+        Logger(2, ' count ' + str(products.count()), order_form.cleaned_data['billing_detail_first_name'],
+               order_form.cleaned_data['billing_detail_email'],
+               order_form.cleaned_data['billing_detail_phone'])
+
         for product in products:
             weight = float(product.weight) * item.quantity
 
             Logger(2,
-                   'title: ' + product.title + '-' + ' weight: ' + product.weight + 't- ' + weight + ' sku: ' + item.sku + ' qty: '
-                   + str(item.quantity),
+                   'title: ' + product.title + '-' + ' weight per: ' + str(product.weight) + ' weight total: ' + str(weight),
                    order_form.cleaned_data['billing_detail_first_name'],
                    order_form.cleaned_data['billing_detail_email'],
                    order_form.cleaned_data['billing_detail_phone'])
@@ -127,9 +136,9 @@ def billship_handler(request, order_form):
     total_order = Decimal(dollars)
     grand_total = total_order.quantize(decimal_in_cents, ROUND_HALF_UP)
 
-    Logger(4, shipping_request, order_form.cleaned_data['billing_detail_first_name'],
-           order_form.cleaned_data['billing_detail_email'],
-           order_form.cleaned_data['billing_detail_phone'])
+    Logger(4, shipping_request, 'test',
+           'test',
+           'test')
 
     if not request.session.get("free_shipping"):
         set_shipping(request, 'Shipping', grand_total)
