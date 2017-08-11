@@ -23,7 +23,7 @@
         {% else %}
         {% trans "Shipping" %}:
         {% endif %}
-        </label> <span>{% nevercache %} {{ shipping_total|currency }}{% endnevercache %} </span>
+        </label> <span> {{ shipping_total|currency }} </span>
     </div>
     {% endif %}
     {% if tax_total %}
