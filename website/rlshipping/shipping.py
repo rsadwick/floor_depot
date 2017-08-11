@@ -70,7 +70,9 @@ def billship_handler(request, order_form):
         item.Height = 0
         item.Length = 0
 
-        logger = Logger(1, weight, order_form.cleaned_data['billing_detail_first_name'], order_form.cleaned_data['billing_detail_email'],
+        Logger(1, weight, order_form.cleaned_data['billing_detail_first_name'], order_form.cleaned_data['billing_detail_email'],
+                        order_form.cleaned_data['billing_detail_phone'])
+        Logger(2, products, order_form.cleaned_data['billing_detail_first_name'], order_form.cleaned_data['billing_detail_email'],
                         order_form.cleaned_data['billing_detail_phone'])
 
         items.Item.append(item)
@@ -93,7 +95,7 @@ def billship_handler(request, order_form):
     result = client.service.GetRateQuote(key, shipping_request)
     if not result.WasSuccess:
         errors = recursive_dict(result)
-        logger = Logger(4, shipping_request, order_form.cleaned_data['billing_detail_first_name'], order_form.cleaned_data['billing_detail_email'],
+        Logger(4, shipping_request, order_form.cleaned_data['billing_detail_first_name'], order_form.cleaned_data['billing_detail_email'],
                         order_form.cleaned_data['billing_detail_phone'])
         raise CheckoutError(errors['Messages']['string'])
 
