@@ -3,7 +3,7 @@ from cartridge.shop.models import Order
 from cartridge.shop.utils import set_shipping, set_tax, sign
 from suds.client import Client
 from suds.plugin import MessagePlugin
-from cartridge.shop.models import Product
+from cartridge.shop.models import Product, ProductVariation
 from decimal import Decimal, ROUND_HALF_UP
 from cartridge.shop.checkout import CheckoutError
 from suds.sudsobject import asdict
@@ -64,14 +64,14 @@ def billship_handler(request, order_form):
                order_form.cleaned_data['billing_detail_email'],
                order_form.cleaned_data['billing_detail_phone'])
 
-        products = Product.objects.filter(sku=item.sku)
-        if products.exists():
+        product_variants = ProductVariation.objects.filter(sku=item.sku)
+        if product_variants.exists():
 
-            for product in products:
-                weight = float(product.weight) * item.quantity
+            for variant in product_variants:
+                weight = float(variant.product.weight) * item.quantity
 
                 Logger(2,
-                       'title: ' + product.title + '-' + ' weight per: ' + str(product.weight) + ' weight total: ' + str(weight),
+                       'title: ' + variant.product.title + '-' + ' weight per: ' + str(variant.product.weight) + ' weight total: ' + str(weight),
                        order_form.cleaned_data['billing_detail_first_name'],
                        order_form.cleaned_data['billing_detail_email'],
                        order_form.cleaned_data['billing_detail_phone'])
