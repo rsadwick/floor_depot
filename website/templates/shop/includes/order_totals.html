@@ -1,7 +1,6 @@
 {% load shop_tags i18n mezzanine_tags %}
 
 <div class="order-totals">
-{% nevercache %}
     {% if discount_total or shipping_total %}
     <div><label>{% trans "Sub total" %}:</label> <span>{{ item_total|currency }}</span></div>
     {% endif %}
@@ -39,6 +38,5 @@
     </div>
     {% endif %}
     <div class="total"><label>{% trans "Total" %}:</label> <span>{{ order_total|currency }}</span></div>
-{% endnevercache %}
 </div>
 
