@@ -9,6 +9,7 @@ from cartridge.shop.checkout import CheckoutError
 from suds.sudsobject import asdict
 import json
 from django.shortcuts import redirect
+from django.views.decorators.cache import never_cache
 
 class LogPlugin(MessagePlugin):
     def sending(self, context):
@@ -17,7 +18,7 @@ class LogPlugin(MessagePlugin):
     def received(self, context):
         print(str(context.reply))
 
-
+@never_cache
 def billship_handler(request, order_form):
 
     url = "http://api.rlcarriers.com/1.0.2/RateQuoteService.asmx?WSDL"
