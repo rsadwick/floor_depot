@@ -13,6 +13,12 @@ from cartridge.shop.utils import set_locale
 
 register = template.Library()
 
+@register.simple_tag
+def get_specific_variant(product, category):
+    variant = product.get_specific_variation(category)
+    if variant is not None:
+        return product.get_specific_variation(category)
+    return ''
 
 @register.filter
 def currency(value):

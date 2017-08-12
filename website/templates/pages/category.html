@@ -12,7 +12,6 @@
         <div>
 
             {% if child_categories %}
-                <div>
                 <div class="shop-category-list">
                     {% if settings.SHOP_CATEGORY_USE_FEATURED_IMAGE %}
                         {% for category in child_categories %}
@@ -43,10 +42,13 @@
                 </div>
             {% endif %}
 
+
             {% if products.paginator.count != 0 %}
 
                 <div class="row product-list">
                     {% for product in products.object_list %}
+                        {% get_specific_variant product page.category %}
+
                         <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3 product-thumb">
                             <a href="{{ product.get_absolute_url }}" class="thumbnail">
                                 {% if product.image %}

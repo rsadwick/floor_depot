@@ -56,8 +56,4 @@ def process(request, order_form, order):
 
         raise CheckoutError(_("A general error occured: ") + str(e))
 
-    log_msg = 'charge success' + '\n' + str(order) + ' - ' + str(int((order.total * 100)))
-    Logger(3, log_msg, request.POST['billing_detail_first_name'], request.POST['billing_detail_email'],
-           request.POST['billing_detail_phone'])
-
     return response.id

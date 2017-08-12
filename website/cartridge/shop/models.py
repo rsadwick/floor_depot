@@ -1,4 +1,5 @@
 from __future__ import division, unicode_literals
+from future.backports.urllib.request import Request
 from future.builtins import str, super
 from future.utils import with_metaclass
 import math
@@ -127,9 +128,9 @@ class Product(BaseProduct, Priced, RichText, ContentTyped, AdminThumbMixin):
     date_added = models.DateTimeField(_("Date added"), auto_now_add=True,
                                       null=True)
     related_products = models.ManyToManyField("self",
-                             verbose_name=_("Related products"), blank=True)
+                                              verbose_name=_("Related products"), blank=True)
     upsell_products = models.ManyToManyField("self",
-                             verbose_name=_("Upsell products"), blank=True)
+                                             verbose_name=_("Upsell products"), blank=True)
     rating = RatingField(verbose_name=_("Rating"))
 
     admin_thumb_field = "image"
@@ -169,6 +170,16 @@ class Product(BaseProduct, Priced, RichText, ContentTyped, AdminThumbMixin):
             self.image = default.image.file.name
         self.save()
 
+    def get_specific_variation(self, category):
+
+        variations = self.variations.filter(option1=category.title)
+        for variation in variations:
+            variation.copy_price_fields_to(self)
+            if variation.image:
+                self.image = variation.image.file.name
+            self.save()
+
+
 
 @python_2_unicode_compatible
 class ProductImage(Orderable):
@@ -181,7 +192,7 @@ class ProductImage(Orderable):
     """
 
     file = FileField(_("Image"), max_length=255, format="Image",
-        upload_to=upload_to("shop.ProductImage.file", "product"))
+                     upload_to=upload_to("shop.ProductImage.file", "product"))
     description = CharField(_("Description"), blank=True, max_length=100)
     product = models.ForeignKey("Product", related_name="images")
 
@@ -224,6 +235,7 @@ class ProductVariationMetaclass(ModelBase):
     assigns an ``fields.OptionField`` for each option in the
     ``SHOP_PRODUCT_OPTIONS`` setting.
     """
+
     def __new__(cls, name, bases, attrs):
         # Only assign new attrs if not a proxy model.
         if not ("Meta" in attrs and getattr(attrs["Meta"], "proxy", False)):
@@ -296,7 +308,7 @@ class ProductVariation(with_metaclass(ProductVariationMetaclass, Priced)):
         """
         all_fields = cls._meta.fields
         return [f for f in all_fields if isinstance(f, fields.OptionField) and
-                not hasattr(f, "translated_field")]
+                                         not hasattr(f, "translated_field")]
 
     def options(self):
         """
@@ -355,11 +367,11 @@ class Category(Page, RichText):
     """
 
     featured_image = FileField(verbose_name=_("Featured Image"),
-        upload_to=upload_to("shop.Category.featured_image", "shop"),
-        format="Image", max_length=255, null=True, blank=True)
+                               upload_to=upload_to("shop.Category.featured_image", "shop"),
+                               format="Image", max_length=255, null=True, blank=True)
     products = models.ManyToManyField("Product", blank=True,
-                                     verbose_name=_("Products"),
-                                     through=Product.categories.through)
+                                      verbose_name=_("Products"),
+                                      through=Product.categories.through)
     options = models.ManyToManyField("ProductOption", blank=True,
                                      verbose_name=_("Product options"),
                                      related_name="product_options")
@@ -368,9 +380,9 @@ class Category(Page, RichText):
     price_min = fields.MoneyField(_("Minimum price"), blank=True, null=True)
     price_max = fields.MoneyField(_("Maximum price"), blank=True, null=True)
     combined = models.BooleanField(_("Combined"), default=True,
-        help_text=_("If checked, "
-        "products must match all specified filters, otherwise products "
-        "can match any specified filter."))
+                                   help_text=_("If checked, "
+                                               "products must match all specified filters, otherwise products "
+                                               "can match any specified filter."))
 
     class Meta:
         verbose_name = _("Product category")
@@ -387,7 +399,7 @@ class Category(Page, RichText):
         if options:
             lookup = dict([("%s__in" % k, v) for k, v in options.items()])
             filters.append(Q(**lookup))
-        # Q objects used against variations to ensure sale date is
+            # Q objects used against variations to ensure sale date is
         # valid when filtering by sale, or sale price.
         n = now()
         valid_sale_from = Q(sale_from__isnull=True) | Q(sale_from__lte=n)
@@ -397,7 +409,7 @@ class Category(Page, RichText):
         # is valid.
         if self.sale_id:
             filters.append(Q(sale_id=self.sale_id) & valid_sale_date)
-        # If a price range is specified, use either the unit price or
+            # If a price range is specified, use either the unit price or
         # a sale price if the sale date is valid.
         if self.price_min or self.price_max:
             prices = []
@@ -408,7 +420,7 @@ class Category(Page, RichText):
                 sale = Q(sale_price__lte=self.price_max) & valid_sale_date
                 prices.append(Q(unit_price__lte=self.price_max) | sale)
             filters.append(reduce(iand, prices))
-        # Turn the variation filters into a product filter.
+            # Turn the variation filters into a product filter.
         operator = iand if self.combined else ior
         products = Q(id__in=self.products.only("id"))
         if filters:
@@ -427,7 +439,6 @@ class Category(Page, RichText):
 
 @python_2_unicode_compatible
 class Order(SiteRelated):
-
     billing_detail_first_name = CharField(_("First name"), max_length=100)
     billing_detail_last_name = CharField(_("Last name"), max_length=100)
     billing_detail_street = CharField(_("Street"), max_length=100)
@@ -462,7 +473,7 @@ class Order(SiteRelated):
                                blank=True)
 
     status = models.IntegerField(_("Status"), choices=settings.SHOP_ORDER_STATUS_CHOICES,
-                                              default=settings.SHOP_ORDER_STATUS_CHOICES[0][0])
+                                 default=settings.SHOP_ORDER_STATUS_CHOICES[0][0])
 
     destination_options = models.IntegerField(_("Destination Options"), choices=settings.SHIPPING_DESTINATION_CHOICES,
                                               default=settings.SHIPPING_DESTINATION_CHOICES[0][0])
@@ -546,7 +557,7 @@ class Order(SiteRelated):
         context = {}
         for fieldset in ("billing_detail", "shipping_detail"):
             fields = [(f.verbose_name, getattr(self, f.name)) for f in
-                self._meta.fields if f.name.startswith(fieldset)]
+                      self._meta.fields if f.name.startswith(fieldset)]
             context["order_%s_fields" % fieldset] = fields
         return context
 
@@ -558,12 +569,12 @@ class Order(SiteRelated):
         url = reverse("shop_invoice", args=(self.id,))
         text = ugettext("Download PDF invoice")
         return "<a href='%s?format=pdf'>%s</a>" % (url, text)
+
     invoice.allow_tags = True
     invoice.short_description = ""
 
 
 class Cart(models.Model):
-
     last_updated = models.DateTimeField(_("Last updated"), null=True)
 
     objects = managers.CartManager()
@@ -682,6 +693,7 @@ class SelectedProduct(models.Model):
         quantity is zero, which may occur via the cart page, just
         delete it.
         """
+
         def get_sqfr(sqft_per_bundle, quantity):
             return quantity * sqft_per_bundle
 
@@ -693,7 +705,6 @@ class SelectedProduct(models.Model):
 
 
 class CartItem(SelectedProduct):
-
     cart = models.ForeignKey("Cart", related_name="items")
     url = CharField(max_length=2000)
     image = CharField(max_length=200, null=True)
@@ -753,8 +764,8 @@ class Discount(models.Model):
                                         verbose_name=_("Categories"))
     discount_deduct = fields.MoneyField(_("Reduce by amount"))
     discount_percent = fields.PercentageField(_("Reduce by percent"),
-                                           max_digits=5, decimal_places=2,
-                                           blank=True, null=True)
+                                              max_digits=5, decimal_places=2,
+                                              blank=True, null=True)
     discount_exact = fields.MoneyField(_("Reduce to amount"))
     valid_from = models.DateTimeField(_("Valid from"), blank=True, null=True)
     valid_to = models.DateTimeField(_("Valid to"), blank=True, null=True)
@@ -881,9 +892,9 @@ class DiscountCode(Discount):
     min_purchase = fields.MoneyField(_("Minimum total purchase"))
     free_shipping = models.BooleanField(_("Free shipping"), default=False)
     uses_remaining = models.IntegerField(_("Uses remaining"), blank=True,
-        null=True, help_text=_("If you wish to limit the number of times a "
-            "code may be used, set this value. It will be decremented upon "
-            "each use."))
+                                         null=True, help_text=_("If you wish to limit the number of times a "
+                                                                "code may be used, set this value. It will be decremented upon "
+                                                                "each use."))
 
     objects = managers.DiscountCodeManager()
 
