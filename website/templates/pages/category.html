@@ -49,23 +49,24 @@
                     {% for product in products.object_list %}
                         {% get_specific_variant product page.category %}
 
-                        <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3 product-thumb">
+                        <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3 product-thumb" itemscope itemtype="http://schema.org/Product">
                             <a href="{{ product.get_absolute_url }}" class="thumbnail">
                                 {% if product.image %}
-                                    <img src="{{ MEDIA_URL }}{% thumbnail product.image 260 195 %}">
+                                    <img itemprop="image" src="{{ MEDIA_URL }}{% thumbnail product.image 260 195 %}">
                                 {% else %}
                                     <div class="placeholder"></div>
                                 {% endif %}
                                 <div class="caption">
-                                    <h6>{{ product }}</h6>
+                                    <h6 itemprop="name">{{ product }}</h6>
 
-                                    <div class="price-info">
+                                    <div class="price-info" itemprop="offers" itemscope itemtype="http://schema.org/AggregateOffer">
                                         {% if product.has_price %}
                                             {% if product.on_sale %}
-                                                <span class="old-price">{{ product.unit_price|currency }} / sq ft</span>
+                                                <span class="old-price" itemprop="highPrice">{{ product.unit_price|currency }} / sq ft</span>
                                                 {% trans "On sale:" %}
                                             {% endif %}
-                                            <span class="price">{{ product.price|currency }} / sq ft</span>
+                                            <span class="price" itemprop="lowPrice">{{ product.price|currency }} / sq ft</span>
+                                            <meta itemprop="priceCurrency" content="USD" />
                                         {% else %}
                                             <span class="coming-soon">{% trans "Coming soon" %}</span>
                                         {% endif %}

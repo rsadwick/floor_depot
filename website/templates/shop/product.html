@@ -60,7 +60,7 @@
     <div class="container">
         <div class="row">
 
-            <div class="shop-template">
+            <div class="shop-template" itemscope itemtype="http://schema.org/Product">
                 {% if images %}
                     {% spaceless %}
                         <div class="col-lg-6 col-md-6">
@@ -69,7 +69,7 @@
                                     <li id="image-{{ image.id }}-large"
                                         {% if not forloop.first %}style="display:none;"{% endif %}>
                                         <a class="product-image-large" href="{{ MEDIA_URL }}{{ image.file }}">
-                                            <img alt="{{ image.description }}"
+                                            <img itemprop="image" alt="{{ image.description }}"
                                                  src="{{ MEDIA_URL }}{% thumbnail image.file 560 406 %}"
                                                  class="img-thumbnail img-responsive col-xs-12">
                                         </a>
@@ -83,7 +83,7 @@
                                         <li>
                                             <a class="thumbnail" id="image-{{ image.id }}"
                                                href="{{ MEDIA_URL }}{{ image.file }}">
-                                                <img alt="{{ image.description }}"
+                                                <img itemprop="image" alt="{{ image.description }}"
                                                      src="{{ MEDIA_URL }}{% thumbnail image.file 75 75 %}">
                                             </a>
                                         </li>
@@ -95,9 +95,12 @@
                 {% endif %}
 
                 <div class="col-lg-6 col-md-6">
+                    <h1 itemprop="name">{{ product }}</h1>
+                    <div itemprop="description">
                     {% editable product.content %}
                         {{ product.content|richtext_filters|safe }}
                     {% endeditable %}
+                    </div>
 
                     <p>
                         <a data-pin-do="buttonBookmark" data-pin-tall="true" data-pin-save="true"
@@ -185,19 +188,20 @@
                                 <div class="col-xs-6 col-sm-4 col-md-3 product-thumb">
                                     <a class="thumbnail" href="{{ product.get_absolute_url }}">
                                         {% if product.image %}
-                                            <img src="{{ MEDIA_URL }}{% thumbnail product.image 90 90 %}">
+                                            <img itemprop="image" src="{{ MEDIA_URL }}{% thumbnail product.image 90 90 %}">
                                         {% endif %}
                                         <div class="caption">
                                             <h6>{{ product }}</h6>
 
-                                            <div class="price-info">
+                                            <div class="price-info" itemprop="offers">
                                                 {% if product.has_price %}
                                                     {% if product.on_sale %}
                                                         <span class="old-price">{{ product.unit_price|currency }} / sq ft</span>
                                                         {% trans "On sale:" %}
                                                     {% endif %}
-                                                    <span class="price"
+                                                    <span itemprop="price" class="price"
                                                           data-price="{{ variation.price }}">{{ product.price|currency }} / sq ft</span>
+                                                    <meta itemprop="priceCurrency" content="USD" />
                                                 {% else %}
                                                     <span class="coming-soon">{% trans "Coming soon" %}</span>
                                                 {% endif %}

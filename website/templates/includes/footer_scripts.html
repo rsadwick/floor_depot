@@ -1,34 +1,36 @@
 {% load mezzanine_tags i18n pages_tags %}
 
-<section id="contact" class="bg-dark">
+<section id="contact" class="bg-dark" itemscope itemtype="http://schema.org/Organization">
+    <link itemprop="url" href="https://hardwoodfloordepot.com">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <h2 class="section-heading">Let's Get In Touch!</h2>
                 <hr class="primary">
-                <p>Ready to start your next project with us? That's great! Contact us to get started.</p>
+                <p>Ready to start your next project with us? That's great! Contact <span itemprop="name">Hardwood Floor Depot</span> to get started.</p>
             </div>
             <div class="col-lg-4 col-lg-offset-2 text-center">
                 <i class="fa fa-phone fa-3x sr-contact"></i>
                 {% if settings.COMPANY_PHONE %}
-                    <p><a href="tel:1-{{settings.COMPANY_PHONE}}">{{settings.COMPANY_PHONE}}</a></p>
+                    <p><a itemprop="telephone" href="tel:1-{{settings.COMPANY_PHONE}}">{{settings.COMPANY_PHONE}}</a></p>
                 {% endif %}
 
             </div>
             <div class="col-lg-4 text-center">
                 <i class="fa fa-envelope-o fa-3x sr-contact"></i>
 
-                <p><a href="mailto:sales@hardwoodfloordepot.com">sales@hardwoodfloordepot.com</a></p>
+                <p><a itemprop="email" href="mailto:sales@hardwoodfloordepot.com">sales@hardwoodfloordepot.com</a></p>
             </div>
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" >
+
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <ul class="list-inline text-center">
                     <li>
-                        <a href="https://twitter.com/hardwood_depot" target="_blank">
+                        <a itemprop="sameAs" href="https://twitter.com/hardwood_depot" target="_blank">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
@@ -36,7 +38,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.facebook.com/Hardwood-Floor-Depot-581974805339306" target="_blank">
+                        <a itemprop="sameAs" href="https://www.facebook.com/Hardwood-Floor-Depot-581974805339306" target="_blank">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
@@ -44,7 +46,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.pinterest.com/hardwoodfloordepot">
+                        <a itemprop="sameAs" href="https://www.pinterest.com/hardwoodfloordepot">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-pinterest fa-stack-1x fa-inverse"></i>
@@ -52,7 +54,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.linkedin.com/in/anthony-civitello-007a20141/">
+                        <a itemprop="sameAs" href="https://www.linkedin.com/in/anthony-civitello-007a20141/">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
@@ -61,15 +63,7 @@
                     </li>
 
                     <li>
-                        <a href="#">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-                                </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.houzz.com/professional/1789669" target="_blank">
+                        <a itemprop="sameAs" href="https://www.houzz.com/professional/1789669" target="_blank">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-houzz fa-stack-1x fa-inverse"></i>
