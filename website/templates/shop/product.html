@@ -136,7 +136,7 @@
                                             <span itemprop="price" content="{{ variation.unit_price }}" class="old-price">{{ variation.unit_price|currency }} / sq ft</span>
                                             {% trans "On sale:" %}
                                         {% endif %}
-                                        <span itemprop="price" class="price" data-price="{{ variation.price }}"
+                                        <span itemprop="price" class="price" content="{{ variation.unit_price }}" data-price="{{ variation.price }}"
                                               data-sqft="{{ variation.square_foot_per_bundle }}">{{ variation.price|currency }} / sq ft</span>
                                         <meta itemprop="priceCurrency" content="USD" />
                                     {% else %}
@@ -197,7 +197,7 @@
                                             <div class="price-info" itemprop="offers">
                                                 {% if product.has_price %}
                                                     {% if product.on_sale %}
-                                                        <span class="old-price" content="{{ product.unit_price }}">{{ product.unit_price|currency }} / sq ft</span>
+                                                        <span itemprop="price" class="old-price" content="{{ product.unit_price }}">{{ product.unit_price|currency }} / sq ft</span>
                                                         {% trans "On sale:" %}
                                                     {% endif %}
                                                     <span itemprop="price" class="price" content="{{ variation.price }}"
