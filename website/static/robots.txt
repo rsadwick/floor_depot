@@ -2,3 +2,4 @@ User-agent: *
 Disallow:
 Disallow: /accounts
 Disallow: /admin
+Disallow: /test
