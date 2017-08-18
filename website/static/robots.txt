@@ -1,8 +1,5 @@
 User-agent: *
 Disallow:
-<<<<<<< HEAD
-=======
 Disallow: /accounts
 Disallow: /admin
-Disallow: /test2
->>>>>>> 1110c5459f6b6f860a80d6f5f75a7845de62dced
+Disallow: /test3
