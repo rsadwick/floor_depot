@@ -127,13 +127,14 @@
                     </p>
 
                     {% if product.available and has_available_variations %}
-                        <ul id="variations" class="list-unstyled" itemprop="offers">
+                        <ul id="variations" class="list-unstyled" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                             {% for variation in variations %}
                                 <li id="variation-{{ variation.sku }}"
                                     {% if not variation.default %}style="display:none;"{% endif %}>
                                     {% if variation.has_price %}
                                         {% if variation.on_sale %}
                                             <span itemprop="price" content="{{ variation.unit_price }}" class="old-price">{{ variation.unit_price|currency }} / sq ft</span>
+                                             <meta itemprop="priceCurrency" content="USD" />s
                                             {% trans "On sale:" %}
                                         {% endif %}
                                         <span itemprop="price" class="price" content="{{ variation.unit_price }}" data-price="{{ variation.price }}"
@@ -194,11 +195,12 @@
                                         <div class="caption">
                                             <h6>{{ product }}</h6>
 
-                                            <div class="price-info" itemprop="offers">
+                                            <div class="price-info" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                                                 {% if product.has_price %}
                                                     {% if product.on_sale %}
                                                         <span itemprop="price" class="old-price" content="{{ product.unit_price }}">{{ product.unit_price|currency }} / sq ft</span>
                                                         {% trans "On sale:" %}
+                                                         <meta itemprop="priceCurrency" content="USD" />
                                                     {% endif %}
                                                     <span itemprop="price" class="price" content="{{ variation.price }}"
                                                           data-price="{{ variation.price }}">{{ product.price|currency }} / sq ft</span>
