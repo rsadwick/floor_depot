@@ -512,6 +512,10 @@ body {
     border-color: #999;
 }
 
+.product-desc h1{
+    font-size: 3rem;
+}
+
 .search-highlight{
     color: #F05F40;
     font-weight: 700;
