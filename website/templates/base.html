@@ -24,6 +24,8 @@
         <link rel="stylesheet" href="{% static "css/google-fonts.css" %}">
         <link rel="stylesheet" href="{% static "css/vendor/font-awesome/css/font-awesome.css" %}">
         <link rel="stylesheet" href="{% static "css/vendor/magnific-popup/magnific-popup.css" %}">
+        <link rel="stylesheet" href="{% static "css/vendor/smartmenu/css/sm-core-css.css" %}">
+        <link rel="stylesheet" href="{% static "css/vendor/smartmenu/css/sm-clean/sm-clean.css" %}">
         <link rel="stylesheet" href="{% static "css/creative.css" %}">
 
         {% if LANGUAGE_BIDI %}
@@ -106,7 +108,12 @@
 
 
 {% block footer_js %}
+
     {% include "includes/footer_scripts.html" %}
+    <script src="{% static "css/vendor/smartmenu/jquery.smartmenus.js" %}"></script>
+    <script src="{% static "css/vendor/smartmenu/addons/bootstrap/jquery.smartmenus.bootstrap.js" %}"></script>
+    <script src="{% static "css/vendor/smartmenu/addons/keyboard/jquery.smartmenus.keyboard.js" %}"></script>
+    <script src="{% static "js/menu.js" %}"></script>
 {% endblock %}
 
 </body>
