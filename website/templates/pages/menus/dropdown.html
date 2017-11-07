@@ -1,9 +1,9 @@
-{% load i18n pages_tags %}
+{% load i18n pages_tags accounts_tags shop_tags mezzanine_tags%}
 {% spaceless %}
 {% if page_branch_in_menu %}
 
 {% if branch_level == 0 %}
-<ul class="nav navbar-nav">
+<ul id="main-menu" class="sm sm-clean" data-smartmenus-id="15079986374225017">
     {% for page in page_branch %}
     {% if not has_home and page.is_primary and forloop.first %}
     <li{% if on_home %} class="active"{% endif %} id="dropdown-menu-home">
@@ -11,24 +11,43 @@
     </li>
     {% endif %}
     {% if page.in_menu %}
-    <li class="{% if page.has_children_in_menu %}dropdown{% endif %}
+
+    <li class="{% if page.has_children_in_menu %}has-submenu{% endif %}
                {% if page.is_current_or_ascendant %}active{% endif %}"
-        id="{{ page.html_id }}">
+        id="{{ page.html_id }}"
+        aria-haspopup="true"
+        aria-expanded="false">
         <a href="{{ page.get_absolute_url }}"
         {% if page.has_children_in_menu %}
-        class="dropdown-toggle disabled" data-toggle="dropdown"
+        class="dropdown-toggle" data-toggle="dropdown"
         {% endif %}>
             {{ page.title }}
-            {% if page.has_children_in_menu %}<b class="caret"></b>{% endif %}
+            {% if page.has_children_in_menu %}<span class="sub-arrow"></span>{% endif %}
         </a>
         {% if page.has_children_in_menu %}{% page_menu page %}{% endif %}
+
+
     </li>
     {% endif %}
     {% endfor %}
+{% if request.user.is_authenticated %}
+    <li>
+        <a href="/accounts/update/">{% trans "Account" %}</a>
+    </li>
+    {% else %}
+    <li>
+        <a href="/accounts/login/">{% trans "Login" %}</a>
+    </li>
+    {% endif %}
+    <li>
+        <a href="{% url "shop_cart" %}">{% blocktrans count request.cart.total_quantity as cart_quantity %}cart <span class="search-highlight">1</span>{% plural %} cart <span class="search-highlight">{{ cart_quantity }}</span>{% endblocktrans %} </a>
+
+    </li>
+    <li> {% block navbar_search_form %}{% search_form "all" %}{% endblock %}</li>
 </ul>
 
 {% else %}
-<ul class="dropdown-menu">
+<ul role="group" aria-hidden="true" aria-labelledby="sm-15079986374225017-9" aria-expanded="false">
     {% for page in page_branch %}
     {% if page.in_menu %}
     <li class="{% if page.has_children_in_menu %}dropdown-submenu{% endif %}

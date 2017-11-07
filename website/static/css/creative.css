@@ -691,3 +691,11 @@ a.thumbnail.active {
    display: block;
 }
 
+#mc_embed_signup .mc-field-group {
+    vertical-align: sub;
+    margin: 0 15px 0 0;
+}
+
+
+
+
