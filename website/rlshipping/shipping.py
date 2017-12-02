@@ -7,6 +7,8 @@ from cartridge.shop.models import ProductVariation
 from decimal import Decimal, ROUND_HALF_UP
 from cartridge.shop.checkout import CheckoutError
 from suds.sudsobject import asdict
+import math
+from cartridge.shop.utils import clear_session
 
 from logger.logger import Logger
 
@@ -20,6 +22,11 @@ class LogPlugin(MessagePlugin):
 
 
 def billship_handler(request, order_form):
+
+    if order_form is None:
+        set_shipping(request, 'Shipping', 0)
+        return False
+
     url = "http://api.rlcarriers.com/1.0.2/RateQuoteService.asmx?WSDL"
     key = settings.RL_SHIPPING_KEY
     phone_number = settings.COMPANY_PHONE
@@ -41,9 +48,6 @@ def billship_handler(request, order_form):
     service_point_origin.ZipOrPostalCode = '37029'
     service_point_origin.CountryCode = 'USA'
 
-    if order_form == None:
-        return False
-
     service_point_dest = client.factory.create('ServicePoint')
     service_point_dest.City = order_form.cleaned_data['shipping_detail_city']
     service_point_dest.StateOrProvince = order_form.cleaned_data['shipping_detail_state']
@@ -64,7 +68,8 @@ def billship_handler(request, order_form):
         if product_variants.exists():
 
             for variant in product_variants:
-                weight = float(variant.product.weight) * item.quantity
+                total_sqft = item.quantity * variant.square_foot_per_bundle
+                weight = total_sqft * Decimal(variant.product.weight)
 
         item = client.factory.create('Item')
         item.Class = account_class

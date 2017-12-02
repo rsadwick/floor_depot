@@ -61,7 +61,9 @@ def recalculate_cart(request):
 
     handler = lambda s: import_dotted_path(s) if s else lambda *args: None
     billship_handler = handler(settings.SHOP_HANDLER_BILLING_SHIPPING)
+    billship_handler(request, None)
     tax_handler = handler(settings.SHOP_HANDLER_TAX)
+
     try:
         if request.session["order"]["step"] >= checkout.CHECKOUT_STEP_FIRST:
             billship_handler(request, None)

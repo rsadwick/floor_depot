@@ -53,7 +53,7 @@ function initCalculator(container){
             totalPrice.text(HWFD.getTotalPrice(quantity.val(), price.data('price'), price.data('sqft')));
         });
 
-        coverage.on('blur input', function(){
+        coverage.on('blur input keydown', function(){
             price = HWFD.getCurrentVariantPrice(variationPrices);
             quantity.val(HWFD.getBundleFromSqft(quantity.val(), price.data('sqft'), coverage.val()));
             totalPrice.text(HWFD.getTotalPrice(quantity.val(), price.data('price'), price.data('sqft')));

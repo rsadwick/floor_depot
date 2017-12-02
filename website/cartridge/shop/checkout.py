@@ -24,6 +24,7 @@ class CheckoutError(Exception):
 
 
 def default_billship_handler(request, order_form):
+
     """
     Default billing/shipping handler - called when the first step in
     the checkout process with billing/shipping address fields is
@@ -34,6 +35,7 @@ def default_billship_handler(request, order_form):
     ``cartridge.shop.utils.set_shipping``. The Cart object is also
     accessible via ``request.cart``
     """
+
     if not request.session.get("free_shipping"):
         settings.clear_cache()
         set_shipping(request, _("Flat rate shipping"),

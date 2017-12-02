@@ -15,7 +15,7 @@
         </label> <span>{{ discount_total|currency }}</span>
     </div>
     {% endif %}
-    {% if shipping_type or shipping_total %}
+    {% if shipping_type and shipping_total != '0'   %}
     <div>
         <label>
         {% if shipping_type %}
@@ -25,6 +25,8 @@
         {% endif %}
         </label> <span> {{ shipping_total|currency }} </span>
     </div>
+    {% else %}
+        <div>Shipping will calculate on order review</div>
     {% endif %}
     {% if tax_total %}
     <div>
