@@ -1,11 +1,12 @@
-/*!
- * SmartMenus jQuery Plugin - v1.1.0 - October 14, 2017
+/*
+ * SmartMenus jQuery v1.1.0
  * http://www.smartmenus.org/
  *
  * Copyright Vasil Dinkov, Vadikom Web Ltd.
- * http://vadikom.com
+ * http://vadikom.com/
  *
- * Licensed MIT
+ * Released under the MIT license:
+ * http://www.opensource.org/licenses/MIT
  */
 
 (function(factory) {

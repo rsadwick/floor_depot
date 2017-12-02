@@ -1,9 +1,10 @@
-{% load i18n pages_tags accounts_tags shop_tags mezzanine_tags%}
+{% load i18n pages_tags accounts_tags shop_tags mezzanine_tags static %}
 {% spaceless %}
 {% if page_branch_in_menu %}
 
 {% if branch_level == 0 %}
-<ul id="main-menu" class="sm sm-clean" data-smartmenus-id="15079986374225017">
+  <ul id="main-menu" class="sm sm-clean">
+
     {% for page in page_branch %}
     {% if not has_home and page.is_primary and forloop.first %}
     <li{% if on_home %} class="active"{% endif %} id="dropdown-menu-home">

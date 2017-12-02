@@ -5,13 +5,15 @@
 .sm-clean a, .sm-clean a:hover, .sm-clean a:focus, .sm-clean a:active {
   padding: 13px 20px;
   /* make room for the toggle button (sub indicator) */
-  padding-right: 58px;
-  color: #555555;
-  font-family: "Lucida Sans Unicode", "Lucida Sans", "Lucida Grande", Arial, sans-serif;
-  font-size: 18px;
-  font-weight: normal;
-  line-height: 17px;
-  text-decoration: none;
+
+    color: #555555;
+    font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 13px;
+
+    line-height: 17px;
+    text-decoration: none;
 }
 .sm-clean a.current {
   color: #D23600;
@@ -59,7 +61,6 @@
   background: rgba(162, 162, 162, 0.1);
 }
 .sm-clean ul a, .sm-clean ul a:hover, .sm-clean ul a:focus, .sm-clean ul a:active {
-  font-size: 16px;
   border-left: 8px solid transparent;
 }
 .sm-clean ul ul a,
@@ -130,7 +131,7 @@
     border-radius: 100px;
   }
   .sm-clean a, .sm-clean a:hover, .sm-clean a:focus, .sm-clean a:active, .sm-clean a.highlighted {
-    padding: 12px 12px;
+    padding: 16px 17px;
     color: #555555;
     border-radius: 0 !important;
   }
@@ -324,4 +325,3 @@
   }
 }
 
-/*# sourceMappingURL=sm-clean.css.map */

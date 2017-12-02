@@ -57,24 +57,7 @@
 
 <body id="page-top" class="shop-template">
 
-
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top affix">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
-            </button>
-            {% block navbar_title %}
-            <a class="navbar-brand page-scroll" href="/">
-                {% if settings.SITE_TITLE %}{{ settings.SITE_TITLE }}</a>{% endif %}
-            {% endblock %}
-        </div>
-        {% include "includes/navigation.html" %}
-
-    </div>
-</nav>
-
+{% include "includes/navigation.html" %}
 
 
 {% nevercache %}
