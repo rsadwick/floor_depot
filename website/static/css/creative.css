@@ -752,7 +752,13 @@ a.thumbnail.active {
     float: right;
     clear: none;
   }
+
+    #side-nav {
+        float: left;
+        width: 12em;
+    }
 }
+
 
 
 /* Mobile menu toggle button */

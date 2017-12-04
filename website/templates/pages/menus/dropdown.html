@@ -1,66 +1,68 @@
 {% load i18n pages_tags accounts_tags shop_tags mezzanine_tags static %}
 {% spaceless %}
-{% if page_branch_in_menu %}
+    {% if page_branch_in_menu %}
 
-{% if branch_level == 0 %}
-  <ul id="main-menu" class="sm sm-clean">
+        {% if branch_level == 0 %}
+            <ul id="main-menu" class="sm sm-clean">
 
-    {% for page in page_branch %}
-    {% if not has_home and page.is_primary and forloop.first %}
-    <li{% if on_home %} class="active"{% endif %} id="dropdown-menu-home">
-        <a href="{% url "home" %}">{% trans "Home" %}</a>
-    </li>
-    {% endif %}
-    {% if page.in_menu %}
+                {% for page in page_branch %}
+                    {% if not has_home and page.is_primary and forloop.first %}
+                        <li{% if on_home %} class="active"{% endif %} id="dropdown-menu-home">
+                            <a href="{% url "home" %}">{% trans "Home" %}</a>
+                        </li>
+                    {% endif %}
+                    {% if page.in_menu %}
 
-    <li class="{% if page.has_children_in_menu %}has-submenu{% endif %}
+                        <li class="{% if page.has_children_in_menu %}has-submenu{% endif %}
                {% if page.is_current_or_ascendant %}active{% endif %}"
-        id="{{ page.html_id }}"
-        aria-haspopup="true"
-        aria-expanded="false">
-        <a href="{{ page.get_absolute_url }}"
-        {% if page.has_children_in_menu %}
-        class="dropdown-toggle" data-toggle="dropdown"
-        {% endif %}>
-            {{ page.title }}
-            {% if page.has_children_in_menu %}<span class="sub-arrow"></span>{% endif %}
-        </a>
-        {% if page.has_children_in_menu %}{% page_menu page %}{% endif %}
+                            id="{{ page.html_id }}"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                            <a href="{{ page.get_absolute_url }}"
+                                    {% if page.has_children_in_menu %}
+                               class="dropdown-toggle" data-toggle="dropdown"
+                                    {% endif %}>
+                                {{ page.title }}
+                                {% if page.has_children_in_menu %}<span class="sub-arrow"></span>{% endif %}
+                            </a>
+                            {% if page.has_children_in_menu %}{% page_menu page %}{% endif %}
 
 
-    </li>
-    {% endif %}
-    {% endfor %}
-{% if request.user.is_authenticated %}
-    <li>
-        <a href="/accounts/update/">{% trans "Account" %}</a>
-    </li>
-    {% else %}
-    <li>
-        <a href="/accounts/login/">{% trans "Login" %}</a>
-    </li>
-    {% endif %}
-    <li>
-        <a href="{% url "shop_cart" %}">{% blocktrans count request.cart.total_quantity as cart_quantity %}cart <span class="search-highlight">1</span>{% plural %} cart <span class="search-highlight">{{ cart_quantity }}</span>{% endblocktrans %} </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="/accounts/update/">{% trans "Account" %}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="/accounts/login/">{% trans "Login" %}</a>
+                    </li>
+                {% endif %}
+                <li>
+                    <a href="{% url "shop_cart" %}">{% blocktrans count request.cart.total_quantity as cart_quantity %}
+                        cart <span class="search-highlight">1</span>{% plural %} cart
+                        <span class="search-highlight">{{ cart_quantity }}</span>{% endblocktrans %} </a>
 
-    </li>
-    <li> {% block navbar_search_form %}{% search_form "all" %}{% endblock %}</li>
-</ul>
+                </li>
+                <li> {% block navbar_search_form %}{% search_form "all" %}{% endblock %}</li>
+            </ul>
 
-{% else %}
-<ul role="group" aria-hidden="true" aria-labelledby="sm-15079986374225017-9" aria-expanded="false">
-    {% for page in page_branch %}
-    {% if page.in_menu %}
-    <li class="{% if page.has_children_in_menu %}dropdown-submenu{% endif %}
+        {% else %}
+            <ul role="group" aria-hidden="true" aria-labelledby="sm-15079986374225017-9" aria-expanded="false">
+                {% for page in page_branch %}
+                    {% if page.in_menu %}
+                        <li class="{% if page.has_children_in_menu %}dropdown-submenu{% endif %}
                {% if page.is_current_or_ascendant %}active{% endif %}"
-        id="{{ page.html_id }}">
-        <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
-        {% if page.has_children_in_menu %}{% page_menu page %}{% endif %}
-    </li>
-    {% endif %}
-    {% endfor %}
-</ul>
-{% endif %}
+                            id="{{ page.html_id }}">
+                            <a href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+                            {% if page.has_children_in_menu %}{% page_menu page %}{% endif %}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
 
-{% endif %}
+    {% endif %}
 {% endspaceless %}
