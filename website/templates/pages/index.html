@@ -1,153 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-{% load accounts_tags pages_tags mezzanine_tags shop_tags i18n staticfiles %}
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Hardwood Floor Depot is the experienced wholesaler of top quality hardwood floors. Shop White Oak, Red Oak, Maple & major brands at incredibly low prices. ">
-    <meta name="author" content="">
-    <meta name="robots" content="index,follow" />
+{% extends "pages/page.html" %}
+{% load mezzanine_tags shop_tags staticfiles cache %}
 
-    <title>Hardwood Floor Depot | Buy Hardwood Floors at Hardwood Floor Depot</title>
+{{ block.super }}
+{% load i18n %}
 
-   <link href="https://s3.amazonaws.com/hwfd.cdn/build/styles.css" rel="stylesheet">
-    {% compress css %}
-    <link rel="stylesheet" href="{% static "css/google-fonts.css" %}">
-    {% endcompress %}
-
-   <style>
-    .homepage-footer .bg-dark {
-        background-color: #fff;
-        color: #000;
-}
-   </style>
+{% block meta_title %}{% trans "Home" %}{% endblock %}
+{% block title %}{% trans "Home" %}{% endblock %}
 
 
-
-    <!--[if lt IE 9]>
-    <script src="vendor/html5shiv/html5shiv.js"></script>
-    <script src="vendor/respond/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body id="page-top">
-
-
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
-            </button>
-            {% block navbar_title %}
-            <a class="navbar-brand page-scroll" href="/">
-                {% if settings.SITE_TITLE %}{{ settings.SITE_TITLE }}</a>{% endif %}
-            {% endblock %}
-        </div>
-        {% include "includes/navigation.html" %}
-
-    </div>
-</nav>
-
-
-<header>
-    <div class="header-content">
-        <img src="https://s3.amazonaws.com/hwfd.cdn/img/logo.png" class="logo" alt="Hardwood Floor Depot logo">
-        <div class="header-content-inner">
-            <h1 id="homeHeading">Experienced wholesaler of top quality hardwood floors</h1>
-            <hr>
-            <p>Find out more about our quality domestic hardwoods including: White Oak, Red Oak, Hickory, Walnut,
-                Maple</p>
-            <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="slider single-item">
+            <div><img src="https://s3.amazonaws.com/hwfd.cdn/img/header.jpg"></div>
+            <div><img src="https://s3.amazonaws.com/hwfd.cdn/img/header.jpg"></div>
+            <div><img src="https://s3.amazonaws.com/hwfd.cdn/img/header.jpg"></div>
+            <div><img src="https://s3.amazonaws.com/hwfd.cdn/img/header.jpg"></div>
+            <div><img src="https://s3.amazonaws.com/hwfd.cdn/img/header.jpg"></div>
+            <div><img src="https://s3.amazonaws.com/hwfd.cdn/img/header.jpg"></div>
         </div>
     </div>
-</header>
 
-<section class="bg-primary" id="about">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 text-center">
-                <h2 class="section-heading">We've got what you need!</h2>
-                <hr class="light">
-                <p class="text-faded">Any wood species you need for your project. The width of board you want. We work with NWFA
-Certified mills confirming the quality of floors you can trust. Hardwood Floor Depot makes getting
-beautiful new floors easy. If you're looking for hardwood floors for a new build, remodeling project,
-rentals, real estate investing, or looking to update your current home – We are your one-stop shop providing the best value &amp; professional experience.</p>
-                <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">start now</a>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-4">
+            <div class="promo brown">
+                <h3>Test 1</h3>
+                <p>15 Species Available in all Lengths and Options</p>
+                <a href="" class="btn btn-default btn-xl">Shop Now</a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+             <div class="promo white">
+                <h3>Test 1</h3>
+                <p>15 Species Available in all Lengths and Options</p>
+                <a href="" class="btn btn-primary btn-xl">Shop Now</a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+           <div class="promo brown">
+                <h3>Test 1</h3>
+                <p>15 Species Available in all Lengths and Options</p>
+                <a href="" class="btn btn-default btn-xl">Shop Now</a>
             </div>
         </div>
     </div>
-</section>
 
-<section id="services">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">At Your Service</h2>
-                <hr class="primary">
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box">
-                    <i class="fa fa-4x fa-truck text-primary sr-icons"></i>
-
-                    <h3>Your Source</h3>
-
-                    <p class="text-muted">We drop ship directly from the mills.</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box">
-                    <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
-
-                    <h3>Ready to Ship</h3>
-
-                    <p class="text-muted">Discounts up to 92% from major shipping companies!</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box">
-                    <i class="fa fa-4x fa-trophy text-primary sr-icons"></i>
-
-                    <h3>Up to Date</h3>
-
-                    <p class="text-muted">Highest quality, largest selection</p>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 text-center">
-                <div class="service-box">
-                    <i class="fa fa-4x fa-shield text-primary sr-icons"></i>
-
-                    <h3>Service You Can Trust</h3>
-
-                    <p class="text-muted">NWFA Certified &amp; ready to serve all your hardwood flooring needs.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<aside class="bg-dark">
-    <div class="container text-center">
-        <div class="call-to-action">
-            <h2>Ready to start your new project?</h2>
-            <a href="/shop" class="btn btn-default btn-xl sr-button">Start
-                Now!</a>
-        </div>
-    </div>
-</aside>
-<div class="homepage-footer">
-    {% block footer_js %}
-        {% include "includes/footer_scripts.html" %}
-    {% endblock %}
 </div>
-<script src="https://s3.amazonaws.com/hwfd.cdn/build/script.js"></script>
-</body>
 
-</html>
+{% endblock %}

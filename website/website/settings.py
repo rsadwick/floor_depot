@@ -21,7 +21,7 @@ SHOP_USE_RATINGS = False
 # Setting to turn on featured images for shop categories. Defaults to False.
 SHOP_CATEGORY_USE_FEATURED_IMAGE = True
 
-COMPRESS_ENABLED = True
+COMPRESS_ENABLED = False
 
 # If True, the checkout process is split into separate
 # billing/shipping and payment steps.
@@ -34,7 +34,7 @@ COMPRESS_ENABLED = True
 # Controls the formatting of monetary values accord to the locale
 # module in the python standard library. If an empty string is
 # used, will fall back to the system's locale.
-SHOP_CURRENCY_LOCALE = "en_US.UTF-8"
+#SHOP_CURRENCY_LOCALE = "en_US.UTF-8"
 
 # Dotted package path and name of the function that
 # is called on submit of the billing/shipping checkout step. This
@@ -185,6 +185,7 @@ ALLOWED_HOSTS = ['localhost']
 # system time zone.
 TIME_ZONE = 'UTC'
 
+
 # If you set this to True, Django will use timezone-aware datetimes.
 USE_TZ = True
 
@@ -200,10 +201,8 @@ LANGUAGES = (
 # A boolean that turns on/off debug mode. When set to ``True``, stack traces
 # are displayed for error pages. Should always be set to ``False`` in
 # production. Best set to ``True`` in local_settings.py
-DEBUG = False
+DEBUG = True
 
-SSL_ENABLED = True
-SSL_FORCE_HOST = "hardwoodfloordepot.com"
 
 # Make these unique, and don't share it with anybody.
 SECRET_KEY = "pt6%(wp%ym#wgt3@^4&)x()5384=zljcrqod5b6ejxe@=v(ow$"
@@ -266,28 +265,6 @@ EMAIL_FAIL_SILENTLY = True
 ###################
 # DEPLOY SETTINGS #
 ###################
-
-# Domains for public site
-ALLOWED_HOSTS = ["hardwoodfloordepot.com"]
-
-# These settings are used by the default fabfile.py provided.
-# Check fabfile.py for defaults.
-
-FABRIC = {
-    "SSH_USER": "rsadwick",  # VPS SSH username
-    "VIRTUALENV_HOME": "/home/rsadwick/woody", # Absolute remote path for virtualenv
-    "HOSTS": ["159.203.176.67"],  # The IP address of your VPS
-    "DOMAINS": ALLOWED_HOSTS,  # Edit domains in ALLOWED_HOSTS
-    "REQUIREMENTS_PATH": "requirements.txt",  # Project's pip requirements
-    "LOCALE": "en_US.UTF-8",  # Should end with ".UTF-8"
-    "DB_PASS": "accountshit220#!",  # Live database password
-    "ADMIN_PASS": "CivCiv#8080",  # Live admin user password
-    "GUNICORN_PORT": 8000, # Port gunicorn will listen on
-    "LIVE_HOSTNAME": "hardwoodfloordepot.com", # Host for public site.
-    "REPO_URL": "https://github.com/rsadwick/floor_depot.git", # Git or Mercurial remote repo URL for the project
-    "SECRET_KEY": SECRET_KEY,
-    "NEVERCACHE_KEY": NEVERCACHE_KEY,
-}
 
 
 
