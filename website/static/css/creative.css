@@ -965,7 +965,6 @@ a.thumbnail.active {
 
 }
 
-
 .promo.white {
     background-color: #eee;
     color: #000;
@@ -979,6 +978,66 @@ a.thumbnail.active {
 
 }
 
+.featured .item {
+    padding: 5px;
+    text-align: center;
+}
 
+.featured img {
+    width: 100%;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: #F05F40;
+}
+
+.specials {
+    margin-top: 70px;
+}
+
+.specials .inset {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+    top: -48px;
+    color: #fff;
+    height: 48px;
+    width: 100%;
+    padding: 25px;
+    display: block;
+}
+
+.specials .inset a {
+    margin-top: -13px;
+    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    text-transform: uppercase;
+    color: #fff;
+    display: block;
+    font-size: 1.5rem;
+}
+
+.specials img {
+    width: 100%;
+}
+
+.specials .slick-dots {
+    margin-bottom: 35px;
+}
+
+.third-party {
+    text-align: center;
+    opacity: 0.4;
+}
+
+.third-party-logo {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px 10px;
+}
+
+.bg-subscribe {
+    background-color: #795548;
+    padding: 30px 0;
+    color: #fff;
+}
 
 
