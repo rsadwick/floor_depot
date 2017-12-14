@@ -26,7 +26,7 @@
         <link rel="stylesheet" href="{% static "css/vendor/magnific-popup/magnific-popup.css" %}">
 
         <link rel="stylesheet" href="{% static "css/vendor/slick/slick.css" %}">
-    <link rel="stylesheet" href="{% static "css/vendor/slick/slick-theme.css" %}">
+        <link rel="stylesheet" href="{% static "css/vendor/slick/slick-theme.css" %}">
 
         <link rel="stylesheet" href="{% static "css/vendor/smartmenu/css/sm-core-css.css" %}">
         <link rel="stylesheet" href="{% static "css/vendor/smartmenu/css/sm-clean/sm-clean.css" %}">
@@ -77,14 +77,15 @@
     {% endif %}
 {% endnevercache %}
 
-<div class="breadcrumb-container">
-        <ul class="breadcrumb">
-            {% spaceless %}
-                {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
-            {% endspaceless %}
-        </ul>
-
-</div>
+{% spaceless %}
+    {% block breadcrumb_menu %}
+        <div class="breadcrumb-container">
+            <ul class="breadcrumb">
+                {% page_menu "pages/menus/breadcrumb.html" %}
+            </ul>
+        </div>
+    {% endblock %}
+{% endspaceless %}
 
 {% block main %}
 
