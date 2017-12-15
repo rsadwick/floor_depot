@@ -77,15 +77,14 @@
     {% endif %}
 {% endnevercache %}
 
-{% spaceless %}
-    {% block breadcrumb_menu %}
-        <div class="breadcrumb-container">
-            <ul class="breadcrumb">
-                {% page_menu "pages/menus/breadcrumb.html" %}
-            </ul>
-        </div>
-    {% endblock %}
-{% endspaceless %}
+<div class="breadcrumb-container">
+        <ul class="breadcrumb">
+            {% spaceless %}
+                {% block breadcrumb_menu %}{% page_menu "pages/menus/breadcrumb.html" %}{% endblock %}
+            {% endspaceless %}
+        </ul>
+</div>
+
 
 {% block main %}
 

@@ -2,31 +2,32 @@
 
 {% if on_home %}
 
+    <li>Welcome to Hardwood Floor Depot</li>
+
 {% else %}
-{% for page in page_branch %}
+    {% for page in page_branch %}
 
-    {% if not has_home and page.is_primary and forloop.first %}
-    <li id="breadcrumb-menu-home" itemprop="itemListElement" itemscope
-      itemtype="http://schema.org/ListItem">
-        <a itemscope itemtype="http://schema.org/Thing"
-       itemprop="item" href="{% url "home" %}">{% trans "Home" %}</a>
-    </li>
-    {% endif %}
+        {% if not has_home and page.is_primary and forloop.first %}
+            <li id="breadcrumb-menu-home" itemprop="itemListElement" itemscope
+                itemtype="http://schema.org/ListItem">
+                <a itemscope itemtype="http://schema.org/Thing"
+                   itemprop="item" href="{% url "home" %}">{% trans "Home" %}</a>
+            </li>
+        {% endif %}
 
-    {% if page.is_current_or_ascendant %}
-    {% if page.is_current %}
-    <li itemscope
-        id="breadcrumb-menu-{{ page.html_id }}"
-        class="active" itemprop="name">{{ page.title }}</li>
-    {% else %}
-    <li itemprop="itemListElement" itemscope
-      itemtype="http://schema.org/ListItem" id="breadcrumb-menu-{{ page.html_id }}">
-        <a itemscope itemprop="name" href="{{ page.get_absolute_url }}">{{ page.title }}</a>
-    </li>
-    {% endif %}
-    {% if page.has_children %}{% page_menu page %}{% endif %}
-    {% endif %}
+        {% if page.is_current_or_ascendant %}
+            {% if page.is_current %}
+                <li itemscope
+                    id="breadcrumb-menu-{{ page.html_id }}"
+                    class="active" itemprop="name">{{ page.title }}</li>
+            {% else %}
+                <li itemprop="itemListElement" itemscope
+                    itemtype="http://schema.org/ListItem" id="breadcrumb-menu-{{ page.html_id }}">
+                    <a itemscope itemprop="name" href="{{ page.get_absolute_url }}">{{ page.title }}</a>
+                </li>
+            {% endif %}
+            {% if page.has_children %}{% page_menu page %}{% endif %}
+        {% endif %}
 
-{% endfor %}
-  </ol>
+    {% endfor %}
 {% endif %}
