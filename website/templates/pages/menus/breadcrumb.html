@@ -17,9 +17,7 @@
     {% if page.is_current %}
     <li itemscope
         id="breadcrumb-menu-{{ page.html_id }}"
-        class="active" itemprop="name">
-        <h1>{{ page.title }}</h1>
-    </li>
+        class="active" itemprop="name">{{ page.title }}</li>
     {% else %}
     <li itemprop="itemListElement" itemscope
       itemtype="http://schema.org/ListItem" id="breadcrumb-menu-{{ page.html_id }}">
