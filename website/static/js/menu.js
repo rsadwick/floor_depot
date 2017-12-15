@@ -46,7 +46,7 @@ $(function () {
         infinite: true,
         slidesToShow: 4,
         dots: true,
-        arrows: true,
+        arrows: false,
         slidesToScroll: 1,
         responsive: [
             {
@@ -55,7 +55,8 @@ $(function () {
                     slidesToShow: 4,
                     slidesToScroll: 1,
                     infinite: true,
-                    dots: true
+                    dots: true,
+                    arrows: true
                 }
             },
             {
