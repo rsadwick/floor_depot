@@ -142,11 +142,11 @@
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "{{ request.META.HTTP_HOST }}{{ blog_post.get_absolute_url }}"
+    "@id": "https://{{ request.META.HTTP_HOST }}{{ blog_post.get_absolute_url }}"
   },
   "headline": "{{ blog_post.title }}",
   "image": [
-    "{{ request.META.HTTP_HOST }}{{blog_post.featured_image.url}}"
+    "https://{{ request.META.HTTP_HOST }}{{blog_post.featured_image.url}}"
    ],
   "datePublished": "{{blog_post.publish_date | date:"c"}}",
   "dateModified": "{{blog_post.publish_date | date:"c"}}",
