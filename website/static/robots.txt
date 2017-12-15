@@ -1,5 +1,5 @@
 User-agent: *
-Disallow:
 Disallow: /accounts
 Disallow: /admin
 Disallow: /test3
+Sitemap: https://hardwoodfloordepot.com/sitemap.xml

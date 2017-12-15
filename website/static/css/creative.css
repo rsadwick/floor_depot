@@ -75,6 +75,7 @@ section {
 .shop-template .product-thumb h6 {
     min-height: 88px;
     height: initial;
+    font-size: 1.6rem;
 }
 
 aside {
@@ -579,9 +580,6 @@ body {
     color: #151414;
 }
 
-.shop-template .product-thumb h6 {
-    font-size: 2rem;
-}
 
 .shop-template .thumbnail {
     border-color: #999;
@@ -951,6 +949,7 @@ a.thumbnail.active {
 .promo {
     color: #fff;
     padding: 20px;
+    text-align: center;
 }
 
 .promo.brown {
@@ -1038,6 +1037,12 @@ a.thumbnail.active {
     background-color: #795548;
     padding: 30px 0;
     color: #fff;
+}
+
+.legal p{
+    font-size: 1rem;
+    line-height: 0;
+    margin-top: 22px;
 }
 
 
