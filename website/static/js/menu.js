@@ -4,8 +4,6 @@ $(function () {
         subMenusSubOffsetY: -8,
         markCurrentItem: true,
 		markCurrentTree: true
-
-
     });
 
     $('.specials').slick({
