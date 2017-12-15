@@ -56,7 +56,7 @@
 
                     {% block blog_post_detail_featured_image %}
                     {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
-                    <p><img class="img-responsive" src="{{ MEDIA_URL }}{% thumbnail blog_post.featured_image 600 0 %}"></p>
+                    <p><img class="blog-image" width="100%" height="300" src="{{ MEDIA_URL }}{% thumbnail blog_post.featured_image 750 300 %}"></p>
                     {% endif %}
                     {% endblock %}
 
