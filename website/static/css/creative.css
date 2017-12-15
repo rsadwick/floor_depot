@@ -1112,6 +1112,10 @@ h1 {
     border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
 }
 
+.blog-list .alert{
+    margin-top: 0;
+}
+
 .billboard-container{
     margin: 12px 0;
 }
