@@ -135,4 +135,37 @@
             {% include "blog/includes/filter_panel.html" %}
         </div>
     </div>
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ request.META.HTTP_HOST }}{{ blog_post.get_absolute_url }}"
+  },
+  "headline": "{{ blog_post.title }}",
+  "image": [
+    "{{ request.META.HTTP_HOST }}{{blog_post.featured_image.url}}"
+   ],
+  "datePublished": "{{blog_post.publish_date | date:"c"}}",
+  "dateModified": "{{blog_post.publish_date | date:"c"}}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ blog_post.user }}"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Hardwood Floor Depot",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://s3.amazonaws.com/hwfd.cdn/img/logo.png"
+    }
+  },
+  "description": "{{ blog_post.description }}"
+}
+</script>
+
 {% endblock %}
+
+
