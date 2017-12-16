@@ -986,6 +986,15 @@ a.thumbnail.active {
     width: 100%;
 }
 
+.recent-blogs .item {
+    padding: 5px;
+    text-align: center;
+}
+
+.recent-blogs img {
+    width: 100%;
+}
+
 .slick-prev:before, .slick-next:before {
     color: #F05F40;
 }
@@ -1035,6 +1044,18 @@ a.thumbnail.active {
     color: #fff;
 }
 
+.bg-subscribe #mc-embedded-subscribe {
+    margin: 22px 0;
+}
+
+.bg-subscribe #mce-EMAIL {
+    margin: 0;
+}
+
+.bg-subscribe label {
+    text-align: center;
+}
+
 .legal p {
     font-size: 1rem;
     line-height: 0;
@@ -1042,7 +1063,11 @@ a.thumbnail.active {
 }
 
 .bg-subscribe .highlight {
-    color: #F05F40;
+    color: #FFFFA8;
+}
+
+.bg-subscribe hr {
+    border-color: #fff;
 }
 
 h1 {
@@ -1109,14 +1134,14 @@ h1 {
 }
 
 .blog-list .blog-item-header:first-child {
-    border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    border-radius: calc(.25rem -1px) calc(.25rem -1px) 0 0;
 }
 
-.blog-list .alert{
+.blog-list .alert {
     margin-top: 0;
 }
 
-.billboard-container{
+.billboard-container {
     margin: 12px 0;
 }
 

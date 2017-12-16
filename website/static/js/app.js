@@ -64,6 +64,8 @@ function initCalculator(container){
             totalPrice.text(HWFD.getTotalPrice(quantity.val(), price.data('price'), price.data('sqft')));
         });
     }
+
+    quantity.trigger('blur')
 }
 
 function initVariant(container){
