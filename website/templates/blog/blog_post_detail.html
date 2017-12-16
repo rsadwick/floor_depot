@@ -95,26 +95,6 @@
                         </a>
                     {% endblock %}
 
-                    {% block blog_post_previous_next %}
-
-                        {% with blog_post.get_previous_by_publish_date as previous %}
-                            {% if previous %}
-
-                                <a class="btn btn-primary"
-                                   href="{{ previous.get_absolute_url }}">&larr; {{ previous }}</a>
-
-                            {% endif %}
-                        {% endwith %}
-                        {% with blog_post.get_next_by_publish_date as next %}
-                            {% if next %}
-
-                                <a class="btn btn-primary" href="{{ next.get_absolute_url }}">{{ next }} &rarr;</a>
-
-                            {% endif %}
-                        {% endwith %}
-
-                    {% endblock %}
-
                     {% block blog_post_detail_related_posts %}
                         {% if related_posts %}
                             <div id="related-posts">
