@@ -83,7 +83,7 @@ $(function () {
     $('.recent-blogs').slick({
         infinite: true,
         slidesToShow: 4,
-        dots: false,
+        dots: true,
         arrows: false,
         slidesToScroll: 4,
         responsive: [
