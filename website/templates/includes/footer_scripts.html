@@ -34,7 +34,8 @@
                                                                                                       value=""></div>
 
                             <div class="form-group">
-                                <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-default btn-xl">
+                                <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe"
+                                       class="btn btn-default btn-xl">
                             </div>
                         </div>
                     </form>
@@ -61,8 +62,8 @@
             <div class="col-lg-4 col-lg-offset-2 text-center">
                 <i class="fa fa-phone fa-3x sr-contact"></i>
                 {% if settings.COMPANY_PHONE %}
-                    <p><a itemprop="telephone"
-                          href="tel:1-{{ settings.COMPANY_PHONE }}">{{ settings.COMPANY_PHONE }}</a></p>
+                <p><a itemprop="telephone"
+                      href="tel:1-{{ settings.COMPANY_PHONE }}">{{ settings.COMPANY_PHONE }}</a></p>
                 {% endif %}
 
             </div>
@@ -128,6 +129,40 @@
     </div>
 
     <hr class="primary">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-4">
+                <h6>shop now</h6>
+                <ul>
+                    <li><a href="/shop/">shop all hardwood flooring</a></li>
+                    <li><a href="/shop/domestic-unfinished-solid-hardwood-flooring/">Unfinished Hardwood Flooring</a></li>
+                    <li><a href="/shop/domestic-prefinished-solid-hardwood-flooring/">Prefinished Hardwood Flooring</a></li>
+                    <li><a href="/shop/exotic-prefinished-solid-hardwood-flooring/">Exotic Hardwood Flooring</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h6>tools &amp; tips</h6>
+                <ul>
+                    <li><a href="/blog/how-to-measure-your-room/">how to measure</a></li>
+                    <li><a href="/blog/shipping-what-to-expect/">how shipping works</a></li>
+                    <li><a href="/blog/hardwood-flooring-brings-in-a-large-return-on-your-investment/">return on investment</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h6>about us</h6>
+                <ul>
+                    <li><a href="/contact/">contact</a></li>
+                    <li><a href="/terms/">terms &amp; conditions</a></li>
+                    <li><a href="/privacy/">privacy policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr class="primary">
+
     <div class="container hidden-xs hidden-sm">
         <div class="col-lg-12 row third-party">
             <a href="https://stripe.com" target="_blank" rel="nofollow" class="third-party-logo">
@@ -146,21 +181,21 @@
 </section>
 
 {% if settings.GOOGLE_ANALYTICS_ID and not request.user.is_staff %}
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                    m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', '{{ settings.GOOGLE_ANALYTICS_ID }}', 'auto');
-        ga('send', 'pageview');
-    </script>
+    ga('create', '{{ settings.GOOGLE_ANALYTICS_ID }}', 'auto');
+    ga('send', 'pageview');
+</script>
 
 {% endif %}

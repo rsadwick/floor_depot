@@ -1145,4 +1145,21 @@ h1 {
     margin: 12px 0;
 }
 
+#contact ul{
+    list-style-type: none;
+    text-transform: capitalize;
+    padding: 0;
+    margin: 0;
+}
+
+#contact li{
+    padding: 0;
+    margin: 0;
+}
+
+#contact h6{
+    text-transform: uppercase;
+}
+
+
 
