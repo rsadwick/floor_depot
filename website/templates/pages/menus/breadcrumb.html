@@ -2,7 +2,7 @@
 
 {% if on_home %}
 
-    <li>Welcome to Hardwood Floor Depot</li>
+    <li><h1>Welcome to Hardwood Floor Depot</h1></li>
 
 {% else %}
     {% for page in page_branch %}
@@ -11,7 +11,7 @@
             <li id="breadcrumb-menu-home" itemprop="itemListElement" itemscope
                 itemtype="http://schema.org/ListItem">
                 <a itemscope itemtype="http://schema.org/Thing"
-                   itemprop="item" href="{% url "home" %}">{% trans "Home" %}</a>
+                   itemprop="item" href="{% url "home" %}"><h1>{% trans "Home" %}</h1></a>
             </li>
         {% endif %}
 

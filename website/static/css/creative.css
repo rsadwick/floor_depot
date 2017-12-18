@@ -531,6 +531,12 @@ body {
     color: #151414;
 }
 
+.breadcrumb h1{
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
 .shop-template {
     font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
@@ -1160,6 +1166,8 @@ h1 {
 #contact h6{
     text-transform: uppercase;
 }
+
+
 
 
 

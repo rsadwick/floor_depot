@@ -27,7 +27,7 @@
         <div class="col-md-8">
             <div class="blog-item">
                 <div class="blog-body">
-
+                    <h1>{{ blog_post.title }}</h1>
                     {% block blog_post_detail_commentlink %}
                             {% if blog_post.allow_comments %}
                                 {% if settings.COMMENTS_DISQUS_SHORTNAME %}

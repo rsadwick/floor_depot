@@ -1,13 +1,11 @@
 {% load  pages_tags shop_tags mezzanine_tags i18n staticfiles %}
-<!-- staticiallistic -->
 
 <nav class="main-nav navbar-fixed-top affix" role="navigation">
-     <!-- Mobile menu toggle button (hamburger/x icon) -->
-  <input id="main-menu-state" type="checkbox" />
-  <label class="main-menu-btn" for="main-menu-state">
-    <span class="main-menu-btn-icon"></span> Toggle main menu visibility
-  </label>
+    <input id="main-menu-state" type="checkbox"/>
+    <label class="main-menu-btn" for="main-menu-state">
+        <span class="main-menu-btn-icon"></span> Toggle main menu visibility
+    </label>
 
-  <h1 class="nav-brand"><a href="/">hardwood floor depot</a></h1>
-{% page_menu "pages/menus/dropdown.html" %}
+    <p class="nav-brand"><a href="/">hardwood floor depot</a></p>
+    {% page_menu "pages/menus/dropdown.html" %}
 </nav>
