@@ -27,7 +27,6 @@
         <div class="col-md-8">
             <div class="blog-item">
                 <div class="blog-body">
-                    <h1>{{ blog_post.title }}</h1>
                     {% block blog_post_detail_commentlink %}
                             {% if blog_post.allow_comments %}
                                 {% if settings.COMMENTS_DISQUS_SHORTNAME %}
@@ -49,6 +48,8 @@
                                     src="{{ MEDIA_URL }}{% thumbnail blog_post.featured_image 750 300 %}">
                         {% endif %}
                     {% endblock %}
+
+                    <h1>{{ blog_post.title }}</h1>
 
                     {% if settings.COMMENTS_DISQUS_SHORTNAME %}
                         {% include "generic/includes/disqus_counts.html" %}
