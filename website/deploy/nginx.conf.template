@@ -10,11 +10,8 @@ server {
 }
 
 server {
-
-    listen 80;
-    listen   [::]:80;
     %(ssl_disabled)s listen 443 ssl;
-    server_name %(domains_nginx)s;
+    server_name hardwoodfloordepot.com www.hardwoodfloordepot.com;
     client_max_body_size 10M;
     keepalive_timeout    15;
     error_log /home/%(user)s/logs/%(proj_name)s_error_nginx.log info;
@@ -22,7 +19,7 @@ server {
     ssl_certificate /etc/letsencrypt/live/hardwoodfloordepot.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/hardwoodfloordepot.com/privkey.pem;
     if ($scheme = http) {
-        return 301 https://$server_name$request_uri;
+        return 301 https://hardwoodfloordepot.com$request_uri;
     }
     %(ssl_disabled)s ssl_session_cache    shared:SSL:10m;
     %(ssl_disabled)s ssl_session_timeout  10m;
