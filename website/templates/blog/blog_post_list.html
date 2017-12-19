@@ -18,7 +18,7 @@
                     {% endif %}{% endif %}{% endif %}{% endif %}
 
     {% elif page %}
-        {% editable page.title %}{{ page.title }}{% endeditable %}
+        {{ page.title }}
 
     {% else %}
         {% trans "Welcome to Blogs" %}
@@ -54,7 +54,7 @@
                     {% endif %}{% endif %}{% endif %}{% endif %}
 
     {% elif page %}
-        {% editable page.title %}{{ page.title }}{% endeditable %}
+        {{ page.title }}
 
     {% else %}
         {% trans "Welcome to Blogs" %}
