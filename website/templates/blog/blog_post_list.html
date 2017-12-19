@@ -1,7 +1,24 @@
 {% extends "base.html" %}
 {% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags %}
 
-{% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
+{% block meta_title %}
+    {% if tag or category or year or month or author %}
+        {% if tag %}
+            {% trans "Viewing posts by Tag:" %} {{ tag }}
+        {% else %}
+
+            {% if category %}
+                {% trans "Viewing posts by Category:" %} {{ category }}
+            {% else %}
+
+                {% if year or month %}
+                    {% if month %}{{ month }}, {% endif %}{{ year }}
+                    {% else %}{% if author %}
+                        {% trans "Viewing posts by Author:" %} {{ author.get_full_name|default:author.username }}
+                    {% endif %}{% endif %}{% endif %}{% endif %}
+
+    {% endif %}
+{% endblock %}
 
 {% block meta_keywords %}{% metablock %}
     {% keywords_for page as keywords %}
@@ -16,10 +33,21 @@
 {% endmetablock %}{% endblock %}
 
 {% block title %}
-    {% if page %}
-        {% editable page.title %}{{ page.title }}{% endeditable %}
-    {% else %}
-        {% trans "Blog" %}
+    {% if tag or category or year or month or author %}
+        {% if tag %}
+            {% trans "Viewing posts by Tag:" %} {{ tag }}
+        {% else %}
+
+            {% if category %}
+                {% trans "Viewing posts by Category:" %} {{ category }}
+            {% else %}
+
+                {% if year or month %}
+                    {% if month %}{{ month }}, {% endif %}{{ year }}
+                    {% else %}{% if author %}
+                        {% trans "Viewing posts by Author:" %} {{ author.get_full_name|default:author.username }}
+                    {% endif %}{% endif %}{% endif %}{% endif %}
+
     {% endif %}
 {% endblock %}
 
@@ -46,7 +74,7 @@
     <div class="container blog-list">
         {% if tag or category or year or month or author %}
             {% block blog_post_list_filterinfo %}
-                <p>
+                <h1>
                 {% if tag %}
                     {% trans "Viewing posts tagged" %} {{ tag }}
                     {% else %}{% if category %}
@@ -59,7 +87,7 @@
                                 {{ author.get_full_name|default:author.username }}
                             {% endif %}{% endif %}{% endif %}{% endif %}
             {% endblock %}
-        </p>
+        </h1>
         {% else %}
             {% if page %}
                 {% block blog_post_list_pagecontent %}
@@ -115,22 +143,23 @@
                                     </ul>
                                 {% endif %}
 
-                                    <a class="btn btn-primary" href="{{ blog_post.get_absolute_url }}">{% trans "read more" %}</a>
-                                    {% if blog_post.allow_comments %}
-                                        /
-                                        {% if settings.COMMENTS_DISQUS_SHORTNAME %}
-                                            <a href="{{ blog_post.get_absolute_url }}#disqus_thread"
-                                               data-disqus-identifier="{% disqus_id_for blog_post %}">
-                                                {% trans "Comments" %}
-                                            </a>
-                                        {% else %}
-                                            <a href="{{ blog_post.get_absolute_url }}#comments">
-                                                {% blocktrans count comments_count=blog_post.comments_count %}
-                                                    {{ comments_count }} comment{% plural %}{{ comments_count }}
-                                                    comments{% endblocktrans %}
-                                            </a>
-                                        {% endif %}
+                                <a class="btn btn-primary"
+                                   href="{{ blog_post.get_absolute_url }}">{% trans "read more" %}</a>
+                                {% if blog_post.allow_comments %}
+                                    /
+                                    {% if settings.COMMENTS_DISQUS_SHORTNAME %}
+                                        <a href="{{ blog_post.get_absolute_url }}#disqus_thread"
+                                           data-disqus-identifier="{% disqus_id_for blog_post %}">
+                                            {% trans "Comments" %}
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ blog_post.get_absolute_url }}#comments">
+                                            {% blocktrans count comments_count=blog_post.comments_count %}
+                                                {{ comments_count }} comment{% plural %}{{ comments_count }}
+                                                comments{% endblocktrans %}
+                                        </a>
                                     {% endif %}
+                                {% endif %}
 
                             </div>
                             </div>
@@ -171,10 +200,14 @@
             {% include "blog/includes/filter_panel.html" %}
         </div>
 
-        {% pagination_for blog_posts %}
+        <div class="row">
 
-        {% if settings.COMMENTS_DISQUS_SHORTNAME %}
-            {% include "generic/includes/disqus_counts.html" %}
-        {% endif %}
+            {% pagination_for blog_posts %}
+
+            {% if settings.COMMENTS_DISQUS_SHORTNAME %}
+                {% include "generic/includes/disqus_counts.html" %}
+            {% endif %}
+
+        </div>
     </div>
 {% endblock %}
