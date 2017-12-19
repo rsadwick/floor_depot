@@ -35,7 +35,7 @@ server {
     add_header Strict-Transport-Security max-age=15768000;
 
     # Deny illegal Host headers
-    if ($host !~* ^(%(domains_regex)s)$) {
+    if  ($host !~* ^(hardwoodfloordepot.com|www.hardwoodfloordepot.com)$ ) {
         return 444;
     }
 
