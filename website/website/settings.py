@@ -267,7 +267,7 @@ EMAIL_FAIL_SILENTLY = True
 ###################
 
 # Domains for public site
-ALLOWED_HOSTS = ["hardwoodfloordepot.com", 'www.hardwoodfloordepot.com']
+ALLOWED_HOSTS = ["hardwoodfloordepot.com", "www.hardwoodfloordepot.com"]
 
 # These settings are used by the default fabfile.py provided.
 # Check fabfile.py for defaults.
