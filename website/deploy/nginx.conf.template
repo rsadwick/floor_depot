@@ -4,6 +4,12 @@ upstream %(proj_name)s {
 }
 
 server {
+    listen       80;
+    server_name  hardwoodfloordepot.com www.hardwoodfloordepot.com;
+    return       301 https://hardwoodfloordepot.com$request_uri;
+}
+
+server {
 
     listen 80;
     listen   [::]:80;
