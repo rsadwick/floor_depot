@@ -262,13 +262,12 @@ EMAIL_TIMEOUT = 10
 EMAIL_FAIL_SILENTLY = True
 
 
-
 ###################
 # DEPLOY SETTINGS #
 ###################
 
 # Domains for public site
-ALLOWED_HOSTS = ["hardwoodfloordepot.com"]
+ALLOWED_HOSTS = ["hardwoodfloordepot.com", 'www.hardwoodfloordepot.com']
 
 # These settings are used by the default fabfile.py provided.
 # Check fabfile.py for defaults.
