@@ -17,6 +17,11 @@
                         {% trans "Viewing posts by Author:" %} {{ author.get_full_name|default:author.username }}
                     {% endif %}{% endif %}{% endif %}{% endif %}
 
+    {% elif page %}
+        {% editable page.title %}{{ page.title }}{% endeditable %}
+
+    {% else %}
+        {% trans "Welcome to Blogs" %}
     {% endif %}
 {% endblock %}
 
@@ -48,6 +53,11 @@
                         {% trans "Viewing posts by Author:" %} {{ author.get_full_name|default:author.username }}
                     {% endif %}{% endif %}{% endif %}{% endif %}
 
+    {% elif page %}
+        {% editable page.title %}{{ page.title }}{% endeditable %}
+
+    {% else %}
+        {% trans "Welcome to Blogs" %}
     {% endif %}
 {% endblock %}
 
