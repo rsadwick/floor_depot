@@ -12,7 +12,7 @@
             {% else %}
 
                 {% if year or month %}
-                    {% if month %}{{ month }}, {% endif %}{{ year }}
+                    {% if month %}Viewing posts from {{ month }}, {% endif %}Viewing posts from {{ year }}
                     {% else %}{% if author %}
                         {% trans "Viewing posts by Author:" %} {{ author.get_full_name|default:author.username }}
                     {% endif %}{% endif %}{% endif %}{% endif %}
@@ -43,7 +43,7 @@
             {% else %}
 
                 {% if year or month %}
-                    {% if month %}{{ month }}, {% endif %}{{ year }}
+                    {% if month %}Viewing posts from {{ month }}, {% endif %}Viewing posts from {{ year }}
                     {% else %}{% if author %}
                         {% trans "Viewing posts by Author:" %} {{ author.get_full_name|default:author.username }}
                     {% endif %}{% endif %}{% endif %}{% endif %}
