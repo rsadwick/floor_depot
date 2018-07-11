@@ -836,13 +836,12 @@ a.thumbnail.active {
 
 .nav-brand a {
     display: block;
-    padding: 17px 12px 12px 20px;
+    padding: 3px 0 5px 10px;
     color: #555;
     font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 18px;
-    line-height: 17px;
     text-decoration: none;
 }
 
@@ -852,8 +851,9 @@ a.thumbnail.active {
 
 @media (min-width: 768px) {
     #main-menu {
-        float: right;
+        float: left;
         clear: none;
+        margin-top: 21px;
     }
 
     #side-nav {
